@@ -119,6 +119,16 @@ const Dashboard = () => {
           <p className="text-gray-500 text-sm">
             High income consistency, good savings buffer, and on-time bill payments.
           </p>
+          <div className="mt-3">
+            <Button 
+              onClick={() => navigate("/simulator")} 
+              variant="outline" 
+              className="w-full text-accent hover:bg-accent/10"
+              size="sm"
+            >
+              Try Financial Behavior Simulator
+            </Button>
+          </div>
         </CardContent>
       </Card>
       
