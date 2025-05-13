@@ -31,9 +31,9 @@ import { useApp } from "@/context/AppContext";
 import { useToast } from "@/hooks/use-toast";
 
 const lenders = [
-  { id: "loanbox", name: "LoanBox NBFC" },
-  { id: "flexibank", name: "FlexiBank" },
-  { id: "kreditbee", name: "KreditBee" },
+  { id: "dbs", name: "DBS Bank" },
+  { id: "ocbc", name: "OCBC Bank" },
+  { id: "singlife", name: "Singlife" },
 ];
 
 const FinancialPassport = () => {
@@ -95,12 +95,12 @@ const FinancialPassport = () => {
               <div className="flex justify-between">
                 <span className="text-gray-500">Verification</span>
                 <span className="px-2 py-0.5 bg-accent/20 text-accent rounded-full text-xs">
-                  PAN Verified
+                  SingPass Verified
                 </span>
               </div>
               <div className="flex justify-between">
                 <span className="text-gray-500">Location</span>
-                <span className="font-medium">Bangalore, India</span>
+                <span className="font-medium">Singapore</span>
               </div>
             </div>
           </div>
@@ -113,14 +113,14 @@ const FinancialPassport = () => {
               <div className="bg-soft-blue p-3 rounded-lg">
                 <div className="text-sm text-gray-500">Avg Monthly Income</div>
                 <div className="text-lg font-bold">
-                  ₹{financialData.monthlyIncome.toLocaleString()}
+                  S${financialData.monthlyIncome.toLocaleString()}
                 </div>
               </div>
               
               <div className="bg-soft-blue p-3 rounded-lg">
                 <div className="text-sm text-gray-500">Avg Monthly Spend</div>
                 <div className="text-lg font-bold">
-                  ₹{financialData.expenses.reduce((sum, exp) => 
+                  S${financialData.expenses.reduce((sum, exp) => 
                     exp.category !== "Savings" ? sum + exp.amount : sum, 0
                   ).toLocaleString()}
                 </div>
@@ -166,7 +166,7 @@ const FinancialPassport = () => {
               {financialData.incomeBreakdown.map((income, index) => (
                 <div key={index} className="flex justify-between">
                   <span>{income.source}</span>
-                  <span className="font-semibold">₹{income.amount.toLocaleString()}</span>
+                  <span className="font-semibold">S${income.amount.toLocaleString()}</span>
                 </div>
               ))}
             </div>

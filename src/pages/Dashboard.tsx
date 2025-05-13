@@ -46,7 +46,7 @@ const Dashboard = () => {
         <CardContent>
           <div className="mb-2">
             <p className="text-xl font-bold">
-              You earn ₹{financialData.monthlyIncome.toLocaleString()}/month through UPI.
+              You earn S${financialData.monthlyIncome.toLocaleString()}/month through PayNow.
             </p>
           </div>
           <div className="space-y-2">
@@ -54,7 +54,7 @@ const Dashboard = () => {
             {financialData.incomeBreakdown.map((income, index) => (
               <div key={index} className="flex justify-between">
                 <span>{income.source}</span>
-                <span className="font-semibold">₹{income.amount.toLocaleString()}</span>
+                <span className="font-semibold">S${income.amount.toLocaleString()}</span>
               </div>
             ))}
           </div>
@@ -94,7 +94,7 @@ const Dashboard = () => {
                 <span style={{ color: COLORS[index % COLORS.length] }}>
                   {expense.category}
                 </span>
-                <span className="font-semibold">₹{expense.amount.toLocaleString()}</span>
+                <span className="font-semibold">S${expense.amount.toLocaleString()}</span>
               </div>
             ))}
           </div>
@@ -143,7 +143,7 @@ const Dashboard = () => {
               <div className="h-5 w-5 rounded-full bg-accent/20 flex-shrink-0 flex items-center justify-center text-accent">
                 ✓
               </div>
-              <span>Maintain ₹2,000 minimum balance</span>
+              <span>Maintain S$500 minimum balance</span>
             </li>
             <li className="flex items-start space-x-2">
               <div className="h-5 w-5 rounded-full bg-accent/20 flex-shrink-0 flex items-center justify-center text-accent">
@@ -155,7 +155,7 @@ const Dashboard = () => {
               <div className="h-5 w-5 rounded-full bg-accent/20 flex-shrink-0 flex items-center justify-center text-accent">
                 ✓
               </div>
-              <span>Add mobile bill payment</span>
+              <span>Add utility bill payment</span>
             </li>
           </ul>
         </CardContent>

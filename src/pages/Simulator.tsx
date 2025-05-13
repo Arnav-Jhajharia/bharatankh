@@ -97,7 +97,7 @@ const Simulator = () => {
           
           <SimulationControl 
             title="Link additional income source"
-            description="Add another UPI or bank account"
+            description="Add another PayNow or bank account"
             impact="+3 points"
             icon={<ArrowUp className="text-accent" />}
             onClick={() => handleScoreChange(3)}
@@ -190,7 +190,7 @@ const Simulator = () => {
           <div className="flex items-center space-x-4">
             <Switch id="utility-bills" />
             <div className="grid gap-0.5">
-              <Label htmlFor="utility-bills">Link utility bills</Label>
+              <Label htmlFor="utility-bills">Link SP Group bills</Label>
               <span className="text-sm text-gray-500">+2 points on activation</span>
             </div>
           </div>

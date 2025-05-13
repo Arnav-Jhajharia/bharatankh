@@ -67,22 +67,22 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
 
   const generateMockData = () => {
     const mockFinancialData: FinancialData = {
-      monthlyIncome: 19850,
+      monthlyIncome: 3250,
       incomeBreakdown: [
-        { source: "Swiggy", amount: 10000 },
-        { source: "Uber", amount: 6000 },
-        { source: "Zomato", amount: 3850 },
+        { source: "Grab", amount: 1800 },
+        { source: "Deliveroo", amount: 950 },
+        { source: "Foodpanda", amount: 500 },
       ],
       expenses: [
-        { category: "Rent", amount: 6000 },
-        { category: "Groceries", amount: 4000 },
-        { category: "EMI", amount: 3500 },
-        { category: "Misc", amount: 1000 },
-        { category: "Savings", amount: 5350 },
+        { category: "Rent", amount: 1200 },
+        { category: "Food", amount: 600 },
+        { category: "Transport", amount: 250 },
+        { category: "Utilities", amount: 150 },
+        { category: "Savings", amount: 1050 },
       ],
       finScore: 81,
       riskProfile: "Low",
-      tags: ["Reliable Earner", "Consistent UPI Income", "No EMI Overload"],
+      tags: ["Reliable Earner", "Consistent PayNow Income", "Good Savings Rate"],
     };
 
     setFinancialData(mockFinancialData);

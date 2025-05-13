@@ -15,10 +15,10 @@ import LoadingOverlay from "@/components/LoadingOverlay";
 import { useApp } from "@/context/AppContext";
 
 const banks = [
-  { id: "hdfc", name: "HDFC Bank", logo: "H" },
-  { id: "icici", name: "ICICI Bank", logo: "I" },
-  { id: "sbi", name: "State Bank of India", logo: "S" },
-  { id: "kotak", name: "Kotak Mahindra Bank", logo: "K" },
+  { id: "dbs", name: "DBS Bank", logo: "D" },
+  { id: "ocbc", name: "OCBC Bank", logo: "O" },
+  { id: "uob", name: "UOB", logo: "U" },
+  { id: "maybank", name: "Maybank", logo: "M" },
 ];
 
 const BankLinking = () => {
@@ -50,7 +50,7 @@ const BankLinking = () => {
   return (
     <PageContainer>
       <LoadingOverlay 
-        message="Fetching UPI history..." 
+        message="Fetching PayNow history..." 
         isVisible={isLoading} 
       />
       
@@ -62,7 +62,7 @@ const BankLinking = () => {
         <CardHeader>
           <CardTitle className="text-xl">Link your bank account</CardTitle>
           <CardDescription>
-            We'll fetch your last 6 months of UPI transactions to build your profile. You control everything.
+            We'll fetch your last 6 months of PayNow transactions to build your profile. You control everything.
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -122,7 +122,7 @@ const BankLinking = () => {
         disabled={!selectedBank}
         className="w-full bg-primary hover:bg-primary/90"
       >
-        Connect via Account Aggregator
+        Connect via SGFinDex
       </Button>
     </PageContainer>
   );

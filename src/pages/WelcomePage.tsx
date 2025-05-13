@@ -29,7 +29,7 @@ const WelcomePage = () => {
       >
         <h2 className="text-4xl font-bold mb-4 text-gray-800">Welcome to FinBridge</h2>
         <p className="text-lg text-gray-600 max-w-md">
-          Your work deserves credit. Build your FinScore and unlock better loans, faster.
+          Your work deserves credit. Build your FinScore and unlock better loans across Singapore.
         </p>
       </motion.div>
       
