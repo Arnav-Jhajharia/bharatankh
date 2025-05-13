@@ -35,9 +35,9 @@ import { useApp } from "@/context/AppContext";
 
 const formSchema = z.object({
   fullName: z.string().min(3, { message: "Name must be at least 3 characters" }),
-  panNumber: z
+  finNumber: z
     .string()
-    .regex(/^[A-Z]{5}[0-9]{4}[A-Z]$/, { message: "Invalid PAN format" }),
+    .regex(/^[STFG]\d{7}[A-Z]$/, { message: "Invalid FIN/TIN format" }),
   dob: z.date({
     required_error: "Date of birth is required",
   }),
@@ -52,14 +52,14 @@ const KycVerification = () => {
     resolver: zodResolver(formSchema),
     defaultValues: {
       fullName: "",
-      panNumber: "",
+      finNumber: "",
     },
   });
 
   const onSubmit = (values: z.infer<typeof formSchema>) => {
     updateUserData({
       name: values.fullName,
-      pan: values.panNumber,
+      pan: values.finNumber,
       dob: values.dob,
     });
     
@@ -107,18 +107,18 @@ const KycVerification = () => {
                 
                 <FormField
                   control={form.control}
-                  name="panNumber"
+                  name="finNumber"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>PAN Number</FormLabel>
+                      <FormLabel>FIN / TIN Number</FormLabel>
                       <FormControl>
                         <Input 
-                          placeholder="ABCDE1234F" 
+                          placeholder="S1234567D" 
                           {...field} 
                           onChange={(e) => {
                             field.onChange(e.target.value.toUpperCase());
                           }}
-                          maxLength={10}
+                          maxLength={9}
                         />
                       </FormControl>
                       <FormMessage />
@@ -173,7 +173,7 @@ const KycVerification = () => {
                   type="submit" 
                   className="w-full bg-primary hover:bg-primary/90"
                 >
-                  Verify with Aadhaar
+                  Verify with SingPass
                 </Button>
               </form>
             </Form>
@@ -183,7 +183,7 @@ const KycVerification = () => {
                 <CheckCircle className="h-16 w-16 text-accent mb-4" />
                 <h3 className="text-xl font-semibold">Identity Verified!</h3>
                 <p className="text-gray-500 mt-2 text-center">
-                  Your identity has been successfully verified with Aadhaar
+                  Your identity has been successfully verified with SingPass
                 </p>
               </div>
               
