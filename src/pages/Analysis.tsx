@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -14,7 +13,8 @@ import {
 } from "@/components/ui/chart";
 import { LineChart, Line, BarChart, Bar, PieChart, Pie, XAxis, YAxis, CartesianGrid, Cell, ResponsiveContainer } from "recharts";
 import { Separator } from "@/components/ui/separator";
-import { TrendingUp, TrendingDown, Info, LightbulbIcon } from "lucide-react";
+import { TrendingUp, TrendingDown, Info, LightbulbIcon, AlertTriangle } from "lucide-react";
+import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
 
 const Analysis = () => {
   const navigate = useNavigate();
@@ -27,17 +27,22 @@ const Analysis = () => {
     { name: "May", income: 1500, expenses: 900 },
     { name: "Jun", income: 1300, expenses: 850 },
     { name: "Jul", income: 1700, expenses: 950 },
-    { name: "Aug", income: 2100, expenses: 1200 },
+    { name: "Aug", stability: 92, income: 2100, expenses: 1200 },
   ];
   
-  // Income Stability Data
+  // Income Stability Data with flagging threshold
+  const stabilityThreshold = 75;
   const stabilityData = [
-    { month: "Apr", stability: 68 },
-    { month: "May", stability: 72 },
-    { month: "Jun", stability: 78 },
-    { month: "Jul", stability: 86 },
-    { month: "Aug", stability: 92 },
+    { month: "Apr", stability: 68, isFlagged: true },
+    { month: "May", stability: 72, isFlagged: true },
+    { month: "Jun", stability: 78, isFlagged: false },
+    { month: "Jul", stability: 86, isFlagged: false },
+    { month: "Aug", stability: 92, isFlagged: false },
   ];
+  
+  // Get lowest stability value to highlight
+  const lowestStability = Math.min(...stabilityData.map(item => item.stability));
+  const lowestStabilityMonth = stabilityData.find(item => item.stability === lowestStability)?.month || '';
   
   // Spending Breakdown Data
   const spendingData = [
@@ -205,17 +210,46 @@ const Analysis = () => {
         
         {/* Income Stability & Spending Breakdown - Side by side */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-          {/* Income Stability */}
+          {/* Income Stability with Warning */}
           <div>
-            <h3 className="text-lg font-semibold mb-3">Income Stability</h3>
+            <div className="flex items-center justify-between mb-3">
+              <h3 className="text-lg font-semibold">Income Stability</h3>
+              <div className="flex items-center text-xs text-red-500 font-medium">
+                <AlertTriangle className="h-4 w-4 mr-1" />
+                Stability Issue Detected
+              </div>
+            </div>
+
+            {/* Alert box for stability issue */}
+            <Alert className="mb-3 bg-red-50 border-red-200 text-red-700">
+              <AlertTriangle className="h-4 w-4" />
+              <AlertTitle>Low Income Stability</AlertTitle>
+              <AlertDescription>
+                Your income stability was below the recommended threshold of {stabilityThreshold}% in {lowestStabilityMonth} ({lowestStability}%), which may impact your loan approval chances.
+              </AlertDescription>
+            </Alert>
+
             <div className="h-32">
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={stabilityData} margin={{ top: 5, right: 5, left: 0, bottom: 5 }}>
                   <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f0f0f0" />
                   <XAxis dataKey="month" axisLine={false} tickLine={false} />
+                  <YAxis axisLine={false} tickLine={false} domain={[0, 100]} />
+                  <ChartTooltip
+                    content={
+                      <ChartTooltipContent 
+                        formatter={(value) => [`${value}%`, 'Stability']} 
+                      />
+                    }
+                  />
                   <Bar dataKey="stability" radius={[4, 4, 0, 0]}>
                     {stabilityData.map((entry, index) => (
-                      <Cell key={`cell-${index}`} fill="#399EE6" />
+                      <Cell 
+                        key={`cell-${index}`} 
+                        fill={entry.isFlagged ? "#ea384c" : "#399EE6"} 
+                        stroke={entry.isFlagged ? "#c01e36" : "#2288d1"}
+                        strokeWidth={1}
+                      />
                     ))}
                   </Bar>
                 </BarChart>
