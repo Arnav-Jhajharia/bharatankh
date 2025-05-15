@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -230,7 +231,12 @@ const Analysis = () => {
             </Alert>
 
             <div className="h-32">
-              <ResponsiveContainer width="100%" height="100%">
+              <ChartContainer 
+                config={{
+                  stability: { color: "#399EE6" },
+                  flagged: { color: "#ea384c" }
+                }}
+              >
                 <BarChart data={stabilityData} margin={{ top: 5, right: 5, left: 0, bottom: 5 }}>
                   <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f0f0f0" />
                   <XAxis dataKey="month" axisLine={false} tickLine={false} />
@@ -253,7 +259,7 @@ const Analysis = () => {
                     ))}
                   </Bar>
                 </BarChart>
-              </ResponsiveContainer>
+              </ChartContainer>
             </div>
           </div>
           
