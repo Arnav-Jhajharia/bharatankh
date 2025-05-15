@@ -47,19 +47,19 @@ const ExplainableFinance = () => {
     {
       title: "Boost Your Buffer",
       description: "Save at least 10% of weekly earnings to reduce score volatility.",
-      icon: <PiggyBank className="h-6 w-6 text-blue-500" />,
+      icon: <PiggyBank className="h-5 w-5 text-blue-500" />,
       color: "bg-blue-50 border-blue-200"
     },
     {
       title: "Tame Big Spends",
       description: "Split high-value purchases or avoid spikes near rent week.",
-      icon: <HandCoins className="h-6 w-6 text-teal-500" />,
+      icon: <HandCoins className="h-5 w-5 text-teal-500" />,
       color: "bg-teal-50 border-teal-200"
     },
     {
       title: "Smooth Your Inflows",
       description: "More frequent income sources lead to a stabler score.",
-      icon: <CircleDollarSign className="h-6 w-6 text-blue-500" />,
+      icon: <CircleDollarSign className="h-5 w-5 text-blue-500" />,
       color: "bg-blue-50 border-blue-200"
     }
   ];
@@ -96,213 +96,212 @@ const ExplainableFinance = () => {
     }
   };
 
-  // Chart config for styling
+  // Chart config for styling - Fixed TypeScript error by adding dark theme
   const chartConfig = {
     expense: {
       label: "Expenses",
       theme: {
-        light: "#ef4444", // Red color for expenses
+        light: "#ef4444", 
+        dark: "#ef4444"  // Added dark theme
       }
     },
     income: {
       label: "Income",
       theme: {
-        light: "#22c55e", // Green color for income
+        light: "#22c55e", 
+        dark: "#22c55e"  // Added dark theme
       }
     }
   };
 
   return (
-    <PageContainer>
-      <div className="flex justify-center mb-6">
+    <PageContainer className="py-4">
+      <div className="flex justify-center mb-4">
         <h1 className="text-2xl font-bold text-primary">FinBridge</h1>
       </div>
       
       {/* Financial Insights Card with White Background */}
-      <Card className="w-full shadow-lg animate-fade-in mb-6 bg-white">
-        <CardHeader className="pb-2">
-          <CardTitle className="text-xl">Financial Insights Explained</CardTitle>
+      <Card className="w-full shadow-lg animate-fade-in mb-4 bg-white">
+        <CardHeader className="pb-1 pt-3">
+          <CardTitle className="text-xl">Financial Insights</CardTitle>
           <CardDescription>
-            Understanding your financial profile
+            Understanding your profile
           </CardDescription>
         </CardHeader>
-        <CardContent className="pt-6">
+        <CardContent className="pt-2 pb-2">
           {/* Financial Health Score */}
-          <div className="mb-6">
+          <div className="mb-4">
             <div className="flex justify-between items-center mb-2">
-              <h3 className="text-lg font-semibold">Financial Health</h3>
-              <span className="text-lg font-bold">{financialData.finScore * 9}/900</span>
+              <h3 className="text-base font-semibold">Financial Health</h3>
+              <span className="text-base font-bold">{financialData.finScore * 9}/900</span>
             </div>
             
-            <FinancialInsightBar score={financialData.finScore} className="mb-6" />
+            <FinancialInsightBar score={financialData.finScore} className="mb-3" />
             
-            <div className="space-y-4">
-              {/* Strengths and Weaknesses as Collapsible Sections */}
-              <div className="space-y-3">
-                {/* Strength - Collapsed */}
-                <div className={`border rounded-md ${isItemOpen('item-1') ? 'border-green-500' : 'border-green-200'}`}>
-                  <div 
-                    className="flex justify-between items-center p-4 cursor-pointer bg-green-50 rounded-t-md"
-                    onClick={() => toggleItem('item-1')}
-                  >
-                    <div className="flex items-center gap-2">
-                      <ArrowUp className="h-4 w-4 text-green-600" />
-                      <h4 className="font-medium text-green-700">
-                        {strengths[0].title}
-                      </h4>
-                    </div>
-                    {isItemOpen('item-1') ? (
-                      <ChevronUp className="h-5 w-5 text-green-600" />
-                    ) : (
-                      <ChevronDown className="h-5 w-5 text-green-600" />
-                    )}
+            <div className="space-y-2">
+              {/* Strength - Collapsed */}
+              <div className={`border rounded-md ${isItemOpen('item-1') ? 'border-green-500' : 'border-green-200'}`}>
+                <div 
+                  className="flex justify-between items-center p-2 cursor-pointer bg-green-50 rounded-t-md"
+                  onClick={() => toggleItem('item-1')}
+                >
+                  <div className="flex items-center gap-2">
+                    <ArrowUp className="h-4 w-4 text-green-600" />
+                    <h4 className="font-medium text-sm text-green-700">
+                      {strengths[0].title}
+                    </h4>
                   </div>
-                  
-                  {isItemOpen('item-1') && (
-                    <div className="p-4 bg-white rounded-b-md">
-                      <p className="text-sm text-gray-700 mb-4">
-                        {strengths[0].description}
-                      </p>
-                    </div>
+                  {isItemOpen('item-1') ? (
+                    <ChevronUp className="h-4 w-4 text-green-600" />
+                  ) : (
+                    <ChevronDown className="h-4 w-4 text-green-600" />
                   )}
                 </div>
                 
-                {/* First Weakness - Collapsed */}
-                <div className={`border rounded-md ${isItemOpen('item-2') ? 'border-red-500' : 'border-red-200'}`}>
-                  <div 
-                    className="flex justify-between items-center p-4 cursor-pointer bg-red-50 rounded-t-md"
-                    onClick={() => toggleItem('item-2')}
-                  >
-                    <div className="flex items-center gap-2">
-                      <ArrowDown className="h-4 w-4 text-red-600" />
-                      <h4 className="font-medium text-red-700">
-                        {weaknesses[0].title}
-                      </h4>
-                    </div>
-                    {isItemOpen('item-2') ? (
-                      <ChevronUp className="h-5 w-5 text-red-600" />
-                    ) : (
-                      <ChevronDown className="h-5 w-5 text-red-600" />
-                    )}
+                {isItemOpen('item-1') && (
+                  <div className="p-2 bg-white rounded-b-md">
+                    <p className="text-xs text-gray-700">
+                      {strengths[0].description}
+                    </p>
                   </div>
-                  
-                  {isItemOpen('item-2') && (
-                    <div className="p-4 bg-white rounded-b-md">
-                      <p className="text-sm text-gray-700 mb-4">
-                        {weaknesses[0].description}
-                      </p>
-                      
-                      {/* Income Chart for April Drop */}
-                      <div className="mt-4 border border-gray-100 rounded-lg p-4 bg-gray-50">
-                        <h5 className="text-sm font-medium text-gray-700 mb-2">Income Stability (Last 6 Months)</h5>
-                        <div className="h-64 w-full">
-                          <ChartContainer config={chartConfig}>
-                            <ResponsiveContainer width="100%" height="100%">
-                              <LineChart data={incomeData} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
-                                <Line type="monotone" dataKey="amount" name="income" stroke="#22c55e" strokeWidth={2} dot={{ strokeWidth: 2 }} />
-                                <CartesianGrid stroke="#f5f5f5" />
-                                <XAxis dataKey="name" />
-                                <YAxis />
-                                <Tooltip content={<ChartTooltipContent />} />
-                              </LineChart>
-                            </ResponsiveContainer>
-                          </ChartContainer>
-                        </div>
-                        <p className="text-xs text-gray-500 mt-2 text-center">The 18% drop in April increased your financial volatility</p>
-                      </div>
-                    </div>
+                )}
+              </div>
+              
+              {/* First Weakness - Collapsed */}
+              <div className={`border rounded-md ${isItemOpen('item-2') ? 'border-red-500' : 'border-red-200'}`}>
+                <div 
+                  className="flex justify-between items-center p-2 cursor-pointer bg-red-50 rounded-t-md"
+                  onClick={() => toggleItem('item-2')}
+                >
+                  <div className="flex items-center gap-2">
+                    <ArrowDown className="h-4 w-4 text-red-600" />
+                    <h4 className="font-medium text-sm text-red-700">
+                      {weaknesses[0].title}
+                    </h4>
+                  </div>
+                  {isItemOpen('item-2') ? (
+                    <ChevronUp className="h-4 w-4 text-red-600" />
+                  ) : (
+                    <ChevronDown className="h-4 w-4 text-red-600" />
                   )}
                 </div>
                 
-                {/* Second Weakness - Expanded by default */}
-                <div className={`border rounded-md ${isItemOpen('item-3') ? 'border-red-500' : 'border-red-200'}`}>
-                  <div 
-                    className="flex justify-between items-center p-4 cursor-pointer bg-red-50 rounded-t-md"
-                    onClick={() => toggleItem('item-3')}
-                  >
-                    <div className="flex items-center gap-2">
-                      <ArrowDown className="h-4 w-4 text-red-600" />
-                      <h4 className="font-medium text-red-700">
-                        {weaknesses[1].title}
-                      </h4>
+                {isItemOpen('item-2') && (
+                  <div className="p-2 bg-white rounded-b-md">
+                    <p className="text-xs text-gray-700 mb-2">
+                      {weaknesses[0].description}
+                    </p>
+                    
+                    {/* Income Chart for April Drop - More compact */}
+                    <div className="border border-gray-100 rounded-lg p-2 bg-gray-50">
+                      <h5 className="text-xs font-medium text-gray-700 mb-1">Income Stability (Last 6 Months)</h5>
+                      <div className="h-40 w-full">
+                        <ChartContainer config={chartConfig}>
+                          <ResponsiveContainer width="100%" height="100%">
+                            <LineChart data={incomeData} margin={{ top: 5, right: 5, bottom: 5, left: 0 }}>
+                              <Line type="monotone" dataKey="amount" name="income" stroke="#22c55e" strokeWidth={2} dot={{ strokeWidth: 2 }} />
+                              <CartesianGrid stroke="#f5f5f5" />
+                              <XAxis dataKey="name" tick={{fontSize: 10}} />
+                              <YAxis tick={{fontSize: 10}} />
+                              <Tooltip content={<ChartTooltipContent />} />
+                            </LineChart>
+                          </ResponsiveContainer>
+                        </ChartContainer>
+                      </div>
+                      <p className="text-xs text-gray-500 mt-1 text-center">18% drop in April increased volatility</p>
                     </div>
-                    {isItemOpen('item-3') ? (
-                      <ChevronUp className="h-5 w-5 text-red-600" />
-                    ) : (
-                      <ChevronDown className="h-5 w-5 text-red-600" />
-                    )}
                   </div>
-                  
-                  {isItemOpen('item-3') && (
-                    <div className="p-4 bg-white rounded-b-md">
-                      <p className="text-sm text-gray-700 mb-4">
-                        {weaknesses[1].description}
-                      </p>
-                      
-                      {/* Monthly Spending Chart */}
-                      <div className="mt-4 border border-gray-100 rounded-lg p-4 bg-gray-50">
-                        <h5 className="text-sm font-medium text-gray-700 mb-2">Monthly Spending Variance</h5>
-                        <div className="h-64 w-full">
-                          <ChartContainer config={chartConfig}>
-                            <ResponsiveContainer width="100%" height="100%">
-                              <LineChart data={spendingData} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
-                                <Line type="monotone" dataKey="amount" name="expense" stroke="#ef4444" strokeWidth={2} dot={{ strokeWidth: 2 }} />
-                                <CartesianGrid stroke="#f5f5f5" />
-                                <XAxis dataKey="name" />
-                                <YAxis />
-                                <Tooltip content={<ChartTooltipContent />} />
-                              </LineChart>
-                            </ResponsiveContainer>
-                          </ChartContainer>
-                        </div>
-                        <p className="text-xs text-gray-500 mt-2 text-center">Your monthly spending has high variance which impacts stability</p>
-                      </div>
-                      
-                      {/* Spending Comparison Card */}
-                      <div className="mt-4 p-4 bg-gray-50 rounded-lg border border-gray-100">
-                        <h5 className="text-sm font-medium text-gray-700 mb-3">Monthly Spending Comparison</h5>
-                        <div className="flex justify-between items-center mb-2">
-                          <div className="flex items-center">
-                            <div className="w-3 h-3 rounded-full bg-green-500 mr-2"></div>
-                            <span className="text-xs">Optimal Variance</span>
-                          </div>
-                          <span className="text-xs font-medium">±10%</span>
-                        </div>
-                        <div className="flex justify-between items-center mb-2">
-                          <div className="flex items-center">
-                            <div className="w-3 h-3 rounded-full bg-amber-500 mr-2"></div>
-                            <span className="text-xs">Moderate Variance</span>
-                          </div>
-                          <span className="text-xs font-medium">±20%</span>
-                        </div>
-                        <div className="flex justify-between items-center">
-                          <div className="flex items-center">
-                            <div className="w-3 h-3 rounded-full bg-red-500 mr-2"></div>
-                            <span className="text-xs">Your Variance</span>
-                          </div>
-                          <span className="text-xs font-medium">±44%</span>
-                        </div>
-                      </div>
-                    </div>
+                )}
+              </div>
+              
+              {/* Second Weakness - Expanded by default */}
+              <div className={`border rounded-md ${isItemOpen('item-3') ? 'border-red-500' : 'border-red-200'}`}>
+                <div 
+                  className="flex justify-between items-center p-2 cursor-pointer bg-red-50 rounded-t-md"
+                  onClick={() => toggleItem('item-3')}
+                >
+                  <div className="flex items-center gap-2">
+                    <ArrowDown className="h-4 w-4 text-red-600" />
+                    <h4 className="font-medium text-sm text-red-700">
+                      {weaknesses[1].title}
+                    </h4>
+                  </div>
+                  {isItemOpen('item-3') ? (
+                    <ChevronUp className="h-4 w-4 text-red-600" />
+                  ) : (
+                    <ChevronDown className="h-4 w-4 text-red-600" />
                   )}
                 </div>
+                
+                {isItemOpen('item-3') && (
+                  <div className="p-2 bg-white rounded-b-md">
+                    <p className="text-xs text-gray-700 mb-2">
+                      {weaknesses[1].description}
+                    </p>
+                    
+                    {/* Monthly Spending Chart - More compact */}
+                    <div className="border border-gray-100 rounded-lg p-2 bg-gray-50 mb-2">
+                      <h5 className="text-xs font-medium text-gray-700 mb-1">Monthly Spending Variance</h5>
+                      <div className="h-40 w-full">
+                        <ChartContainer config={chartConfig}>
+                          <ResponsiveContainer width="100%" height="100%">
+                            <LineChart data={spendingData} margin={{ top: 5, right: 5, bottom: 5, left: 0 }}>
+                              <Line type="monotone" dataKey="amount" name="expense" stroke="#ef4444" strokeWidth={2} dot={{ strokeWidth: 2 }} />
+                              <CartesianGrid stroke="#f5f5f5" />
+                              <XAxis dataKey="name" tick={{fontSize: 10}} />
+                              <YAxis tick={{fontSize: 10}} />
+                              <Tooltip content={<ChartTooltipContent />} />
+                            </LineChart>
+                          </ResponsiveContainer>
+                        </ChartContainer>
+                      </div>
+                      <p className="text-xs text-gray-500 mt-1 text-center">High variance impacts stability</p>
+                    </div>
+                    
+                    {/* Spending Comparison Card - More compact */}
+                    <div className="p-2 bg-gray-50 rounded-lg border border-gray-100">
+                      <h5 className="text-xs font-medium text-gray-700 mb-2">Monthly Spending Comparison</h5>
+                      <div className="flex justify-between items-center mb-1">
+                        <div className="flex items-center">
+                          <div className="w-2 h-2 rounded-full bg-green-500 mr-2"></div>
+                          <span className="text-xs">Optimal</span>
+                        </div>
+                        <span className="text-xs">±10%</span>
+                      </div>
+                      <div className="flex justify-between items-center mb-1">
+                        <div className="flex items-center">
+                          <div className="w-2 h-2 rounded-full bg-amber-500 mr-2"></div>
+                          <span className="text-xs">Moderate</span>
+                        </div>
+                        <span className="text-xs">±20%</span>
+                      </div>
+                      <div className="flex justify-between items-center">
+                        <div className="flex items-center">
+                          <div className="w-2 h-2 rounded-full bg-red-500 mr-2"></div>
+                          <span className="text-xs">Your Variance</span>
+                        </div>
+                        <span className="text-xs">±44%</span>
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           </div>
           
-          {/* Insights/Suggestions */}
+          {/* Insights/Suggestions - More compact */}
           <div>
-            <h3 className="text-lg font-semibold mb-3">Personalized Suggestions</h3>
-            <div className="space-y-3">
+            <h3 className="text-base font-semibold mb-2">Suggestions</h3>
+            <div className="grid grid-cols-1 gap-2">
               {financialInsights.map((insight, index) => (
                 <Card key={index} className={`border ${insight.color} shadow-none`}>
-                  <CardContent className="p-3 flex items-start">
-                    <div className="mr-3 mt-1 bg-slate-100 rounded-full p-2">
+                  <CardContent className="p-2 flex items-start">
+                    <div className="mr-2 mt-0.5 bg-slate-50 rounded-full p-1">
                       {insight.icon}
                     </div>
                     <div>
-                      <h4 className="font-medium text-base text-gray-800">{insight.title}</h4>
-                      <p className="text-sm text-gray-600">{insight.description}</p>
+                      <h4 className="font-medium text-sm text-gray-800">{insight.title}</h4>
+                      <p className="text-xs text-gray-600">{insight.description}</p>
                     </div>
                   </CardContent>
                 </Card>
@@ -310,11 +309,11 @@ const ExplainableFinance = () => {
             </div>
           </div>
         </CardContent>
-        <CardFooter className="pt-0 pb-4 flex justify-end">
+        <CardFooter className="pt-0 pb-3 flex justify-end">
           <Button 
             variant="outline" 
             onClick={() => navigate("/analysis")}
-            className="border-slate-300 text-slate-700 hover:bg-slate-100"
+            className="border-slate-300 text-slate-700 hover:bg-slate-100 text-xs py-1 h-8"
           >
             View Full Analysis
           </Button>
@@ -325,14 +324,14 @@ const ExplainableFinance = () => {
         <Button
           variant="outline"
           onClick={() => navigate("/passport")}
-          className="flex-1"
+          className="flex-1 h-8 text-xs py-1"
         >
           Back to Passport
         </Button>
         
         <Button
           onClick={() => navigate("/dashboard")}
-          className="flex-1 bg-primary hover:bg-primary/90"
+          className="flex-1 bg-primary hover:bg-primary/90 h-8 text-xs py-1"
         >
           Dashboard
         </Button>
