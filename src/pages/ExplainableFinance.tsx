@@ -10,6 +10,8 @@ import {
   CardTitle,
   CardFooter,
 } from "@/components/ui/card";
+import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts";
+import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
 import PageContainer from "@/components/PageContainer";
 import FinancialInsightBar from "@/components/FinancialInsightBar";
 import { useApp } from "@/context/AppContext";
@@ -19,6 +21,26 @@ const ExplainableFinance = () => {
   const navigate = useNavigate();
   const { userData, financialData } = useApp();
   const [openItems, setOpenItems] = useState<string[]>(["item-3"]);
+
+  // Sample monthly spending data for visualization
+  const spendingData = [
+    { name: 'Jan', amount: 1800 },
+    { name: 'Feb', amount: 2200 },
+    { name: 'Mar', amount: 1900 },
+    { name: 'Apr', amount: 2700 },
+    { name: 'May', amount: 1500 },
+    { name: 'Jun', amount: 2300 },
+  ];
+
+  // Sample income data showing the drop in April
+  const incomeData = [
+    { name: 'Jan', amount: 3500 },
+    { name: 'Feb', amount: 3500 },
+    { name: 'Mar', amount: 3500 },
+    { name: 'Apr', amount: 2870 }, // 18% drop
+    { name: 'May', amount: 3200 },
+    { name: 'Jun', amount: 3500 },
+  ];
 
   // Financial insights data for the explainable section
   const financialInsights = [
@@ -74,6 +96,22 @@ const ExplainableFinance = () => {
     }
   };
 
+  // Chart config for styling
+  const chartConfig = {
+    expense: {
+      label: "Expenses",
+      theme: {
+        light: "#ef4444", // Red color for expenses
+      }
+    },
+    income: {
+      label: "Income",
+      theme: {
+        light: "#22c55e", // Green color for income
+      }
+    }
+  };
+
   return (
     <PageContainer>
       <div className="flex justify-center mb-6">
@@ -122,7 +160,7 @@ const ExplainableFinance = () => {
                   
                   {isItemOpen('item-1') && (
                     <div className="p-4 bg-white rounded-b-md">
-                      <p className="text-sm text-gray-700">
+                      <p className="text-sm text-gray-700 mb-4">
                         {strengths[0].description}
                       </p>
                     </div>
@@ -150,9 +188,28 @@ const ExplainableFinance = () => {
                   
                   {isItemOpen('item-2') && (
                     <div className="p-4 bg-white rounded-b-md">
-                      <p className="text-sm text-gray-700">
+                      <p className="text-sm text-gray-700 mb-4">
                         {weaknesses[0].description}
                       </p>
+                      
+                      {/* Income Chart for April Drop */}
+                      <div className="mt-4 border border-gray-100 rounded-lg p-4 bg-gray-50">
+                        <h5 className="text-sm font-medium text-gray-700 mb-2">Income Stability (Last 6 Months)</h5>
+                        <div className="h-64 w-full">
+                          <ChartContainer config={chartConfig}>
+                            <ResponsiveContainer width="100%" height="100%">
+                              <LineChart data={incomeData} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
+                                <Line type="monotone" dataKey="amount" name="income" stroke="#22c55e" strokeWidth={2} dot={{ strokeWidth: 2 }} />
+                                <CartesianGrid stroke="#f5f5f5" />
+                                <XAxis dataKey="name" />
+                                <YAxis />
+                                <Tooltip content={<ChartTooltipContent />} />
+                              </LineChart>
+                            </ResponsiveContainer>
+                          </ChartContainer>
+                        </div>
+                        <p className="text-xs text-gray-500 mt-2 text-center">The 18% drop in April increased your financial volatility</p>
+                      </div>
                     </div>
                   )}
                 </div>
@@ -178,9 +235,54 @@ const ExplainableFinance = () => {
                   
                   {isItemOpen('item-3') && (
                     <div className="p-4 bg-white rounded-b-md">
-                      <p className="text-sm text-gray-700">
+                      <p className="text-sm text-gray-700 mb-4">
                         {weaknesses[1].description}
                       </p>
+                      
+                      {/* Monthly Spending Chart */}
+                      <div className="mt-4 border border-gray-100 rounded-lg p-4 bg-gray-50">
+                        <h5 className="text-sm font-medium text-gray-700 mb-2">Monthly Spending Variance</h5>
+                        <div className="h-64 w-full">
+                          <ChartContainer config={chartConfig}>
+                            <ResponsiveContainer width="100%" height="100%">
+                              <LineChart data={spendingData} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
+                                <Line type="monotone" dataKey="amount" name="expense" stroke="#ef4444" strokeWidth={2} dot={{ strokeWidth: 2 }} />
+                                <CartesianGrid stroke="#f5f5f5" />
+                                <XAxis dataKey="name" />
+                                <YAxis />
+                                <Tooltip content={<ChartTooltipContent />} />
+                              </LineChart>
+                            </ResponsiveContainer>
+                          </ChartContainer>
+                        </div>
+                        <p className="text-xs text-gray-500 mt-2 text-center">Your monthly spending has high variance which impacts stability</p>
+                      </div>
+                      
+                      {/* Spending Comparison Card */}
+                      <div className="mt-4 p-4 bg-gray-50 rounded-lg border border-gray-100">
+                        <h5 className="text-sm font-medium text-gray-700 mb-3">Monthly Spending Comparison</h5>
+                        <div className="flex justify-between items-center mb-2">
+                          <div className="flex items-center">
+                            <div className="w-3 h-3 rounded-full bg-green-500 mr-2"></div>
+                            <span className="text-xs">Optimal Variance</span>
+                          </div>
+                          <span className="text-xs font-medium">±10%</span>
+                        </div>
+                        <div className="flex justify-between items-center mb-2">
+                          <div className="flex items-center">
+                            <div className="w-3 h-3 rounded-full bg-amber-500 mr-2"></div>
+                            <span className="text-xs">Moderate Variance</span>
+                          </div>
+                          <span className="text-xs font-medium">±20%</span>
+                        </div>
+                        <div className="flex justify-between items-center">
+                          <div className="flex items-center">
+                            <div className="w-3 h-3 rounded-full bg-red-500 mr-2"></div>
+                            <span className="text-xs">Your Variance</span>
+                          </div>
+                          <span className="text-xs font-medium">±44%</span>
+                        </div>
+                      </div>
                     </div>
                   )}
                 </div>
