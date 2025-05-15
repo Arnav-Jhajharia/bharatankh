@@ -1,3 +1,5 @@
+
+// Ensure React is properly imported at the top
 import * as React from "react"
 
 import type {
