@@ -72,7 +72,7 @@ const Profile = () => {
         <div className="absolute -bottom-16 left-1/2 transform -translate-x-1/2">
           <div className="relative">
             <Avatar className="h-32 w-32 border-4 border-white shadow-lg">
-              <AvatarImage src="https://images.unsplash.com/photo-1581092795360-fd1ca04f0952" alt="Profile" />
+              <AvatarImage src="https://images.unsplash.com/photo-1486718448742-163732cd1544" alt="Profile" />
               <AvatarFallback className="bg-[#F1F0FB] text-[#9b87f5] text-2xl">
                 {userData.name ? userData.name.charAt(0) : "J"}
               </AvatarFallback>
