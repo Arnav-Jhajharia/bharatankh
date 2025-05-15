@@ -8,6 +8,7 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
+  CardFooter,
 } from "@/components/ui/card";
 import {
   Dialog,
@@ -26,9 +27,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Separator } from "@/components/ui/separator";
 import PageContainer from "@/components/PageContainer";
+import FinancialInsightBar from "@/components/FinancialInsightBar";
 import { useApp } from "@/context/AppContext";
 import { useToast } from "@/hooks/use-toast";
+import { PiggyBank, HandCoins, ArrowUp, ArrowDown, CircleDollarSign } from "lucide-react";
 
 const lenders = [
   { id: "dbs", name: "DBS Bank" },
@@ -69,6 +73,41 @@ const FinancialPassport = () => {
       setSelectedLender("");
     }, 1500);
   };
+
+  // Financial insights data for the explainable section
+  const financialInsights = [
+    {
+      title: "Boost Your Buffer",
+      description: "Save at least 10% of weekly earnings to reduce score volatility.",
+      icon: <PiggyBank className="h-6 w-6 text-blue-400" />,
+      color: "bg-blue-950 border-blue-800"
+    },
+    {
+      title: "Tame Big Spends",
+      description: "Split high-value purchases or avoid spikes near rent week.",
+      icon: <HandCoins className="h-6 w-6 text-teal-400" />,
+      color: "bg-teal-950 border-teal-800"
+    },
+    {
+      title: "Smooth Your Inflows",
+      description: "More frequent income sources lead to a stabler score.",
+      icon: <CircleDollarSign className="h-6 w-6 text-blue-400" />,
+      color: "bg-blue-950 border-blue-800"
+    }
+  ];
+  
+  // Strengths and weaknesses for financial profile
+  const strengths = [
+    "Consistent income from multiple sources",
+    "Good savings rate (32% of income)",
+    "Low debt-to-income ratio"
+  ];
+  
+  const weaknesses = [
+    "Income stability below threshold in April",
+    "High variance in monthly spending patterns",
+    "Limited emergency fund coverage"
+  ];
 
   return (
     <PageContainer>
@@ -172,6 +211,94 @@ const FinancialPassport = () => {
             </div>
           </div>
         </CardContent>
+      </Card>
+      
+      {/* New Explainable Section */}
+      <Card className="w-full shadow-lg animate-fade-in mb-6 bg-slate-900 text-white">
+        <CardHeader className="pb-2">
+          <CardTitle className="text-xl">Financial Insights Explained</CardTitle>
+          <CardDescription className="text-slate-300">
+            Understanding your financial profile
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="pt-6">
+          {/* Financial Health Score */}
+          <div className="mb-6">
+            <div className="flex justify-between items-center mb-2">
+              <h3 className="text-lg font-semibold">Financial Health</h3>
+              <span className="text-lg font-bold">{financialData.finScore}/100</span>
+            </div>
+            
+            <FinancialInsightBar score={financialData.finScore} className="mb-6" />
+            
+            <p className="text-sm text-slate-300 mb-4">
+              Your financial health is {financialData.finScore >= 70 ? "good" : "moderate"}, 
+              with some areas for improvement. Focus on increasing income stability 
+              and maintaining your savings rate to improve your score.
+            </p>
+            
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+              {/* Strengths */}
+              <div className="space-y-2">
+                <h4 className="font-medium text-green-400 flex items-center gap-1">
+                  <ArrowUp className="h-4 w-4" /> Strengths
+                </h4>
+                <ul className="space-y-1">
+                  {strengths.map((item, index) => (
+                    <li key={index} className="text-sm flex items-start gap-2">
+                      <span className="text-green-400 text-lg leading-none">•</span>
+                      <span className="text-slate-300">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              
+              {/* Weaknesses */}
+              <div className="space-y-2">
+                <h4 className="font-medium text-red-400 flex items-center gap-1">
+                  <ArrowDown className="h-4 w-4" /> Areas to Improve
+                </h4>
+                <ul className="space-y-1">
+                  {weaknesses.map((item, index) => (
+                    <li key={index} className="text-sm flex items-start gap-2">
+                      <span className="text-red-400 text-lg leading-none">•</span>
+                      <span className="text-slate-300">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+          
+          {/* Insights/Suggestions */}
+          <div>
+            <h3 className="text-lg font-semibold mb-3">Personalized Suggestions</h3>
+            <div className="space-y-3">
+              {financialInsights.map((insight, index) => (
+                <Card key={index} className={`border ${insight.color} bg-opacity-50 shadow-none`}>
+                  <CardContent className="p-3 flex items-start">
+                    <div className="mr-3 mt-1 bg-slate-800 rounded-full p-2">
+                      {insight.icon}
+                    </div>
+                    <div>
+                      <h4 className="font-medium text-base text-white">{insight.title}</h4>
+                      <p className="text-sm text-slate-300">{insight.description}</p>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </CardContent>
+        <CardFooter className="pt-0 pb-4 flex justify-end">
+          <Button 
+            variant="outline" 
+            onClick={() => navigate("/analysis")}
+            className="border-slate-700 text-slate-300 hover:bg-slate-800"
+          >
+            View Full Analysis
+          </Button>
+        </CardFooter>
       </Card>
       
       <div className="flex gap-4 flex-col sm:flex-row">
