@@ -13,6 +13,7 @@ import ExplainableFinance from "./pages/ExplainableFinance";
 import LoanOffers from "./pages/LoanOffers";
 import Simulator from "./pages/Simulator";
 import Analysis from "./pages/Analysis";
+import Profile from "./pages/Profile";
 import NotFound from "./pages/NotFound";
 import { AppProvider } from "./context/AppContext";
 
@@ -35,6 +36,7 @@ const App = () => (
             <Route path="/offers" element={<LoanOffers />} />
             <Route path="/simulator" element={<Simulator />} />
             <Route path="/analysis" element={<Analysis />} />
+            <Route path="/profile" element={<Profile />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
