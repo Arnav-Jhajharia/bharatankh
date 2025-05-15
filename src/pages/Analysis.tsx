@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
+import { Card, CardContent } from "@/components/ui/card";
 import PageContainer from "@/components/PageContainer";
 import { useApp } from "@/context/AppContext";
 import { 
@@ -13,6 +14,7 @@ import {
 } from "@/components/ui/chart";
 import { LineChart, Line, BarChart, Bar, PieChart, Pie, XAxis, YAxis, CartesianGrid, Cell, ResponsiveContainer } from "recharts";
 import { Separator } from "@/components/ui/separator";
+import { TrendingUp, TrendingDown, Info, LightbulbIcon } from "lucide-react";
 
 const Analysis = () => {
   const navigate = useNavigate();
@@ -43,6 +45,34 @@ const Analysis = () => {
     { name: "Savings", value: 25, color: "#48BB78" },
     { name: "Expenses", value: 25, color: "#805AD5" },
     { name: "Other", value: 20, color: "#F6AD55" },
+  ];
+
+  // Insights Data (Placeholder)
+  const insightsData = [
+    {
+      title: "Savings Growth",
+      description: "Your savings rate has increased by 15% compared to last quarter",
+      icon: <TrendingUp className="h-5 w-5 text-green-500" />,
+      color: "bg-green-50 border-green-200"
+    },
+    {
+      title: "Income Variability",
+      description: "Your income shows low variability, indicating stable earnings",
+      icon: <Info className="h-5 w-5 text-blue-500" />,
+      color: "bg-blue-50 border-blue-200"
+    },
+    {
+      title: "Spending Alert",
+      description: "Dining expenses increased 20% over your monthly average",
+      icon: <TrendingDown className="h-5 w-5 text-amber-500" />,
+      color: "bg-amber-50 border-amber-200"
+    },
+    {
+      title: "Financial Tip",
+      description: "Consider setting up an emergency fund covering 6 months of expenses",
+      icon: <LightbulbIcon className="h-5 w-5 text-purple-500" />,
+      color: "bg-purple-50 border-purple-200"
+    }
   ];
 
   return (
@@ -104,10 +134,32 @@ const Analysis = () => {
         
         <Separator className="my-4" />
         
+        {/* Insights Section */}
+        <div className="mb-6">
+          <h3 className="text-lg font-semibold mb-3">Financial Insights</h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {insightsData.map((insight, index) => (
+              <Card key={index} className={`border ${insight.color}`}>
+                <CardContent className="p-3 flex items-start">
+                  <div className="mr-3 mt-0.5">
+                    {insight.icon}
+                  </div>
+                  <div>
+                    <h4 className="font-medium text-sm">{insight.title}</h4>
+                    <p className="text-xs text-gray-600">{insight.description}</p>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+        
+        <Separator className="my-4" />
+        
         {/* Income & Expenses Chart */}
         <div className="mb-6">
           <h3 className="text-lg font-semibold mb-3">Income & Expenses</h3>
-          <div className="h-64">
+          <div className="h-52">
             <ChartContainer 
               config={{
                 income: { color: "#399EE6" },
@@ -151,10 +203,8 @@ const Analysis = () => {
           </div>
         </div>
         
-        <Separator className="my-4" />
-        
-        {/* Income Stability & Volatility */}
-        <div className="grid grid-cols-2 gap-6 mb-6">
+        {/* Income Stability & Spending Breakdown - Side by side */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           {/* Income Stability */}
           <div>
             <h3 className="text-lg font-semibold mb-3">Income Stability</h3>
@@ -173,56 +223,46 @@ const Analysis = () => {
             </div>
           </div>
           
-          {/* Volatility */}
+          {/* Spending Breakdown */}
           <div>
-            <h3 className="text-lg font-semibold mb-3">Low Volatility</h3>
-            <p className="text-gray-700">
-              Steady income with minimal fluctuations
-            </p>
-          </div>
-        </div>
-        
-        <Separator className="my-4" />
-        
-        {/* Spending Breakdown */}
-        <div>
-          <h3 className="text-lg font-semibold mb-3">Spending Breakdown</h3>
-          <div className="grid grid-cols-2 gap-4">
-            {/* Pie Chart */}
-            <div className="h-40">
-              <ResponsiveContainer width="100%" height="100%">
-                <PieChart>
-                  <Pie
-                    data={spendingData}
-                    cx="50%"
-                    cy="50%"
-                    labelLine={false}
-                    outerRadius={60}
-                    fill="#8884d8"
-                    dataKey="value"
-                  >
-                    {spendingData.map((entry, index) => (
-                      <Cell key={`cell-${index}`} fill={entry.color} />
-                    ))}
-                  </Pie>
-                </PieChart>
-              </ResponsiveContainer>
-            </div>
-            
-            {/* Legend */}
-            <div className="space-y-2">
-              {spendingData.map((item, index) => (
-                <div key={index} className="flex justify-between items-center">
-                  <div className="flex items-center">
-                    <div 
-                      className="w-3 h-3 rounded-sm mr-2" 
-                      style={{ backgroundColor: item.color }}
-                    ></div>
-                    <span>{item.name}</span>
+            <h3 className="text-lg font-semibold mb-3">Spending Breakdown</h3>
+            <div className="grid grid-cols-2 gap-4">
+              {/* Pie Chart */}
+              <div className="h-32">
+                <ResponsiveContainer width="100%" height="100%">
+                  <PieChart>
+                    <Pie
+                      data={spendingData}
+                      cx="50%"
+                      cy="50%"
+                      labelLine={false}
+                      outerRadius={45}
+                      fill="#8884d8"
+                      dataKey="value"
+                    >
+                      {spendingData.map((entry, index) => (
+                        <Cell key={`cell-${index}`} fill={entry.color} />
+                      ))}
+                    </Pie>
+                  </PieChart>
+                </ResponsiveContainer>
+              </div>
+              
+              {/* Legend */}
+              <div className="space-y-1 text-xs">
+                {spendingData.map((item, index) => (
+                  <div key={index} className="flex justify-between items-center">
+                    <div className="flex items-center">
+                      <div 
+                        className="w-2 h-2 rounded-sm mr-1" 
+                        style={{ backgroundColor: item.color }}
+                      ></div>
+                      <span>{item.name}</span>
+                    </div>
+                    <span className="font-medium">{item.value}%</span>
                   </div>
-                  <span className="font-medium">{item.value}%</span>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
         </div>
