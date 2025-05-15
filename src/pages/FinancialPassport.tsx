@@ -174,7 +174,7 @@ const FinancialPassport = () => {
         </CardContent>
       </Card>
       
-      <div className="flex gap-4">
+      <div className="flex gap-4 flex-col sm:flex-row">
         <Button
           variant="outline"
           onClick={handleDownload}
@@ -191,13 +191,23 @@ const FinancialPassport = () => {
         </Button>
       </div>
       
-      <Button
-        variant="link"
-        onClick={() => navigate("/dashboard")}
-        className="mt-4 w-full"
-      >
-        Back to Dashboard
-      </Button>
+      <div className="flex gap-4 mt-4">
+        <Button
+          variant="link"
+          onClick={() => navigate("/dashboard")}
+          className="flex-1"
+        >
+          Back to Dashboard
+        </Button>
+        
+        <Button
+          variant="link"
+          onClick={() => navigate("/analysis")}
+          className="flex-1 text-primary"
+        >
+          View Analysis
+        </Button>
+      </div>
       
       <Dialog open={shareDialogOpen} onOpenChange={setShareDialogOpen}>
         <DialogContent>

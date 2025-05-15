@@ -26,7 +26,7 @@ export default {
 				background: 'hsl(var(--background))',
 				foreground: 'hsl(var(--foreground))',
 				primary: {
-					DEFAULT: '#2B6CB0', // Royal Blue
+					DEFAULT: '#399EE6', // Updated primary color
 					foreground: 'hsl(var(--primary-foreground))'
 				},
 				secondary: {
