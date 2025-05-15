@@ -12,15 +12,45 @@ import {
   ChartTooltip, 
   ChartTooltipContent 
 } from "@/components/ui/chart";
-import { LineChart, Line, BarChart, Bar, PieChart, Pie, XAxis, YAxis, CartesianGrid, Cell, ResponsiveContainer } from "recharts";
+import { 
+  LineChart, 
+  Line, 
+  BarChart, 
+  Bar, 
+  PieChart, 
+  Pie, 
+  XAxis, 
+  YAxis, 
+  CartesianGrid, 
+  Cell, 
+  ResponsiveContainer 
+} from "recharts";
 import { Separator } from "@/components/ui/separator";
-import { TrendingUp, TrendingDown, Info, LightbulbIcon, AlertTriangle } from "lucide-react";
+import { 
+  TrendingUp, 
+  TrendingDown, 
+  Info, 
+  LightbulbIcon, 
+  AlertTriangle 
+} from "lucide-react";
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
+import { 
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger
+} from "@/components/ui/accordion";
+import {
+  Collapsible,
+  CollapsibleTrigger,
+  CollapsibleContent
+} from "@/components/ui/collapsible";
 
 const Analysis = () => {
   const navigate = useNavigate();
   const { userData, financialData } = useApp();
   const [activeTab, setActiveTab] = useState("overview");
+  const [isOpen, setIsOpen] = useState(true);
   
   // Income & Expenses Data
   const incomeExpensesData = [
@@ -84,14 +114,14 @@ const Analysis = () => {
   return (
     <PageContainer>
       {/* Header */}
-      <div className="flex justify-center mb-6">
+      <div className="flex justify-center mb-4">
         <h1 className="text-2xl font-bold text-primary">FinBridge</h1>
       </div>
       
-      <h2 className="text-3xl font-bold mb-4">Analysis</h2>
+      <h2 className="text-2xl font-bold mb-3">Analysis</h2>
       
       {/* Tabs */}
-      <Tabs value={activeTab} onValueChange={setActiveTab} className="mb-6">
+      <Tabs value={activeTab} onValueChange={setActiveTab} className="mb-4">
         <TabsList className="w-full bg-gray-100">
           <TabsTrigger 
             value="overview" 
@@ -115,10 +145,10 @@ const Analysis = () => {
       </Tabs>
       
       {/* Main Card */}
-      <div className="bg-white rounded-lg shadow-lg p-6 animate-fade-in">
+      <div className="bg-white rounded-lg shadow-lg p-4 animate-fade-in overflow-auto max-h-[75vh]">
         {/* Score Section */}
-        <div className="flex items-center mb-6">
-          <div className="h-16 w-16 rounded-full bg-gray-200 overflow-hidden mr-4">
+        <div className="flex items-center mb-4">
+          <div className="h-12 w-12 rounded-full bg-gray-200 overflow-hidden mr-3">
             {/* User Avatar */}
             <AspectRatio ratio={1/1}>
               <div className="bg-gray-300 h-full w-full flex items-center justify-center text-gray-500">
@@ -128,191 +158,210 @@ const Analysis = () => {
           </div>
           
           <div className="flex-1">
-            <p className="text-gray-600 text-sm mb-1">FinBridge Score</p>
+            <p className="text-gray-600 text-xs mb-0.5">FinBridge Score</p>
             <div className="flex items-center">
-              <h3 className="text-4xl font-bold mr-4">{financialData.finScore}</h3>
-              <span className="px-3 py-1 bg-accent/20 text-accent rounded-full text-sm font-semibold">
+              <h3 className="text-3xl font-bold mr-2">{financialData.finScore}</h3>
+              <span className="px-2 py-0.5 bg-accent/20 text-accent rounded-full text-xs font-semibold">
                 {financialData.finScore > 75 ? "GOOD" : "FAIR"}
               </span>
             </div>
           </div>
         </div>
         
-        <Separator className="my-4" />
-        
-        {/* Insights Section */}
-        <div className="mb-6">
-          <h3 className="text-lg font-semibold mb-3">Financial Insights</h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            {insightsData.map((insight, index) => (
-              <Card key={index} className={`border ${insight.color}`}>
-                <CardContent className="p-3 flex items-start">
-                  <div className="mr-3 mt-0.5">
-                    {insight.icon}
-                  </div>
-                  <div>
-                    <h4 className="font-medium text-sm">{insight.title}</h4>
-                    <p className="text-xs text-gray-600">{insight.description}</p>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-        
-        <Separator className="my-4" />
-        
-        {/* Income & Expenses Chart */}
-        <div className="mb-6">
-          <h3 className="text-lg font-semibold mb-3">Income & Expenses</h3>
-          <div className="h-52">
-            <ChartContainer 
-              config={{
-                income: { color: "#399EE6" },
-                expenses: { color: "#805AD5" }
-              }}
-            >
-              <LineChart data={incomeExpensesData} margin={{ top: 10, right: 10, left: 0, bottom: 10 }}>
-                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f0f0f0" />
-                <XAxis dataKey="name" axisLine={false} tickLine={false} />
-                <YAxis 
-                  axisLine={false} 
-                  tickLine={false} 
-                  tickFormatter={(value) => `S$${value}`}
-                  width={60}
-                />
-                <ChartTooltip
-                  content={
-                    <ChartTooltipContent 
-                      formatter={(value, name) => [`S$${value}`, name === "income" ? "Income" : "Expenses"]} 
-                    />
-                  }
-                />
-                <Line 
-                  type="monotone" 
-                  dataKey="income" 
-                  stroke="#399EE6" 
-                  strokeWidth={2.5} 
-                  dot={{ r: 4 }}
-                  activeDot={{ r: 6 }}
-                />
-                <Line 
-                  type="monotone" 
-                  dataKey="expenses" 
-                  stroke="#805AD5" 
-                  strokeWidth={2.5}
-                  dot={{ r: 4 }}
-                  activeDot={{ r: 6 }}
-                />
-              </LineChart>
-            </ChartContainer>
-          </div>
-        </div>
-        
-        {/* Income Stability & Spending Breakdown - Side by side */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-          {/* Income Stability with Warning */}
-          <div>
-            <div className="flex items-center justify-between mb-3">
-              <h3 className="text-lg font-semibold">Income Stability</h3>
-              <div className="flex items-center text-xs text-red-500 font-medium">
-                <AlertTriangle className="h-4 w-4 mr-1" />
-                Stability Issue Detected
-              </div>
-            </div>
-
-            {/* Alert box for stability issue */}
-            <Alert className="mb-3 bg-red-50 border-red-200 text-red-700">
-              <AlertTriangle className="h-4 w-4" />
-              <AlertTitle>Low Income Stability</AlertTitle>
-              <AlertDescription>
-                Your income stability was below the recommended threshold of {stabilityThreshold}% in {lowestStabilityMonth} ({lowestStability}%), which may impact your loan approval chances.
-              </AlertDescription>
-            </Alert>
-
-            <div className="h-32">
-              <ChartContainer 
-                config={{
-                  stability: { color: "#399EE6" },
-                  flagged: { color: "#ea384c" }
-                }}
-              >
-                <BarChart data={stabilityData} margin={{ top: 5, right: 5, left: 0, bottom: 5 }}>
-                  <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f0f0f0" />
-                  <XAxis dataKey="month" axisLine={false} tickLine={false} />
-                  <YAxis axisLine={false} tickLine={false} domain={[0, 100]} />
-                  <ChartTooltip
-                    content={
-                      <ChartTooltipContent 
-                        formatter={(value) => [`${value}%`, 'Stability']} 
-                      />
-                    }
-                  />
-                  <Bar dataKey="stability" radius={[4, 4, 0, 0]}>
-                    {stabilityData.map((entry, index) => (
-                      <Cell 
-                        key={`cell-${index}`} 
-                        fill={entry.isFlagged ? "#ea384c" : "#399EE6"} 
-                        stroke={entry.isFlagged ? "#c01e36" : "#2288d1"}
-                        strokeWidth={1}
-                      />
-                    ))}
-                  </Bar>
-                </BarChart>
-              </ChartContainer>
-            </div>
+        {/* Insights Section - Collapsible */}
+        <Collapsible open={isOpen} onOpenChange={setIsOpen} className="mb-3">
+          <div className="flex justify-between items-center mb-2">
+            <h3 className="text-base font-semibold">Financial Insights</h3>
+            <CollapsibleTrigger asChild>
+              <Button variant="ghost" size="sm" className="p-1 h-7 w-7">
+                {isOpen ? "-" : "+"}
+              </Button>
+            </CollapsibleTrigger>
           </div>
           
-          {/* Spending Breakdown */}
-          <div>
-            <h3 className="text-lg font-semibold mb-3">Spending Breakdown</h3>
-            <div className="grid grid-cols-2 gap-4">
-              {/* Pie Chart */}
-              <div className="h-32">
-                <ResponsiveContainer width="100%" height="100%">
-                  <PieChart>
-                    <Pie
-                      data={spendingData}
-                      cx="50%"
-                      cy="50%"
-                      labelLine={false}
-                      outerRadius={45}
-                      fill="#8884d8"
-                      dataKey="value"
-                    >
-                      {spendingData.map((entry, index) => (
-                        <Cell key={`cell-${index}`} fill={entry.color} />
-                      ))}
-                    </Pie>
-                  </PieChart>
-                </ResponsiveContainer>
-              </div>
-              
-              {/* Legend */}
-              <div className="space-y-1 text-xs">
-                {spendingData.map((item, index) => (
-                  <div key={index} className="flex justify-between items-center">
-                    <div className="flex items-center">
-                      <div 
-                        className="w-2 h-2 rounded-sm mr-1" 
-                        style={{ backgroundColor: item.color }}
-                      ></div>
-                      <span>{item.name}</span>
+          <CollapsibleContent>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+              {insightsData.map((insight, index) => (
+                <Card key={index} className={`border ${insight.color}`}>
+                  <CardContent className="p-2 flex items-start">
+                    <div className="mr-2 mt-0.5">
+                      {insight.icon}
                     </div>
-                    <span className="font-medium">{item.value}%</span>
-                  </div>
-                ))}
-              </div>
+                    <div>
+                      <h4 className="font-medium text-xs">{insight.title}</h4>
+                      <p className="text-xs text-gray-600">{insight.description}</p>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
             </div>
-          </div>
-        </div>
+          </CollapsibleContent>
+        </Collapsible>
+        
+        <Separator className="my-3" />
+        
+        {/* Charts Section using Accordion */}
+        <Accordion type="single" defaultValue="income" collapsible className="mb-3">
+          <AccordionItem value="income" className="border-none">
+            <AccordionTrigger className="py-2 hover:no-underline">
+              <span className="text-base font-semibold">Income & Expenses</span>
+            </AccordionTrigger>
+            <AccordionContent>
+              <div className="h-44">
+                <ChartContainer 
+                  config={{
+                    income: { color: "#399EE6" },
+                    expenses: { color: "#805AD5" }
+                  }}
+                >
+                  <LineChart data={incomeExpensesData} margin={{ top: 5, right: 5, left: 0, bottom: 5 }}>
+                    <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f0f0f0" />
+                    <XAxis dataKey="name" axisLine={false} tickLine={false} />
+                    <YAxis 
+                      axisLine={false} 
+                      tickLine={false} 
+                      tickFormatter={(value) => `S$${value}`}
+                      width={50}
+                    />
+                    <ChartTooltip
+                      content={
+                        <ChartTooltipContent 
+                          formatter={(value, name) => [`S$${value}`, name === "income" ? "Income" : "Expenses"]} 
+                        />
+                      }
+                    />
+                    <Line 
+                      type="monotone" 
+                      dataKey="income" 
+                      stroke="#399EE6" 
+                      strokeWidth={2} 
+                      dot={{ r: 3 }}
+                      activeDot={{ r: 5 }}
+                    />
+                    <Line 
+                      type="monotone" 
+                      dataKey="expenses" 
+                      stroke="#805AD5" 
+                      strokeWidth={2}
+                      dot={{ r: 3 }}
+                      activeDot={{ r: 5 }}
+                    />
+                  </LineChart>
+                </ChartContainer>
+              </div>
+            </AccordionContent>
+          </AccordionItem>
+          
+          {/* Income Stability with Warning */}
+          <AccordionItem value="stability" className="border-none">
+            <AccordionTrigger className="py-2 hover:no-underline">
+              <div className="flex items-center justify-between w-full">
+                <span className="text-base font-semibold">Income Stability</span>
+                <div className="flex items-center text-xs text-red-500 font-medium mr-3">
+                  <AlertTriangle className="h-3 w-3 mr-1" />
+                  Issue Detected
+                </div>
+              </div>
+            </AccordionTrigger>
+            <AccordionContent>
+              {/* Alert box for stability issue */}
+              <Alert className="mb-3 bg-red-50 border-red-200 text-red-700 py-2">
+                <AlertTriangle className="h-3 w-3" />
+                <AlertTitle className="text-xs font-medium">Low Income Stability</AlertTitle>
+                <AlertDescription className="text-xs">
+                  Your income stability was below the recommended threshold of {stabilityThreshold}% in {lowestStabilityMonth} ({lowestStability}%), which may impact your loan approval chances.
+                </AlertDescription>
+              </Alert>
+
+              <div className="h-32">
+                <ChartContainer 
+                  config={{
+                    stability: { color: "#399EE6" },
+                    flagged: { color: "#ea384c" }
+                  }}
+                >
+                  <BarChart data={stabilityData} margin={{ top: 5, right: 5, left: 0, bottom: 5 }}>
+                    <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f0f0f0" />
+                    <XAxis dataKey="month" axisLine={false} tickLine={false} />
+                    <YAxis axisLine={false} tickLine={false} domain={[0, 100]} />
+                    <ChartTooltip
+                      content={
+                        <ChartTooltipContent 
+                          formatter={(value) => [`${value}%`, 'Stability']} 
+                        />
+                      }
+                    />
+                    <Bar dataKey="stability" radius={[4, 4, 0, 0]}>
+                      {stabilityData.map((entry, index) => (
+                        <Cell 
+                          key={`cell-${index}`} 
+                          fill={entry.isFlagged ? "#ea384c" : "#399EE6"} 
+                          stroke={entry.isFlagged ? "#c01e36" : "#2288d1"}
+                          strokeWidth={1}
+                        />
+                      ))}
+                    </Bar>
+                  </BarChart>
+                </ChartContainer>
+              </div>
+            </AccordionContent>
+          </AccordionItem>
+          
+          {/* Spending Breakdown */}
+          <AccordionItem value="spending" className="border-none">
+            <AccordionTrigger className="py-2 hover:no-underline">
+              <span className="text-base font-semibold">Spending Breakdown</span>
+            </AccordionTrigger>
+            <AccordionContent>
+              <div className="grid grid-cols-2 gap-2">
+                {/* Pie Chart */}
+                <div className="h-28">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <PieChart>
+                      <Pie
+                        data={spendingData}
+                        cx="50%"
+                        cy="50%"
+                        labelLine={false}
+                        outerRadius={40}
+                        fill="#8884d8"
+                        dataKey="value"
+                      >
+                        {spendingData.map((entry, index) => (
+                          <Cell key={`cell-${index}`} fill={entry.color} />
+                        ))}
+                      </Pie>
+                    </PieChart>
+                  </ResponsiveContainer>
+                </div>
+                
+                {/* Legend */}
+                <div className="space-y-1 text-xs">
+                  {spendingData.map((item, index) => (
+                    <div key={index} className="flex justify-between items-center">
+                      <div className="flex items-center">
+                        <div 
+                          className="w-2 h-2 rounded-sm mr-1" 
+                          style={{ backgroundColor: item.color }}
+                        ></div>
+                        <span>{item.name}</span>
+                      </div>
+                      <span className="font-medium">{item.value}%</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
       </div>
       
       {/* Navigation Button */}
       <Button
         variant="link"
         onClick={() => navigate("/dashboard")}
-        className="mt-6 w-full"
+        className="mt-4 w-full"
+        size="sm"
       >
         Back to Dashboard
       </Button>
