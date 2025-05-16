@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -7,7 +8,6 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-  CardFooter,
 } from "@/components/ui/card";
 import {
   Dialog,
@@ -26,12 +26,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Separator } from "@/components/ui/separator";
 import PageContainer from "@/components/PageContainer";
-import FinancialInsightBar from "@/components/FinancialInsightBar";
 import { useApp } from "@/context/AppContext";
 import { useToast } from "@/hooks/use-toast";
-import { PiggyBank, HandCoins, ArrowUp, ArrowDown, CircleDollarSign } from "lucide-react";
 
 const lenders = [
   { id: "dbs", name: "DBS Bank" },
@@ -72,41 +69,6 @@ const FinancialPassport = () => {
       setSelectedLender("");
     }, 1500);
   };
-
-  // Financial insights data for the explainable section
-  const financialInsights = [
-    {
-      title: "Boost Your Buffer",
-      description: "Save at least 10% of weekly earnings to reduce score volatility.",
-      icon: <PiggyBank className="h-6 w-6 text-blue-400" />,
-      color: "bg-blue-950 border-blue-800"
-    },
-    {
-      title: "Tame Big Spends",
-      description: "Split high-value purchases or avoid spikes near rent week.",
-      icon: <HandCoins className="h-6 w-6 text-teal-400" />,
-      color: "bg-teal-950 border-teal-800"
-    },
-    {
-      title: "Smooth Your Inflows",
-      description: "More frequent income sources lead to a stabler score.",
-      icon: <CircleDollarSign className="h-6 w-6 text-blue-400" />,
-      color: "bg-blue-950 border-blue-800"
-    }
-  ];
-  
-  // Strengths and weaknesses for financial profile
-  const strengths = [
-    "Consistent income from multiple sources",
-    "Good savings rate (32% of income)",
-    "Low debt-to-income ratio"
-  ];
-  
-  const weaknesses = [
-    "Income stability below threshold in April",
-    "High variance in monthly spending patterns",
-    "Limited emergency fund coverage"
-  ];
 
   return (
     <PageContainer>
@@ -210,30 +172,6 @@ const FinancialPassport = () => {
             </div>
           </div>
         </CardContent>
-      </Card>
-      
-      {/* Link to Explainable Finance */}
-      <Card className="w-full shadow-lg animate-fade-in mb-6 bg-slate-900 text-white">
-        <CardHeader className="pb-2">
-          <CardTitle className="text-xl">Financial Insights</CardTitle>
-          <CardDescription className="text-slate-300">
-            View your detailed financial insights
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="pt-4">
-          <p className="text-sm text-slate-300 mb-4">
-            Get a detailed breakdown of your financial health, strengths, areas to improve, 
-            and personalized suggestions to enhance your financial well-being.
-          </p>
-        </CardContent>
-        <CardFooter className="pt-0 pb-4 flex justify-end">
-          <Button 
-            onClick={() => navigate("/explainable")}
-            className="bg-primary hover:bg-primary/90"
-          >
-            View Financial Insights
-          </Button>
-        </CardFooter>
       </Card>
       
       <div className="flex gap-4 flex-col sm:flex-row">

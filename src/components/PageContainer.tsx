@@ -8,8 +8,8 @@ interface PageContainerProps {
 
 const PageContainer = ({ children, className = "" }: PageContainerProps) => {
   return (
-    <div className={`min-h-screen bg-white px-4 py-6 sm:px-6 ${className}`}>
-      <div className="w-full max-w-3xl mx-auto">
+    <div className={`min-h-screen bg-soft-gray px-4 py-6 sm:px-6 ${className}`}>
+      <div className="w-full max-w-md mx-auto">
         {children}
       </div>
     </div>

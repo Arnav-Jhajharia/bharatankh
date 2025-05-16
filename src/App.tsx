@@ -9,11 +9,9 @@ import KycVerification from "./pages/KycVerification";
 import BankLinking from "./pages/BankLinking";
 import Dashboard from "./pages/Dashboard";
 import FinancialPassport from "./pages/FinancialPassport";
-import ExplainableFinance from "./pages/ExplainableFinance";
 import LoanOffers from "./pages/LoanOffers";
 import Simulator from "./pages/Simulator";
 import Analysis from "./pages/Analysis";
-import Profile from "./pages/Profile";
 import NotFound from "./pages/NotFound";
 import { AppProvider } from "./context/AppContext";
 
@@ -32,11 +30,9 @@ const App = () => (
             <Route path="/bank-linking" element={<BankLinking />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/passport" element={<FinancialPassport />} />
-            <Route path="/explainable" element={<ExplainableFinance />} />
             <Route path="/offers" element={<LoanOffers />} />
             <Route path="/simulator" element={<Simulator />} />
             <Route path="/analysis" element={<Analysis />} />
-            <Route path="/profile" element={<Profile />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
