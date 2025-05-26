@@ -25,6 +25,16 @@ const Dashboard = () => {
     value: expense.amount,
   }));
 
+  // Get score level based on score
+  const getScoreLevel = (score: number) => {
+    if (score >= 80) return "Excellent";
+    if (score >= 70) return "Good";
+    if (score >= 60) return "Fair";
+    return "Needs Improvement";
+  };
+
+  const scoreLevel = getScoreLevel(financialData.finScore);
+
   return (
     <PageContainer>
       <div className="flex justify-center mb-6">
@@ -36,28 +46,28 @@ const Dashboard = () => {
       
       <div className="mb-6">
         <h2 className="text-2xl font-bold mb-1">
-          नमस्ते, {userData.name.split(" ")[0]} — Here's your Financial Overview
+          Welcome, {userData.name.split(" ")[0]} — Here's your Financial Overview
         </h2>
-        <p className="text-gray-500">Track your earnings and financial health</p>
+        <p className="text-gray-500">Track your UPI earnings and financial health</p>
       </div>
       
       {/* Earnings Summary */}
       <Card className="w-full shadow-md mb-6 animate-fade-in">
         <CardHeader className="pb-2">
-          <CardTitle className="text-lg">Earnings Summary</CardTitle>
+          <CardTitle className="text-lg">UPI Earnings Summary</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="mb-2">
             <p className="text-xl font-bold">
-              You earn ₹{financialData.monthlyIncome.toLocaleString()}/month through UPI.
+              You earn ₹{financialData.monthlyIncome.toLocaleString('en-IN')}/month through UPI.
             </p>
           </div>
           <div className="space-y-2">
-            <p className="text-sm font-semibold text-gray-500">Breakdown:</p>
+            <p className="text-sm font-semibold text-gray-500">Income Sources:</p>
             {financialData.incomeBreakdown.map((income, index) => (
               <div key={index} className="flex justify-between">
                 <span>{income.source}</span>
-                <span className="font-semibold">₹{income.amount.toLocaleString()}</span>
+                <span className="font-semibold">₹{income.amount.toLocaleString('en-IN')}</span>
               </div>
             ))}
           </div>
@@ -67,7 +77,7 @@ const Dashboard = () => {
       {/* Expense Summary */}
       <Card className="w-full shadow-md mb-6 animate-fade-in">
         <CardHeader className="pb-2">
-          <CardTitle className="text-lg">Expense Summary</CardTitle>
+          <CardTitle className="text-lg">Monthly Expenses</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="h-64 mb-2">
@@ -97,14 +107,14 @@ const Dashboard = () => {
                 <span style={{ color: COLORS[index % COLORS.length] }}>
                   {expense.category}
                 </span>
-                <span className="font-semibold">₹{expense.amount.toLocaleString()}</span>
+                <span className="font-semibold">₹{expense.amount.toLocaleString('en-IN')}</span>
               </div>
             ))}
           </div>
         </CardContent>
       </Card>
       
-      {/* FinScore */}
+      {/* BharatAnkh Score */}
       <Card className="w-full shadow-md mb-6 animate-fade-in">
         <CardHeader className="pb-2">
           <CardTitle className="text-lg">BharatAnkh Score</CardTitle>
@@ -113,14 +123,22 @@ const Dashboard = () => {
           <div className="mb-3">
             <div className="flex justify-between mb-2">
               <div className="font-semibold">Score: {financialData.finScore}/100</div>
-              <div className="px-2 py-1 bg-orange-100 text-orange-600 rounded-full text-xs">
-                Trusted
+              <div className={`px-2 py-1 rounded-full text-xs ${
+                scoreLevel === 'Excellent' ? 'bg-green-100 text-green-700' :
+                scoreLevel === 'Good' ? 'bg-orange-100 text-orange-600' :
+                scoreLevel === 'Fair' ? 'bg-yellow-100 text-yellow-700' :
+                'bg-red-100 text-red-600'
+              }`}>
+                {scoreLevel}
               </div>
             </div>
             <ProgressBar value={financialData.finScore} max={100} />
           </div>
           <p className="text-gray-500 text-sm">
-            High income consistency, good savings buffer, and on-time payments.
+            {scoreLevel === 'Excellent' ? 'Outstanding financial profile with excellent earning consistency.' :
+             scoreLevel === 'Good' ? 'Strong financial profile with good earning patterns.' :
+             scoreLevel === 'Fair' ? 'Decent financial profile with room for improvement.' :
+             'Financial profile needs attention and improvement.'}
           </p>
         </CardContent>
       </Card>
@@ -128,7 +146,7 @@ const Dashboard = () => {
       {/* Qualitative Score Insights */}
       <Card className="w-full shadow-md mb-6 animate-fade-in">
         <CardHeader className="pb-2">
-          <CardTitle className="text-lg">Score Insights</CardTitle>
+          <CardTitle className="text-lg">Score Analysis</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
@@ -162,7 +180,7 @@ const Dashboard = () => {
           className="flex-1 text-white"
           style={{ backgroundColor: '#f47615' }}
         >
-          View My Financial Passport
+          View Financial Passport
         </Button>
         <Button
           onClick={() => navigate("/analysis")}

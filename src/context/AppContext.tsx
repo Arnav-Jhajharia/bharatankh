@@ -1,7 +1,7 @@
 
 import { createContext, useContext, useState, ReactNode } from "react";
 
-type UserData = {
+export type UserData = {
   name: string;
   aadhaar: string;
   dob: Date | null;
@@ -11,7 +11,7 @@ type UserData = {
   language: string;
 };
 
-type FinancialData = {
+export type FinancialData = {
   monthlyIncome: number;
   incomeBreakdown: {
     source: string;
@@ -96,28 +96,28 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
         {
           category: "Income Consistency",
           level: "Excellent",
-          description: "Your income shows strong patterns with minimal volatility",
+          description: "Your UPI transaction patterns show strong earning consistency with minimal monthly volatility",
           suggestions: [
             "Continue maintaining multiple income sources",
             "Consider seasonal planning for peak earning periods"
           ]
         },
         {
-          category: "Financial Discipline",
-          level: "Good", 
-          description: "You demonstrate solid savings habits and expense management",
+          category: "Financial Discipline", 
+          level: "Good",
+          description: "You demonstrate solid savings habits and expense management through UPI transactions",
           suggestions: [
             "Increase emergency fund to 6 months of expenses",
-            "Explore investment opportunities for surplus funds"
+            "Explore digital investment opportunities through UPI"
           ]
         },
         {
-          category: "Digital Footprint",
+          category: "Digital Financial Footprint",
           level: "Strong",
-          description: "High UPI transaction frequency shows digital financial adoption",
+          description: "High UPI transaction frequency shows excellent digital financial adoption",
           suggestions: [
-            "Link additional bank accounts for better visibility",
-            "Consider using digital investment platforms"
+            "Link additional bank accounts for better transaction visibility",
+            "Consider using digital lending platforms for credit access"
           ]
         }
       ],
