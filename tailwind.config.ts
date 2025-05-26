@@ -26,7 +26,7 @@ export default {
 				background: 'hsl(var(--background))',
 				foreground: 'hsl(var(--foreground))',
 				primary: {
-					DEFAULT: '#399EE6', // Updated primary color
+					DEFAULT: '#f47615', // Updated to orange
 					foreground: 'hsl(var(--primary-foreground))'
 				},
 				secondary: {
@@ -42,7 +42,7 @@ export default {
 					foreground: 'hsl(var(--muted-foreground))'
 				},
 				accent: {
-					DEFAULT: '#48BB78', // Mint Green
+					DEFAULT: '#86dcf4', // Updated to light blue
 					foreground: 'hsl(var(--accent-foreground))'
 				},
 				popover: {

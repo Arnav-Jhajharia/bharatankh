@@ -35,9 +35,9 @@ import { useApp } from "@/context/AppContext";
 
 const formSchema = z.object({
   fullName: z.string().min(3, { message: "Name must be at least 3 characters" }),
-  finNumber: z
+  aadhaarNumber: z
     .string()
-    .regex(/^[STFG]\d{7}[A-Z]$/, { message: "Invalid FIN/TIN format" }),
+    .regex(/^\d{12}$/, { message: "Aadhaar number must be 12 digits" }),
   dob: z.date({
     required_error: "Date of birth is required",
   }),
@@ -52,14 +52,14 @@ const KycVerification = () => {
     resolver: zodResolver(formSchema),
     defaultValues: {
       fullName: "",
-      finNumber: "",
+      aadhaarNumber: "",
     },
   });
 
   const onSubmit = (values: z.infer<typeof formSchema>) => {
     updateUserData({
       name: values.fullName,
-      pan: values.finNumber,
+      aadhaar: values.aadhaarNumber,
       dob: values.dob,
     });
     
@@ -77,14 +77,17 @@ const KycVerification = () => {
   return (
     <PageContainer>
       <div className="flex justify-center mb-6">
-        <h1 className="text-2xl font-bold text-primary">FinBridge</h1>
+        <h1 className="text-2xl font-bold">
+          <span style={{ color: '#f47615' }}>Bharat</span>
+          <span style={{ color: '#86dcf4' }}>Ankh</span>
+        </h1>
       </div>
       
       <Card className="w-full animate-fade-in shadow-lg">
         <CardHeader>
           <CardTitle className="text-xl">eKYC Verification</CardTitle>
           <CardDescription>
-            Please provide your details to verify your identity
+            Please provide your details to verify your identity using Aadhaar
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -107,18 +110,19 @@ const KycVerification = () => {
                 
                 <FormField
                   control={form.control}
-                  name="finNumber"
+                  name="aadhaarNumber"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>FIN / TIN Number</FormLabel>
+                      <FormLabel>Aadhaar Number</FormLabel>
                       <FormControl>
                         <Input 
-                          placeholder="S1234567D" 
+                          placeholder="123456789012" 
                           {...field} 
                           onChange={(e) => {
-                            field.onChange(e.target.value.toUpperCase());
+                            const value = e.target.value.replace(/\D/g, '').slice(0, 12);
+                            field.onChange(value);
                           }}
-                          maxLength={9}
+                          maxLength={12}
                         />
                       </FormControl>
                       <FormMessage />
@@ -171,25 +175,27 @@ const KycVerification = () => {
                 
                 <Button 
                   type="submit" 
-                  className="w-full bg-primary hover:bg-primary/90"
+                  className="w-full text-white"
+                  style={{ backgroundColor: '#f47615' }}
                 >
-                  Verify with SingPass
+                  Verify with Aadhaar
                 </Button>
               </form>
             </Form>
           ) : (
             <div className="space-y-6">
               <div className="flex flex-col items-center justify-center py-4">
-                <CheckCircle className="h-16 w-16 text-accent mb-4" />
+                <CheckCircle className="h-16 w-16 text-green-500 mb-4" />
                 <h3 className="text-xl font-semibold">Identity Verified!</h3>
                 <p className="text-gray-500 mt-2 text-center">
-                  Your identity has been successfully verified with SingPass
+                  Your identity has been successfully verified with Aadhaar
                 </p>
               </div>
               
               <Button 
                 onClick={handleContinue}
-                className="w-full bg-primary hover:bg-primary/90"
+                className="w-full text-white"
+                style={{ backgroundColor: '#f47615' }}
               >
                 Continue
               </Button>

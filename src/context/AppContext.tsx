@@ -3,11 +3,12 @@ import { createContext, useContext, useState, ReactNode } from "react";
 
 type UserData = {
   name: string;
-  pan: string;
+  aadhaar: string;
   dob: Date | null;
   isVerified: boolean;
   bankLinked: boolean;
   bankName: string;
+  language: string;
 };
 
 type FinancialData = {
@@ -23,6 +24,12 @@ type FinancialData = {
   finScore: number;
   riskProfile: string;
   tags: string[];
+  scoreInsights: {
+    category: string;
+    level: string;
+    description: string;
+    suggestions: string[];
+  }[];
 };
 
 interface AppContextType {
@@ -35,11 +42,12 @@ interface AppContextType {
 
 const defaultUserData: UserData = {
   name: "",
-  pan: "",
+  aadhaar: "",
   dob: null,
   isVerified: false,
   bankLinked: false,
   bankName: "",
+  language: "en",
 };
 
 const defaultFinancialData: FinancialData = {
@@ -49,6 +57,7 @@ const defaultFinancialData: FinancialData = {
   finScore: 0,
   riskProfile: "",
   tags: [],
+  scoreInsights: [],
 };
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -67,22 +76,51 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
 
   const generateMockData = () => {
     const mockFinancialData: FinancialData = {
-      monthlyIncome: 3250,
+      monthlyIncome: 45000,
       incomeBreakdown: [
-        { source: "Grab", amount: 1800 },
-        { source: "Deliveroo", amount: 950 },
-        { source: "Foodpanda", amount: 500 },
+        { source: "Ola", amount: 25000 },
+        { source: "Uber", amount: 12000 },
+        { source: "Swiggy", amount: 8000 },
       ],
       expenses: [
-        { category: "Rent", amount: 1200 },
-        { category: "Food", amount: 600 },
-        { category: "Transport", amount: 250 },
-        { category: "Utilities", amount: 150 },
-        { category: "Savings", amount: 1050 },
+        { category: "Rent", amount: 15000 },
+        { category: "Food", amount: 8000 },
+        { category: "Transport", amount: 3000 },
+        { category: "Utilities", amount: 2000 },
+        { category: "Savings", amount: 17000 },
       ],
       finScore: 81,
       riskProfile: "Low",
-      tags: ["Reliable Earner", "Consistent PayNow Income", "Good Savings Rate"],
+      tags: ["Reliable Earner", "Consistent UPI Income", "Good Savings Rate"],
+      scoreInsights: [
+        {
+          category: "Income Consistency",
+          level: "Excellent",
+          description: "Your income shows strong patterns with minimal volatility",
+          suggestions: [
+            "Continue maintaining multiple income sources",
+            "Consider seasonal planning for peak earning periods"
+          ]
+        },
+        {
+          category: "Financial Discipline",
+          level: "Good", 
+          description: "You demonstrate solid savings habits and expense management",
+          suggestions: [
+            "Increase emergency fund to 6 months of expenses",
+            "Explore investment opportunities for surplus funds"
+          ]
+        },
+        {
+          category: "Digital Footprint",
+          level: "Strong",
+          description: "High UPI transaction frequency shows digital financial adoption",
+          suggestions: [
+            "Link additional bank accounts for better visibility",
+            "Consider using digital investment platforms"
+          ]
+        }
+      ],
     };
 
     setFinancialData(mockFinancialData);

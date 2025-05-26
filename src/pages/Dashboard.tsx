@@ -13,7 +13,7 @@ import PageContainer from "@/components/PageContainer";
 import ProgressBar from "@/components/ProgressBar";
 import { useApp } from "@/context/AppContext";
 
-const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "#8884d8"];
+const COLORS = ["#f47615", "#86dcf4", "#48BB78", "#805AD5", "#F6AD55"];
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -28,12 +28,15 @@ const Dashboard = () => {
   return (
     <PageContainer>
       <div className="flex justify-center mb-6">
-        <h1 className="text-2xl font-bold text-primary">FinBridge</h1>
+        <h1 className="text-2xl font-bold">
+          <span style={{ color: '#f47615' }}>Bharat</span>
+          <span style={{ color: '#86dcf4' }}>Ankh</span>
+        </h1>
       </div>
       
       <div className="mb-6">
         <h2 className="text-2xl font-bold mb-1">
-          Hi, {userData.name.split(" ")[0]} — Here's your Financial Overview
+          नमस्ते, {userData.name.split(" ")[0]} — Here's your Financial Overview
         </h2>
         <p className="text-gray-500">Track your earnings and financial health</p>
       </div>
@@ -46,7 +49,7 @@ const Dashboard = () => {
         <CardContent>
           <div className="mb-2">
             <p className="text-xl font-bold">
-              You earn S${financialData.monthlyIncome.toLocaleString()}/month through PayNow.
+              You earn ₹{financialData.monthlyIncome.toLocaleString()}/month through UPI.
             </p>
           </div>
           <div className="space-y-2">
@@ -54,7 +57,7 @@ const Dashboard = () => {
             {financialData.incomeBreakdown.map((income, index) => (
               <div key={index} className="flex justify-between">
                 <span>{income.source}</span>
-                <span className="font-semibold">S${income.amount.toLocaleString()}</span>
+                <span className="font-semibold">₹{income.amount.toLocaleString()}</span>
               </div>
             ))}
           </div>
@@ -94,7 +97,7 @@ const Dashboard = () => {
                 <span style={{ color: COLORS[index % COLORS.length] }}>
                   {expense.category}
                 </span>
-                <span className="font-semibold">S${expense.amount.toLocaleString()}</span>
+                <span className="font-semibold">₹{expense.amount.toLocaleString()}</span>
               </div>
             ))}
           </div>
@@ -104,76 +107,70 @@ const Dashboard = () => {
       {/* FinScore */}
       <Card className="w-full shadow-md mb-6 animate-fade-in">
         <CardHeader className="pb-2">
-          <CardTitle className="text-lg">FinScore</CardTitle>
+          <CardTitle className="text-lg">BharatAnkh Score</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="mb-3">
             <div className="flex justify-between mb-2">
               <div className="font-semibold">Score: {financialData.finScore}/100</div>
-              <div className="px-2 py-1 bg-accent/20 text-accent rounded-full text-xs">
+              <div className="px-2 py-1 bg-orange-100 text-orange-600 rounded-full text-xs">
                 Trusted
               </div>
             </div>
             <ProgressBar value={financialData.finScore} max={100} />
           </div>
           <p className="text-gray-500 text-sm">
-            High income consistency, good savings buffer, and on-time bill payments.
+            High income consistency, good savings buffer, and on-time payments.
           </p>
-          <div className="mt-3">
-            <Button 
-              onClick={() => navigate("/simulator")} 
-              variant="outline" 
-              className="w-full text-accent hover:bg-accent/10"
-              size="sm"
-            >
-              Try Financial Behavior Simulator
-            </Button>
-          </div>
         </CardContent>
       </Card>
       
-      {/* Score Insights */}
+      {/* Qualitative Score Insights */}
       <Card className="w-full shadow-md mb-6 animate-fade-in">
         <CardHeader className="pb-2">
-          <CardTitle className="text-lg">Score Insights / Tips</CardTitle>
+          <CardTitle className="text-lg">Score Insights</CardTitle>
         </CardHeader>
         <CardContent>
-          <ul className="space-y-2">
-            <li className="flex items-start space-x-2">
-              <div className="h-5 w-5 rounded-full bg-accent/20 flex-shrink-0 flex items-center justify-center text-accent">
-                ✓
+          <div className="space-y-4">
+            {financialData.scoreInsights.map((insight, index) => (
+              <div key={index} className="border-l-4 border-orange-500 pl-4">
+                <div className="flex justify-between items-center mb-2">
+                  <h4 className="font-semibold">{insight.category}</h4>
+                  <span className={`px-2 py-1 rounded-full text-xs ${
+                    insight.level === 'Excellent' ? 'bg-green-100 text-green-700' :
+                    insight.level === 'Good' ? 'bg-blue-100 text-blue-700' :
+                    'bg-orange-100 text-orange-700'
+                  }`}>
+                    {insight.level}
+                  </span>
+                </div>
+                <p className="text-sm text-gray-600 mb-2">{insight.description}</p>
+                <ul className="text-xs text-gray-500 space-y-1">
+                  {insight.suggestions.map((suggestion, idx) => (
+                    <li key={idx}>• {suggestion}</li>
+                  ))}
+                </ul>
               </div>
-              <span>Maintain S$500 minimum balance</span>
-            </li>
-            <li className="flex items-start space-x-2">
-              <div className="h-5 w-5 rounded-full bg-accent/20 flex-shrink-0 flex items-center justify-center text-accent">
-                ✓
-              </div>
-              <span>Link second bank account</span>
-            </li>
-            <li className="flex items-start space-x-2">
-              <div className="h-5 w-5 rounded-full bg-accent/20 flex-shrink-0 flex items-center justify-center text-accent">
-                ✓
-              </div>
-              <span>Add utility bill payment</span>
-            </li>
-          </ul>
+            ))}
+          </div>
         </CardContent>
       </Card>
       
       <div className="flex space-x-4">
         <Button
           onClick={() => navigate("/passport")}
-          className="flex-1 bg-primary hover:bg-primary/90"
+          className="flex-1 text-white"
+          style={{ backgroundColor: '#f47615' }}
         >
           View My Financial Passport
         </Button>
         <Button
-          onClick={() => navigate("/offers")}
+          onClick={() => navigate("/analysis")}
           variant="outline"
           className="flex-1"
+          style={{ borderColor: '#86dcf4', color: '#86dcf4' }}
         >
-          View Offers
+          View Analysis
         </Button>
       </div>
     </PageContainer>
