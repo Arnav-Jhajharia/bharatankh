@@ -18,7 +18,7 @@ const WelcomePage = () => {
   ];
 
   const getText = (key: string) => {
-    const translations: Record<string, Record<string, string>> = {
+    const translations: Record<string, Record<string, any>> = {
       en: {
         welcome: "Welcome to BharatAnkh",
         subtitle: "Your work deserves credit. Build your financial score and unlock better opportunities across India.",
@@ -98,37 +98,41 @@ const WelcomePage = () => {
         </Select>
       </div>
 
-      {/* Worker Illustrations */}
-      <div className="absolute left-8 top-1/4 opacity-20">
-        <svg width="80" height="120" viewBox="0 0 80 120" fill="none">
-          {/* Delivery worker with bike */}
-          <path d="M40 20c-8 0-15 7-15 15v10c0 3 2 5 5 5h20c3 0 5-2 5-5V35c0-8-7-15-15-15z" fill="#f47615" stroke="#f47615" strokeWidth="1"/>
-          <path d="M25 50v40l10 5v20h10V95l10-5V50" stroke="#f47615" strokeWidth="2" fill="none"/>
-          <circle cx="20" cy="100" r="8" fill="none" stroke="#f47615" strokeWidth="2"/>
-          <circle cx="60" cy="100" r="8" fill="none" stroke="#f47615" strokeWidth="2"/>
-          <path d="M20 100h40" stroke="#f47615" strokeWidth="2"/>
+      {/* Grand Illustrations of Indian Workers */}
+      <div className="absolute left-8 top-1/4 opacity-30">
+        <svg width="120" height="180" viewBox="0 0 120 180" fill="none">
+          {/* Construction Worker - Grand Scale */}
+          <circle cx="60" cy="25" r="18" fill="none" stroke="#f47615" strokeWidth="3"/>
+          <rect x="45" y="15" width="30" height="15" rx="3" fill="#f47615"/>
+          <path d="M30 45h60v35H30z" fill="none" stroke="#f47615" strokeWidth="3"/>
+          <path d="M40 80v70h10V120h20v30h10V80" stroke="#f47615" strokeWidth="3" fill="none"/>
+          <path d="M15 65h90l-15-20H30z" stroke="#86dcf4" strokeWidth="3" fill="none"/>
+          <text x="60" y="165" textAnchor="middle" fontSize="8" fill="#f47615" fontWeight="bold">BUILDER</text>
         </svg>
       </div>
 
-      <div className="absolute right-8 top-1/3 opacity-20">
-        <svg width="60" height="100" viewBox="0 0 60 100" fill="none">
-          {/* Construction worker */}
-          <circle cx="30" cy="15" r="12" fill="#86dcf4" stroke="#86dcf4" strokeWidth="1"/>
-          <rect x="20" y="8" width="20" height="10" rx="2" fill="#f47615"/>
-          <path d="M15 30h30v20H15z" fill="#86dcf4" stroke="#86dcf4" strokeWidth="1"/>
-          <path d="M20 50v35h5V70h10v15h5V50" stroke="#86dcf4" strokeWidth="2" fill="none"/>
-          <path d="M10 40h15l5-10 5 10h15" stroke="#f47615" strokeWidth="2" fill="none"/>
+      <div className="absolute right-8 top-1/3 opacity-30">
+        <svg width="100" height="160" viewBox="0 0 100 160" fill="none">
+          {/* Delivery Worker with Bike - Heroic */}
+          <circle cx="50" cy="20" r="15" fill="none" stroke="#86dcf4" strokeWidth="3"/>
+          <path d="M35 35h30v25H35z" fill="none" stroke="#86dcf4" strokeWidth="3"/>
+          <path d="M35 60v60h8V100h14v20h8V60" stroke="#86dcf4" strokeWidth="3" fill="none"/>
+          <circle cx="25" cy="130" r="12" fill="none" stroke="#f47615" strokeWidth="3"/>
+          <circle cx="75" cy="130" r="12" fill="none" stroke="#f47615" strokeWidth="3"/>
+          <path d="M25 130h50" stroke="#f47615" strokeWidth="3"/>
+          <text x="50" y="155" textAnchor="middle" fontSize="8" fill="#86dcf4" fontWeight="bold">DRIVER</text>
         </svg>
       </div>
 
-      <div className="absolute left-12 bottom-1/4 opacity-20">
-        <svg width="70" height="90" viewBox="0 0 70 90" fill="none">
-          {/* Street vendor */}
-          <circle cx="35" cy="15" r="10" fill="#f47615"/>
-          <path d="M25 25h20v15H25z" fill="#86dcf4" stroke="#86dcf4" strokeWidth="1"/>
-          <path d="M25 40v30h5V55h10v15h5V40" stroke="#f47615" strokeWidth="2" fill="none"/>
-          <rect x="15" y="35" width="40" height="8" rx="2" fill="none" stroke="#86dcf4" strokeWidth="2"/>
-          <path d="M10 43h50" stroke="#86dcf4" strokeWidth="2"/>
+      <div className="absolute left-12 bottom-1/4 opacity-30">
+        <svg width="110" height="140" viewBox="0 0 110 140" fill="none">
+          {/* Street Vendor - Pride */}
+          <circle cx="55" cy="18" r="14" fill="none" stroke="#f47615" strokeWidth="3"/>
+          <path d="M40 32h30v20H40z" fill="none" stroke="#f47615" strokeWidth="3"/>
+          <path d="M40 52v55h8V85h14v22h8V52" stroke="#f47615" strokeWidth="3" fill="none"/>
+          <rect x="20" y="45" width="70" height="12" rx="3" fill="none" stroke="#86dcf4" strokeWidth="3"/>
+          <path d="M10 57h90" stroke="#86dcf4" strokeWidth="3"/>
+          <text x="55" y="130" textAnchor="middle" fontSize="8" fill="#f47615" fontWeight="bold">VENDOR</text>
         </svg>
       </div>
 

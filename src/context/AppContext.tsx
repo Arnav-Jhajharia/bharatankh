@@ -76,48 +76,51 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
 
   const generateMockData = () => {
     const mockFinancialData: FinancialData = {
-      monthlyIncome: 45000,
+      monthlyIncome: 28000,
       incomeBreakdown: [
-        { source: "Ola", amount: 25000 },
-        { source: "Uber", amount: 12000 },
-        { source: "Swiggy", amount: 8000 },
+        { source: "Ola", amount: 15000 },
+        { source: "Uber", amount: 8000 },
+        { source: "Swiggy", amount: 5000 },
       ],
       expenses: [
-        { category: "Rent", amount: 15000 },
-        { category: "Food", amount: 8000 },
-        { category: "Transport", amount: 3000 },
-        { category: "Utilities", amount: 2000 },
-        { category: "Savings", amount: 17000 },
+        { category: "Rent", amount: 12000 },
+        { category: "Food", amount: 7000 },
+        { category: "Transport", amount: 3500 },
+        { category: "Utilities", amount: 2500 },
+        { category: "Savings", amount: 3000 },
       ],
-      finScore: 81,
-      riskProfile: "Low",
-      tags: ["Reliable Earner", "Consistent UPI Income", "Good Savings Rate"],
+      finScore: 62,
+      riskProfile: "Medium",
+      tags: ["Irregular Income", "Multiple Income Sources", "Low Savings Rate"],
       scoreInsights: [
         {
-          category: "Income Consistency",
-          level: "Excellent",
-          description: "Your UPI transaction patterns show strong earning consistency with minimal monthly volatility",
+          category: "Income Stability",
+          level: "Fair",
+          description: "Your income from gig work shows moderate consistency but with notable monthly variations that affect reliability assessments",
           suggestions: [
-            "Continue maintaining multiple income sources",
-            "Consider seasonal planning for peak earning periods"
+            "Try to maintain consistent work hours across platforms",
+            "Consider developing a secondary stable income source",
+            "Track peak earning periods to optimize work schedules"
           ]
         },
         {
           category: "Financial Discipline", 
-          level: "Good",
-          description: "You demonstrate solid savings habits and expense management through UPI transactions",
+          level: "Below Average",
+          description: "Current savings rate is concerning at 10.7% of income, indicating potential financial stress and limited emergency preparedness",
           suggestions: [
-            "Increase emergency fund to 6 months of expenses",
-            "Explore digital investment opportunities through UPI"
+            "Increase emergency fund to at least 3 months of expenses",
+            "Reduce discretionary spending by 15-20%",
+            "Set up automatic savings transfers on high-earning days"
           ]
         },
         {
-          category: "Digital Financial Footprint",
-          level: "Strong",
-          description: "High UPI transaction frequency shows excellent digital financial adoption",
+          category: "Digital Financial Behavior",
+          level: "Good",
+          description: "Strong UPI transaction history demonstrates good digital financial adoption, though expense categorization could improve",
           suggestions: [
-            "Link additional bank accounts for better transaction visibility",
-            "Consider using digital lending platforms for credit access"
+            "Use expense tracking apps for better financial visibility",
+            "Consolidate banking relationships for easier management",
+            "Consider digital investment options to grow savings"
           ]
         }
       ],

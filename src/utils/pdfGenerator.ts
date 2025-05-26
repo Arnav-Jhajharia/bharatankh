@@ -108,10 +108,10 @@ export const generateFinancialPassportPDF = (userData: UserData, financialData: 
   
   // Risk assessment based on score
   const riskFactors = [];
-  if (financialData.finScore < 60) {
-    riskFactors.push("• Low credit score indicates higher risk");
+  if (financialData.finScore < 70) {
+    riskFactors.push("• Moderate credit score indicates elevated risk");
   }
-  if (savingsRate < 10) {
+  if (Number(savingsRate) < 15) {
     riskFactors.push("• Low savings rate may indicate financial stress");
   }
   if (financialData.incomeBreakdown.length < 2) {

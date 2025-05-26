@@ -10,6 +10,7 @@ import BankLinking from "./pages/BankLinking";
 import Dashboard from "./pages/Dashboard";
 import FinancialPassport from "./pages/FinancialPassport";
 import Analysis from "./pages/Analysis";
+import InstitutionalLookup from "./pages/InstitutionalLookup";
 import NotFound from "./pages/NotFound";
 import { AppProvider } from "./context/AppContext";
 
@@ -29,6 +30,7 @@ const App = () => (
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/passport" element={<FinancialPassport />} />
             <Route path="/analysis" element={<Analysis />} />
+            <Route path="/institutional" element={<InstitutionalLookup />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
