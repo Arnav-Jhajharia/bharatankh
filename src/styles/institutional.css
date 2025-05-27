@@ -1,0 +1,387 @@
+
+/* Institutional Page Styles */
+.institutional-container {
+  min-height: 100vh;
+  background-color: #f8fafc;
+  padding: 1.5rem;
+}
+
+.institutional-header {
+  max-width: 1536px;
+  margin: 0 auto;
+  margin-bottom: 2rem;
+}
+
+.institutional-title {
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 0.5rem;
+}
+
+.institutional-subtitle {
+  color: #6b7280;
+}
+
+.institutional-content {
+  max-width: 1536px;
+  margin: 0 auto;
+}
+
+/* Lookup Form Styles */
+.lookup-form-card {
+  max-width: 28rem;
+  margin: 0 auto;
+}
+
+.lookup-form-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.lookup-icon {
+  height: 1.25rem;
+  width: 1.25rem;
+}
+
+.lookup-form-description {
+  margin-top: 0.5rem;
+}
+
+.lookup-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-label {
+  font-weight: 500;
+  color: #374151;
+}
+
+.form-input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+}
+
+.date-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.date-picker-button {
+  width: 100%;
+  padding-left: 0.75rem;
+  text-align: left;
+  font-weight: normal;
+  justify-content: space-between;
+}
+
+.date-picker-placeholder {
+  color: #9ca3af;
+}
+
+.date-picker-icon {
+  margin-left: auto;
+  height: 1rem;
+  width: 1rem;
+  opacity: 0.5;
+}
+
+.calendar-popover {
+  width: auto;
+  padding: 0;
+}
+
+.submit-button {
+  width: 100%;
+  background-color: #f47615;
+  color: white;
+  padding: 0.75rem;
+  border-radius: 0.375rem;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.submit-button:hover {
+  background-color: #e06914;
+}
+
+.submit-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Card Styles */
+.institutional-card {
+  border-radius: 0.5rem;
+  border: 1px solid #e5e7eb;
+  background-color: white;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+}
+
+.institutional-card-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #111827;
+}
+
+.institutional-card-content {
+  padding: 1.5rem;
+  padding-top: 0;
+}
+
+/* Profile Card Styles */
+.profile-info-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .profile-info-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.profile-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.profile-field {
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+.field-label {
+  font-weight: 600;
+  color: #374151;
+}
+
+.status-verified {
+  color: #059669;
+  font-weight: 500;
+}
+
+.status-pending {
+  color: #d97706;
+  font-weight: 500;
+}
+
+.score-value {
+  font-weight: 600;
+  color: #1f2937;
+}
+
+/* Risk Assessment Styles */
+.risk-assessment-card {
+  border: 1px solid #fecaca;
+}
+
+.risk-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #dc2626;
+}
+
+.risk-icon {
+  height: 1.25rem;
+  width: 1.25rem;
+}
+
+.risk-factors-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.risk-factor-item {
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.risk-factor-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.risk-factor-header:hover {
+  background-color: #f9fafb;
+}
+
+.risk-factor-content {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex: 1;
+}
+
+.risk-severity-icon {
+  height: 1.25rem;
+  width: 1.25rem;
+}
+
+.risk-severity-icon.high {
+  color: #ef4444;
+}
+
+.risk-severity-icon.medium {
+  color: #f59e0b;
+}
+
+.risk-factor-details {
+  flex: 1;
+}
+
+.risk-factor-name {
+  font-weight: 500;
+  color: #111827;
+  margin: 0;
+}
+
+.risk-factor-description {
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin: 0.25rem 0 0 0;
+}
+
+.risk-factor-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.risk-severity-badge {
+  padding: 0.25rem 0.5rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.risk-severity-badge.high {
+  background-color: #fef2f2;
+  color: #991b1b;
+}
+
+.risk-severity-badge.medium {
+  background-color: #fffbeb;
+  color: #92400e;
+}
+
+.expand-icon {
+  height: 1rem;
+  width: 1rem;
+  color: #6b7280;
+}
+
+.risk-details-expanded {
+  padding: 1rem;
+  border-top: 1px solid #e5e7eb;
+  background-color: #f9fafb;
+}
+
+/* Transaction Table Styles */
+.transaction-table-container {
+  overflow-x: auto;
+}
+
+.transaction-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.transaction-header-row {
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.transaction-header {
+  height: 3rem;
+  padding: 1rem;
+  text-align: left;
+  vertical-align: middle;
+  font-weight: 500;
+  color: #6b7280;
+}
+
+.amount-header {
+  text-align: right;
+}
+
+.transaction-row {
+  border-bottom: 1px solid #e5e7eb;
+  transition: background-color 0.2s;
+}
+
+.transaction-row:hover {
+  background-color: #f9fafb;
+}
+
+.transaction-row:last-child {
+  border-bottom: none;
+}
+
+.transaction-cell {
+  padding: 1rem;
+  vertical-align: middle;
+}
+
+.amount-cell {
+  text-align: right;
+  font-weight: 500;
+}
+
+.amount-cell.credit {
+  color: #059669;
+}
+
+.amount-cell.debit {
+  color: #dc2626;
+}
+
+/* Action Buttons */
+.action-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.action-button {
+  flex: 1;
+  padding: 0.75rem;
+  border-radius: 0.375rem;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.action-button.primary {
+  background-color: #f47615;
+  color: white;
+}
+
+.action-button.primary:hover {
+  background-color: #e06914;
+}
+
+.action-button.secondary {
+  background-color: transparent;
+  color: #374151;
+  border: 1px solid #d1d5db;
+}
+
+.action-button.secondary:hover {
+  background-color: #f9fafb;
+}

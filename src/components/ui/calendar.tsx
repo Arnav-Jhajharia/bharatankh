@@ -1,6 +1,6 @@
 
 import * as React from "react";
-import { ChevronLeft, ChevronRight, ChevronDown } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { DayPicker } from "react-day-picker";
 
 import { cn } from "@/lib/utils";
@@ -19,7 +19,7 @@ function Calendar({
   
   const years = React.useMemo(() => {
     const currentYear = new Date().getFullYear();
-    const startYear = currentYear - 80; // Allow selection from 80 years ago
+    const startYear = currentYear - 80;
     const endYear = currentYear;
     return Array.from({ length: endYear - startYear + 1 }, (_, i) => startYear + i);
   }, []);
@@ -51,7 +51,7 @@ function Calendar({
         months: "flex flex-col sm:flex-row space-y-4 sm:space-x-4 sm:space-y-0",
         month: "space-y-4",
         caption: "flex justify-center pt-1 relative items-center",
-        caption_label: "text-sm font-medium hidden", // Hide default label
+        caption_label: "text-sm font-medium hidden",
         nav: "space-x-1 flex items-center",
         nav_button: cn(
           buttonVariants({ variant: "outline" }),
@@ -87,9 +87,8 @@ function Calendar({
         Caption: ({ displayMonth }) => (
           <div className="flex items-center gap-2 w-full justify-center">
             <Select value={months[displayMonth.getMonth()]} onValueChange={handleMonthChange}>
-              <SelectTrigger className="w-32 h-8 text-sm">
+              <SelectTrigger className="w-32 h-8 text-sm [&>svg]:hidden">
                 <SelectValue />
-                <ChevronDown className="h-3 w-3" />
               </SelectTrigger>
               <SelectContent>
                 {months.map((month) => (
@@ -100,9 +99,8 @@ function Calendar({
               </SelectContent>
             </Select>
             <Select value={displayMonth.getFullYear().toString()} onValueChange={handleYearChange}>
-              <SelectTrigger className="w-20 h-8 text-sm">
+              <SelectTrigger className="w-20 h-8 text-sm [&>svg]:hidden">
                 <SelectValue />
-                <ChevronDown className="h-3 w-3" />
               </SelectTrigger>
               <SelectContent className="max-h-48">
                 {years.reverse().map((year) => (
