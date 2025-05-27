@@ -14,11 +14,18 @@ import PageContainer from "@/components/PageContainer";
 import LoadingOverlay from "@/components/LoadingOverlay";
 import { useApp } from "@/context/AppContext";
 
+// Import local logos
+import sbiLogo from "@/assets/logos/sbi-logo.svg";
+import iciciLogo from "@/assets/logos/icici-logo.svg";
+import axisLogo from "@/assets/logos/axis-logo.svg";
+import kotakLogo from "@/assets/logos/kotak-logo.svg";
+import pnbLogo from "@/assets/logos/pnb-logo.svg";
+
 const banks = [
   { 
     id: "sbi", 
     name: "State Bank of India", 
-    logoUrl: "https://www.sbi.co.in/documents/16012/1400784/SBI_Logo.jpg"
+    logoUrl: sbiLogo
   },
   { 
     id: "hdfc", 
@@ -28,22 +35,22 @@ const banks = [
   { 
     id: "icici", 
     name: "ICICI Bank", 
-    logoUrl: "https://www.icicibank.com/managed-assets/images/logo/icici-bank-logo.png"
+    logoUrl: iciciLogo
   },
   { 
     id: "axis", 
     name: "Axis Bank", 
-    logoUrl: "https://www.axisbank.com/images/default-source/revamp_new/axis-bank-logo.png"
+    logoUrl: axisLogo
   },
   { 
     id: "kotak", 
     name: "Kotak Mahindra Bank", 
-    logoUrl: "https://www.kotak.com/content/dam/Kotak/logo/kotak-logo.png"
+    logoUrl: kotakLogo
   },
   { 
     id: "pnb", 
     name: "Punjab National Bank", 
-    logoUrl: "https://www.pnbindia.in/images/logo-pnb.png"
+    logoUrl: pnbLogo
   },
 ];
 

@@ -1,0 +1,7 @@
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500">
+  <!-- This is a placeholder for the SBI logo -->
+  <!-- In a real implementation, you would use the actual SVG content from the Wikipedia link -->
+  <rect width="500" height="500" fill="#1f4e79"/>
+  <text x="250" y="250" text-anchor="middle" dominant-baseline="middle" fill="white" font-size="60" font-family="Arial, sans-serif">SBI</text>
+</svg>
