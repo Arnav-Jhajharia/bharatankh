@@ -15,12 +15,36 @@ import LoadingOverlay from "@/components/LoadingOverlay";
 import { useApp } from "@/context/AppContext";
 
 const banks = [
-  { id: "sbi", name: "State Bank of India", logo: "SBI" },
-  { id: "hdfc", name: "HDFC Bank", logo: "HDFC" },
-  { id: "icici", name: "ICICI Bank", logo: "ICICI" },
-  { id: "axis", name: "Axis Bank", logo: "AXIS" },
-  { id: "kotak", name: "Kotak Mahindra Bank", logo: "KMB" },
-  { id: "pnb", name: "Punjab National Bank", logo: "PNB" },
+  { 
+    id: "sbi", 
+    name: "State Bank of India", 
+    logoUrl: "https://www.sbi.co.in/documents/16012/1400784/SBI_Logo.jpg"
+  },
+  { 
+    id: "hdfc", 
+    name: "HDFC Bank", 
+    logoUrl: "https://www.hdfcbank.com/content/dam/hdfcbank/common/images/logo/hdfc-bank-logo.png"
+  },
+  { 
+    id: "icici", 
+    name: "ICICI Bank", 
+    logoUrl: "https://www.icicibank.com/managed-assets/images/logo/icici-bank-logo.png"
+  },
+  { 
+    id: "axis", 
+    name: "Axis Bank", 
+    logoUrl: "https://www.axisbank.com/images/default-source/revamp_new/axis-bank-logo.png"
+  },
+  { 
+    id: "kotak", 
+    name: "Kotak Mahindra Bank", 
+    logoUrl: "https://www.kotak.com/content/dam/Kotak/logo/kotak-logo.png"
+  },
+  { 
+    id: "pnb", 
+    name: "Punjab National Bank", 
+    logoUrl: "https://www.pnbindia.in/images/logo-pnb.png"
+  },
 ];
 
 const BankLinking = () => {
@@ -83,8 +107,21 @@ const BankLinking = () => {
                   }`}
                   onClick={() => setSelectedBank(bank.id)}
                 >
-                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-gradient-to-br from-orange-400 to-blue-400 flex items-center justify-center text-xs font-bold text-white">
-                    {bank.logo}
+                  <div className="flex-shrink-0 w-12 h-8 flex items-center justify-center">
+                    <img 
+                      src={bank.logoUrl} 
+                      alt={`${bank.name} logo`}
+                      className="max-w-full max-h-full object-contain"
+                      onError={(e) => {
+                        // Fallback to text if image fails to load
+                        const target = e.target as HTMLImageElement;
+                        target.style.display = 'none';
+                        const fallback = document.createElement('div');
+                        fallback.className = 'w-10 h-10 rounded-full bg-gradient-to-br from-orange-400 to-blue-400 flex items-center justify-center text-xs font-bold text-white';
+                        fallback.textContent = bank.name.split(' ').map(word => word[0]).join('').substring(0, 3);
+                        target.parentNode?.appendChild(fallback);
+                      }}
+                    />
                   </div>
                   <div className="font-medium text-sm">{bank.name}</div>
                 </div>
