@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -71,7 +70,12 @@ const Analysis = () => {
               <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f5f5f7" />
               <XAxis dataKey="name" axisLine={false} tickLine={false} className="text-sm text-gray-600" />
               <YAxis axisLine={false} tickLine={false} tickFormatter={value => `₹${(value / 1000).toFixed(0)}k`} width={60} className="text-sm text-gray-600" />
-              <ChartTooltip content={<ChartTooltipContent formatter={(value, name) => [`₹${value}`, name === "income" ? "Income" : "Expenses"]} />} />
+              <ChartTooltip 
+                content={<ChartTooltipContent 
+                  formatter={(value, name) => [`₹${value}`, name === "income" ? "Income" : "Expenses"]} 
+                  className="bg-white border border-gray-200 shadow-lg rounded-lg opacity-100"
+                />} 
+              />
               <Line type="monotone" dataKey="income" stroke="#f47615" strokeWidth={3} dot={{ r: 6 }} activeDot={{ r: 8 }} />
               <Line type="monotone" dataKey="expenses" stroke="#805AD5" strokeWidth={3} dot={{ r: 6 }} activeDot={{ r: 8 }} />
             </LineChart>
