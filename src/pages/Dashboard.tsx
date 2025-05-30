@@ -1,3 +1,4 @@
+
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -5,7 +6,9 @@ import { PieChart, Pie, Cell, ResponsiveContainer, Legend } from "recharts";
 import PageContainer from "@/components/PageContainer";
 import ProgressBar from "@/components/ProgressBar";
 import { useApp } from "@/context/AppContext";
+
 const COLORS = ["#f47615", "#86dcf4", "#48BB78", "#805AD5", "#F6AD55"];
+
 const Dashboard = () => {
   const navigate = useNavigate();
   const {
@@ -47,7 +50,7 @@ const Dashboard = () => {
       </div>
       
       {/* Earnings Summary */}
-      <Card className="w-full shadow-md mb-6 animate-fade-in">
+      <Card className="w-full shadow-lg mb-6 animate-fade-in rounded-3xl border-0 bg-gradient-to-br from-white to-orange-50/30">
         <CardHeader className="pb-2">
           <CardTitle className="text-lg">UPI Earnings Summary</CardTitle>
         </CardHeader>
@@ -59,7 +62,7 @@ const Dashboard = () => {
           </div>
           <div className="space-y-2">
             <p className="text-sm font-semibold text-gray-500">Income Sources:</p>
-            {financialData.incomeBreakdown.map((income, index) => <div key={index} className="flex justify-between">
+            {financialData.incomeBreakdown.map((income, index) => <div key={index} className="flex justify-between p-3 rounded-2xl bg-white/50 backdrop-blur-sm">
                 <span>{income.source}</span>
                 <span className="font-semibold">₹{income.amount.toLocaleString('en-IN')}</span>
               </div>)}
@@ -68,7 +71,7 @@ const Dashboard = () => {
       </Card>
       
       {/* Expense Summary */}
-      <Card className="w-full shadow-md mb-6 animate-fade-in">
+      <Card className="w-full shadow-lg mb-6 animate-fade-in rounded-3xl border-0 bg-gradient-to-br from-white to-blue-50/30">
         <CardHeader className="pb-2">
           <CardTitle className="text-lg">Monthly Expenses</CardTitle>
         </CardHeader>
@@ -87,7 +90,7 @@ const Dashboard = () => {
             </ResponsiveContainer>
           </div>
           <div className="space-y-2">
-            {financialData.expenses.map((expense, index) => <div key={index} className="flex justify-between">
+            {financialData.expenses.map((expense, index) => <div key={index} className="flex justify-between p-3 rounded-2xl bg-white/50 backdrop-blur-sm">
                 <span style={{
               color: COLORS[index % COLORS.length]
             }}>
@@ -100,7 +103,7 @@ const Dashboard = () => {
       </Card>
       
       {/* BharatAnkh Score */}
-      <Card className="w-full shadow-md mb-6 animate-fade-in">
+      <Card className="w-full shadow-lg mb-6 animate-fade-in rounded-3xl border-0 bg-gradient-to-br from-white to-green-50/30">
         <CardHeader className="pb-2">
           <CardTitle className="text-lg">BharatAnkh Score</CardTitle>
         </CardHeader>
@@ -108,7 +111,7 @@ const Dashboard = () => {
           <div className="mb-3">
             <div className="flex justify-between mb-2">
               <div className="font-semibold">Score: {financialData.finScore}/100</div>
-              <div className={`px-2 py-1 rounded-full text-xs ${scoreLevel === 'Excellent' ? 'bg-green-100 text-green-700' : scoreLevel === 'Good' ? 'bg-orange-100 text-orange-600' : scoreLevel === 'Fair' ? 'bg-yellow-100 text-yellow-700' : 'bg-red-100 text-red-600'}`}>
+              <div className={`px-4 py-2 rounded-full text-xs ${scoreLevel === 'Excellent' ? 'bg-green-100 text-green-700' : scoreLevel === 'Good' ? 'bg-orange-100 text-orange-600' : scoreLevel === 'Fair' ? 'bg-yellow-100 text-yellow-700' : 'bg-red-100 text-red-600'}`}>
                 {scoreLevel}
               </div>
             </div>
@@ -121,16 +124,16 @@ const Dashboard = () => {
       </Card>
       
       {/* Qualitative Score Insights */}
-      <Card className="w-full shadow-md mb-6 animate-fade-in">
+      <Card className="w-full shadow-lg mb-6 animate-fade-in rounded-3xl border-0 bg-gradient-to-br from-white to-purple-50/30">
         <CardHeader className="pb-2">
           <CardTitle className="text-lg">Score Analysis</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
-            {financialData.scoreInsights.map((insight, index) => <div key={index} className="border-l-4 border-orange-500 pl-4">
+            {financialData.scoreInsights.map((insight, index) => <div key={index} className="border-l-4 border-orange-500 pl-4 p-4 rounded-2xl bg-white/50 backdrop-blur-sm">
                 <div className="flex justify-between items-center mb-2">
                   <h4 className="font-semibold">{insight.category}</h4>
-                  <span className={`px-2 py-1 rounded-full text-xs ${insight.level === 'Excellent' ? 'bg-green-100 text-green-700' : insight.level === 'Good' ? 'bg-blue-100 text-blue-700' : 'bg-orange-100 text-orange-700'}`}>
+                  <span className={`px-3 py-1 rounded-full text-xs ${insight.level === 'Excellent' ? 'bg-green-100 text-green-700' : insight.level === 'Good' ? 'bg-blue-100 text-blue-700' : 'bg-orange-100 text-orange-700'}`}>
                     {insight.level}
                   </span>
                 </div>
@@ -144,7 +147,7 @@ const Dashboard = () => {
       </Card>
       
       <div className="flex space-x-4">
-        <Button onClick={() => navigate("/passport")} className="flex-1 text-white" style={{
+        <Button onClick={() => navigate("/passport")} className="flex-1 text-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-200" style={{
         backgroundColor: '#f47615'
       }}>
           View Financial Passport
@@ -157,7 +160,7 @@ const Dashboard = () => {
             color: '#86dcf4',
             backgroundColor: '#f0fbff'
           }} 
-          className="flex-1 hover:bg-blue-100 hover:border-blue-400 transition-all duration-200 ease-in-out"
+          className="flex-1 hover:bg-blue-100 hover:border-blue-400 transition-all duration-200 ease-in-out rounded-2xl shadow-lg hover:shadow-xl"
         >
           View Analysis
         </Button>

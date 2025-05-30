@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
@@ -14,6 +15,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { cn } from "@/lib/utils";
 import PageContainer from "@/components/PageContainer";
 import { useApp } from "@/context/AppContext";
+
 const formSchema = z.object({
   fullName: z.string().min(3, {
     message: "Name must be at least 3 characters"
@@ -25,6 +27,7 @@ const formSchema = z.object({
     required_error: "Date of birth is required"
   })
 });
+
 const KycVerification = () => {
   const navigate = useNavigate();
   const {
@@ -68,7 +71,7 @@ const KycVerification = () => {
         </h1>
       </div>
       
-      <Card className="w-full animate-fade-in shadow-lg">
+      <Card className="w-full animate-fade-in shadow-xl rounded-3xl border-0 bg-gradient-to-br from-white to-blue-50/30 backdrop-blur-sm">
         <CardHeader>
           <CardTitle className="text-xl">eKYC Verification</CardTitle>
           <CardDescription>
@@ -83,7 +86,7 @@ const KycVerification = () => {
             }) => <FormItem>
                       <FormLabel>Full Name</FormLabel>
                       <FormControl>
-                        <Input placeholder="Enter your full name" {...field} />
+                        <Input placeholder="Enter your full name" {...field} className="rounded-2xl border-2 focus:border-orange-400 bg-white/80 backdrop-blur-sm" />
                       </FormControl>
                       <FormMessage />
                     </FormItem>} />
@@ -96,7 +99,7 @@ const KycVerification = () => {
                         <Input placeholder="123456789012" {...field} onChange={e => {
                   const value = e.target.value.replace(/\D/g, '').slice(0, 12);
                   field.onChange(value);
-                }} maxLength={12} />
+                }} maxLength={12} className="rounded-2xl border-2 focus:border-orange-400 bg-white/80 backdrop-blur-sm" />
                       </FormControl>
                       <FormMessage />
                     </FormItem>} />
@@ -108,20 +111,20 @@ const KycVerification = () => {
                       <Popover>
                         <PopoverTrigger asChild>
                           <FormControl>
-                            <Button variant={"outline"} className={cn("w-full pl-3 text-left font-normal", !field.value && "text-muted-foreground")}>
+                            <Button variant={"outline"} className={cn("w-full pl-3 text-left font-normal rounded-2xl border-2 bg-white/80 backdrop-blur-sm", !field.value && "text-muted-foreground")}>
                               {field.value ? format(field.value, "PPP") : <span>Select your date of birth</span>}
                               <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
                             </Button>
                           </FormControl>
                         </PopoverTrigger>
-                        <PopoverContent className="w-auto p-0" align="start">
-                          <Calendar mode="single" selected={field.value || undefined} onSelect={field.onChange} disabled={date => date > new Date() || date < new Date("1940-01-01")} initialFocus className="p-3 pointer-events-auto bg-slate-50" />
+                        <PopoverContent className="w-auto p-0 rounded-3xl border-0 shadow-xl" align="start">
+                          <Calendar mode="single" selected={field.value || undefined} onSelect={field.onChange} disabled={date => date > new Date() || date < new Date("1940-01-01")} initialFocus className="p-3 pointer-events-auto bg-white rounded-3xl" />
                         </PopoverContent>
                       </Popover>
                       <FormMessage />
                     </FormItem>} />
                 
-                <Button type="submit" className="w-full text-white" style={{
+                <Button type="submit" className="w-full text-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-200" style={{
               backgroundColor: '#f47615'
             }}>
                   Verify with Aadhaar
@@ -129,14 +132,16 @@ const KycVerification = () => {
               </form>
             </Form> : <div className="space-y-6">
               <div className="flex flex-col items-center justify-center py-4">
-                <CheckCircle className="h-16 w-16 text-green-500 mb-4" />
+                <div className="h-20 w-20 rounded-full bg-green-100 flex items-center justify-center mb-4">
+                  <CheckCircle className="h-12 w-12 text-green-500" />
+                </div>
                 <h3 className="text-xl font-semibold">Identity Verified!</h3>
                 <p className="text-gray-500 mt-2 text-center">
                   Your identity has been successfully verified with Aadhaar
                 </p>
               </div>
               
-              <Button onClick={handleContinue} className="w-full text-white" style={{
+              <Button onClick={handleContinue} className="w-full text-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-200" style={{
             backgroundColor: '#f47615'
           }}>
                 Continue
