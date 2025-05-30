@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -80,34 +81,74 @@ const Analysis = () => {
       
       <Separator className="my-8 bg-gray-200" />
       
-      {/* Spending Breakdown */}
-      <div className="bg-white/95 backdrop-blur-xl rounded-3xl p-8 shadow-sm border border-gray-100/50">
-        <h3 className="text-xl font-semibold mb-6 text-gray-900 tracking-tight">Spending Breakdown</h3>
-        <div className="grid grid-cols-2 gap-8">
-          {/* Pie Chart */}
-          <div className="h-56 flex items-center justify-center">
-            <ResponsiveContainer width="100%" height="100%">
-              <PieChart>
-                <Pie data={spendingData} cx="50%" cy="50%" labelLine={false} outerRadius={80} fill="#8884d8" dataKey="value">
-                  {spendingData.map((entry, index) => (
-                    <Cell key={`cell-${index}`} fill={entry.color} />
-                  ))}
-                </Pie>
-              </PieChart>
-            </ResponsiveContainer>
-          </div>
-          
-          {/* Legend */}
-          <div className="space-y-4 flex flex-col justify-center">
-            {spendingData.map((item, index) => (
-              <div key={index} className="flex justify-between items-center p-4 rounded-2xl hover:bg-gray-50/80 transition-colors duration-200">
-                <div className="flex items-center">
-                  <div className="w-4 h-4 rounded-full mr-4 shadow-sm" style={{ backgroundColor: item.color }}></div>
-                  <span className="font-medium text-gray-800">{item.name}</span>
+      {/* Enhanced Spending Breakdown */}
+      <div className="bg-white/95 backdrop-blur-xl rounded-3xl shadow-sm border border-gray-100/50 overflow-hidden">
+        <div className="px-8 pt-8 pb-4">
+          <h3 className="text-xl font-semibold text-gray-900 tracking-tight mb-2">Spending Breakdown</h3>
+          <p className="text-sm text-gray-500 font-medium">Monthly allocation overview</p>
+        </div>
+        
+        <div className="px-8 pb-8">
+          <div className="grid grid-cols-2 gap-10">
+            {/* Pie Chart */}
+            <div className="h-64 flex items-center justify-center">
+              <ResponsiveContainer width="100%" height="100%">
+                <PieChart>
+                  <Pie 
+                    data={spendingData} 
+                    cx="50%" 
+                    cy="50%" 
+                    labelLine={false} 
+                    outerRadius={85} 
+                    innerRadius={25}
+                    fill="#8884d8" 
+                    dataKey="value"
+                    strokeWidth={0}
+                  >
+                    {spendingData.map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill={entry.color} />
+                    ))}
+                  </Pie>
+                </PieChart>
+              </ResponsiveContainer>
+            </div>
+            
+            {/* Enhanced Legend */}
+            <div className="space-y-3 flex flex-col justify-center">
+              {spendingData.map((item, index) => (
+                <div key={index} className="group">
+                  <div className="flex justify-between items-center px-5 py-4 rounded-2xl bg-gray-50/60 hover:bg-gray-100/80 border border-gray-100/60 hover:border-gray-200/60 transition-all duration-300 hover:shadow-sm">
+                    <div className="flex items-center space-x-4">
+                      <div 
+                        className="w-3 h-3 rounded-full shadow-sm ring-2 ring-white/50" 
+                        style={{ backgroundColor: item.color }}
+                      ></div>
+                      <div className="flex flex-col">
+                        <span className="font-semibold text-gray-800 text-sm tracking-tight">{item.name}</span>
+                        <span className="text-xs text-gray-500 font-medium">Category</span>
+                      </div>
+                    </div>
+                    <div className="flex flex-col items-end">
+                      <span className="font-bold text-gray-900 text-lg tracking-tight">{item.value}%</span>
+                      <span className="text-xs text-gray-500 font-medium">of total</span>
+                    </div>
+                  </div>
                 </div>
-                <span className="font-semibold text-gray-900 text-sm">{item.value}%</span>
+              ))}
+              
+              {/* Summary Card */}
+              <div className="mt-6 p-5 rounded-2xl bg-gradient-to-r from-orange-50/80 to-blue-50/80 border border-orange-100/50">
+                <div className="flex justify-between items-center">
+                  <div>
+                    <p className="text-sm font-semibold text-gray-700 mb-1">Financial Health</p>
+                    <p className="text-xs text-gray-500">Based on allocation</p>
+                  </div>
+                  <div className="px-3 py-1.5 bg-green-100 text-green-700 rounded-full text-xs font-semibold tracking-wide">
+                    BALANCED
+                  </div>
+                </div>
               </div>
-            ))}
+            </div>
           </div>
         </div>
       </div>
