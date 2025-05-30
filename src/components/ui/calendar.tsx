@@ -44,67 +44,64 @@ function Calendar({
   return (
     <DayPicker
       showOutsideDays={showOutsideDays}
-      className={cn("p-3 pointer-events-auto", className)}
+      className={cn("p-6 pointer-events-auto bg-white rounded-3xl shadow-2xl border-0", className)}
       month={currentDate}
       onMonthChange={setCurrentDate}
       classNames={{
         months: "flex flex-col sm:flex-row space-y-4 sm:space-x-4 sm:space-y-0",
-        month: "space-y-4",
-        caption: "flex justify-center pt-1 relative items-center",
-        caption_label: "text-sm font-medium hidden",
-        nav: "space-x-1 flex items-center",
+        month: "space-y-6",
+        caption: "flex justify-center pt-2 pb-4 relative items-center",
+        caption_label: "text-lg font-semibold hidden",
+        nav: "space-x-2 flex items-center",
         nav_button: cn(
-          buttonVariants({ variant: "outline" }),
-          "h-7 w-7 bg-transparent p-0 opacity-50 hover:opacity-100"
+          "h-10 w-10 bg-gray-50 hover:bg-gray-100 rounded-full border-0 transition-all duration-200 flex items-center justify-center shadow-sm hover:shadow-md",
+          "opacity-80 hover:opacity-100"
         ),
-        nav_button_previous: "absolute left-1",
-        nav_button_next: "absolute right-1",
-        table: "w-full border-collapse space-y-1",
-        head_row: "flex",
-        head_cell:
-          "text-muted-foreground rounded-md w-9 font-normal text-[0.8rem]",
-        row: "flex w-full mt-2",
-        cell: "h-9 w-9 text-center text-sm p-0 relative [&:has([aria-selected].day-range-end)]:rounded-r-md [&:has([aria-selected].day-outside)]:bg-accent/50 [&:has([aria-selected])]:bg-accent first:[&:has([aria-selected])]:rounded-l-md last:[&:has([aria-selected])]:rounded-r-md focus-within:relative focus-within:z-20",
+        nav_button_previous: "absolute left-2",
+        nav_button_next: "absolute right-2",
+        table: "w-full border-collapse space-y-2",
+        head_row: "flex mb-3",
+        head_cell: "text-gray-500 rounded-xl w-12 h-8 font-medium text-sm flex items-center justify-center",
+        row: "flex w-full mt-1",
+        cell: "h-12 w-12 text-center text-sm p-0 relative focus-within:relative focus-within:z-20 [&:has([aria-selected])]:bg-transparent",
         day: cn(
-          buttonVariants({ variant: "ghost" }),
-          "h-9 w-9 p-0 font-normal aria-selected:opacity-100"
+          "h-12 w-12 p-0 font-medium rounded-xl transition-all duration-200 hover:bg-gray-50",
+          "text-gray-900 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-orange-200",
+          "aria-selected:opacity-100 border-0 bg-transparent hover:bg-gray-50"
         ),
         day_range_end: "day-range-end",
-        day_selected:
-          "bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground focus:bg-primary focus:text-primary-foreground",
-        day_today: "bg-accent text-accent-foreground",
-        day_outside:
-          "day-outside text-muted-foreground opacity-50 aria-selected:bg-accent/50 aria-selected:text-muted-foreground aria-selected:opacity-30",
-        day_disabled: "text-muted-foreground opacity-50",
-        day_range_middle:
-          "aria-selected:bg-accent aria-selected:text-accent-foreground",
+        day_selected: "bg-orange-500 text-white hover:bg-orange-600 hover:text-white focus:bg-orange-500 focus:text-white shadow-lg font-semibold",
+        day_today: "bg-gray-100 text-gray-900 font-semibold",
+        day_outside: "day-outside text-gray-300 opacity-50 hover:bg-transparent hover:text-gray-300",
+        day_disabled: "text-gray-200 opacity-30 cursor-not-allowed hover:bg-transparent",
+        day_range_middle: "aria-selected:bg-orange-100 aria-selected:text-orange-700",
         day_hidden: "invisible",
         ...classNames,
       }}
       components={{
-        IconLeft: ({ ..._props }) => <ChevronLeft className="h-4 w-4" />,
-        IconRight: ({ ..._props }) => <ChevronRight className="h-4 w-4" />,
+        IconLeft: ({ ..._props }) => <ChevronLeft className="h-5 w-5 text-gray-600" />,
+        IconRight: ({ ..._props }) => <ChevronRight className="h-5 w-5 text-gray-600" />,
         Caption: ({ displayMonth }) => (
-          <div className="flex items-center gap-2 w-full justify-center">
+          <div className="flex items-center gap-3 w-full justify-center">
             <Select value={months[displayMonth.getMonth()]} onValueChange={handleMonthChange}>
-              <SelectTrigger className="w-32 h-8 text-sm [&>svg]:hidden">
+              <SelectTrigger className="w-36 h-10 text-base font-medium border-0 bg-gray-50 hover:bg-gray-100 rounded-xl transition-colors duration-200 [&>svg]:hidden shadow-sm">
                 <SelectValue />
               </SelectTrigger>
-              <SelectContent>
+              <SelectContent className="rounded-2xl border-0 shadow-2xl bg-white/95 backdrop-blur-lg">
                 {months.map((month) => (
-                  <SelectItem key={month} value={month}>
+                  <SelectItem key={month} value={month} className="rounded-xl mx-1 my-0.5 text-base py-3 focus:bg-gray-50">
                     {month}
                   </SelectItem>
                 ))}
               </SelectContent>
             </Select>
             <Select value={displayMonth.getFullYear().toString()} onValueChange={handleYearChange}>
-              <SelectTrigger className="w-20 h-8 text-sm [&>svg]:hidden">
+              <SelectTrigger className="w-24 h-10 text-base font-medium border-0 bg-gray-50 hover:bg-gray-100 rounded-xl transition-colors duration-200 [&>svg]:hidden shadow-sm">
                 <SelectValue />
               </SelectTrigger>
-              <SelectContent className="max-h-48">
+              <SelectContent className="max-h-60 rounded-2xl border-0 shadow-2xl bg-white/95 backdrop-blur-lg">
                 {years.reverse().map((year) => (
-                  <SelectItem key={year} value={year.toString()}>
+                  <SelectItem key={year} value={year.toString()} className="rounded-xl mx-1 my-0.5 text-base py-3 focus:bg-gray-50">
                     {year}
                   </SelectItem>
                 ))}

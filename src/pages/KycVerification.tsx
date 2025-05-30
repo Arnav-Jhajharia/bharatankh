@@ -145,12 +145,14 @@ const KycVerification = () => {
                             <Button
                               variant="outline"
                               className={cn(
-                                "w-full h-14 rounded-2xl border-gray-200/80 bg-gray-50/50 text-base px-6 font-normal justify-start focus:bg-white focus:border-orange-300 focus:ring-orange-100 transition-all duration-200",
+                                "w-full h-14 rounded-2xl border-gray-200/80 bg-gray-50/50 text-base px-6 font-normal justify-start focus:bg-white focus:border-orange-300 focus:ring-2 focus:ring-orange-100 transition-all duration-200 shadow-sm hover:shadow-md hover:bg-white",
                                 !field.value && "text-gray-400"
                               )}
                             >
                               {field.value ? (
-                                format(field.value, "MMMM d, yyyy")
+                                <span className="text-gray-900 font-medium">
+                                  {format(field.value, "MMMM d, yyyy")}
+                                </span>
                               ) : (
                                 "Select your date of birth"
                               )}
@@ -170,7 +172,6 @@ const KycVerification = () => {
                               date > new Date() || date < new Date("1940-01-01")
                             }
                             initialFocus
-                            className="p-4 bg-white rounded-3xl"
                           />
                         </PopoverContent>
                       </Popover>
