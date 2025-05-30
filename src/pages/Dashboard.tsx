@@ -151,8 +151,9 @@ const Dashboard = () => {
         </Button>
         <Button onClick={() => navigate("/analysis")} variant="outline" style={{
         borderColor: '#86dcf4',
-        color: '#86dcf4'
-      }} className="flex-1 bg-slate-50">
+        color: '#86dcf4',
+        backgroundColor: '#f0fbff'
+      }} className="flex-1 hover:bg-blue-50">
           View Analysis
         </Button>
       </div>
