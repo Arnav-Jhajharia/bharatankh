@@ -51,13 +51,59 @@ const defaultUserData: UserData = {
 };
 
 const defaultFinancialData: FinancialData = {
-  monthlyIncome: 0,
-  incomeBreakdown: [],
-  expenses: [],
-  finScore: 0,
-  riskProfile: "",
-  tags: [],
-  scoreInsights: [],
+  monthlyIncome: 45000,
+  incomeBreakdown: [
+    { source: "Primary Job", amount: 30000 },
+    { source: "Freelance Work", amount: 12000 },
+    { source: "Investment Returns", amount: 3000 },
+  ],
+  expenses: [
+    { category: "Rent", amount: 18000 },
+    { category: "Groceries", amount: 8500 },
+    { category: "Transportation", amount: 4200 },
+    { category: "Utilities", amount: 3800 },
+    { category: "Entertainment", amount: 6200 },
+    { category: "Healthcare", amount: 2500 },
+    { category: "Savings", amount: 1800 },
+  ],
+  finScore: 45,
+  riskProfile: "High Risk",
+  tags: ["High Spending", "Low Savings Rate", "Irregular Income"],
+  scoreInsights: [
+    {
+      category: "Spending Control",
+      level: "Poor",
+      description: "Your monthly expenses exceed 96% of your income, leaving very little room for savings and emergency funds",
+      suggestions: [
+        "Reduce entertainment expenses by 30-40%",
+        "Consider finding a cheaper rental or getting roommates",
+        "Use public transportation instead of private vehicles",
+        "Cook at home more often to reduce food costs"
+      ]
+    },
+    {
+      category: "Savings Rate", 
+      level: "Critical",
+      description: "With only 4% savings rate, you're at high risk of financial instability and have no emergency buffer",
+      suggestions: [
+        "Aim to save at least 20% of your income",
+        "Set up automatic transfers to savings account",
+        "Start an emergency fund covering 6 months of expenses",
+        "Consider high-yield savings accounts or SIPs"
+      ]
+    },
+    {
+      category: "Income Diversification",
+      level: "Fair",
+      description: "Good income diversification with multiple sources, but total income needs optimization relative to expenses",
+      suggestions: [
+        "Negotiate salary increase at primary job",
+        "Expand freelance client base for more stable income",
+        "Explore passive income opportunities",
+        "Consider skill development for higher-paying opportunities"
+      ]
+    }
+  ],
 };
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -76,51 +122,32 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
 
   const generateMockData = () => {
     const mockFinancialData: FinancialData = {
-      monthlyIncome: 28000,
+      monthlyIncome: 32000,
       incomeBreakdown: [
-        { source: "Ola", amount: 15000 },
-        { source: "Uber", amount: 8000 },
-        { source: "Swiggy", amount: 5000 },
+        { source: "Software Development", amount: 25000 },
+        { source: "Consulting", amount: 5000 },
+        { source: "Online Courses", amount: 2000 },
       ],
       expenses: [
-        { category: "Rent", amount: 12000 },
-        { category: "Food", amount: 7000 },
-        { category: "Transport", amount: 3500 },
+        { category: "Rent", amount: 15000 },
+        { category: "Food & Groceries", amount: 6000 },
+        { category: "Transportation", amount: 3000 },
         { category: "Utilities", amount: 2500 },
-        { category: "Savings", amount: 3000 },
+        { category: "Entertainment", amount: 2000 },
+        { category: "Savings", amount: 3500 },
       ],
-      finScore: 62,
+      finScore: 72,
       riskProfile: "Medium",
-      tags: ["Irregular Income", "Multiple Income Sources", "Low Savings Rate"],
+      tags: ["Good Income", "Balanced Spending", "Regular Saver"],
       scoreInsights: [
         {
-          category: "Income Stability",
-          level: "Fair",
-          description: "Your income from gig work shows moderate consistency but with notable monthly variations that affect reliability assessments",
-          suggestions: [
-            "Try to maintain consistent work hours across platforms",
-            "Consider developing a secondary stable income source",
-            "Track peak earning periods to optimize work schedules"
-          ]
-        },
-        {
-          category: "Financial Discipline", 
-          level: "Below Average",
-          description: "Current savings rate is concerning at 10.7% of income, indicating potential financial stress and limited emergency preparedness",
-          suggestions: [
-            "Increase emergency fund to at least 3 months of expenses",
-            "Reduce discretionary spending by 15-20%",
-            "Set up automatic savings transfers on high-earning days"
-          ]
-        },
-        {
-          category: "Digital Financial Behavior",
+          category: "Financial Stability",
           level: "Good",
-          description: "Strong UPI transaction history demonstrates good digital financial adoption, though expense categorization could improve",
+          description: "Your income is stable with decent savings rate, showing good financial discipline",
           suggestions: [
-            "Use expense tracking apps for better financial visibility",
-            "Consolidate banking relationships for easier management",
-            "Consider digital investment options to grow savings"
+            "Consider increasing investment in mutual funds",
+            "Build larger emergency fund",
+            "Explore tax-saving investment options"
           ]
         }
       ],
