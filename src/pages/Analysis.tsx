@@ -77,7 +77,7 @@ const Analysis = () => {
                     <div key={name} className="flex items-center gap-2">
                       <Badge 
                         variant={name === "income" ? "default" : "secondary"}
-                        className={name === "income" ? "bg-orange-500 hover:bg-orange-600" : "bg-purple-500 hover:bg-purple-600"}
+                        className={name === "income" ? "bg-orange-500 hover:bg-orange-600 text-white" : "bg-purple-500 hover:bg-purple-600 text-white"}
                       >
                         {name === "income" ? "Income" : "Expenses"}
                       </Badge>
