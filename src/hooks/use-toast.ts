@@ -1,3 +1,4 @@
+
 import * as React from "react"
 
 import type {
@@ -155,6 +156,7 @@ function toast({ ...props }: Toast) {
       ...props,
       id,
       open: true,
+      className: `bg-white border shadow-lg ${props.className || ''}`,
       onOpenChange: (open) => {
         if (!open) dismiss()
       },
