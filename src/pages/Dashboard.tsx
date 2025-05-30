@@ -149,11 +149,16 @@ const Dashboard = () => {
       }}>
           View Financial Passport
         </Button>
-        <Button onClick={() => navigate("/analysis")} variant="outline" style={{
-        borderColor: '#86dcf4',
-        color: '#86dcf4',
-        backgroundColor: '#f0fbff'
-      }} className="flex-1 hover:bg-blue-50">
+        <Button 
+          onClick={() => navigate("/analysis")} 
+          variant="outline" 
+          style={{
+            borderColor: '#86dcf4',
+            color: '#86dcf4',
+            backgroundColor: '#f0fbff'
+          }} 
+          className="flex-1 hover:bg-blue-100 hover:border-blue-400 transition-all duration-200 ease-in-out"
+        >
           View Analysis
         </Button>
       </div>
