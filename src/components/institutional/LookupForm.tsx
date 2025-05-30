@@ -33,25 +33,27 @@ export const LookupForm = ({ onSubmit, isLoading }: LookupFormProps) => {
   });
 
   return (
-    <Card className="lookup-form-card">
-      <CardHeader>
-        <CardTitle className="lookup-form-title">
-          <Search className="lookup-icon" />
+    <Card className="mx-auto max-w-md bg-white/80 backdrop-blur-sm border-0 shadow-2xl rounded-3xl overflow-hidden">
+      <CardHeader className="text-center pb-6 pt-8 px-8">
+        <CardTitle className="flex items-center justify-center gap-3 text-2xl font-bold text-gray-900">
+          <div className="p-3 bg-orange-100 rounded-2xl">
+            <Search className="h-6 w-6 text-orange-600" />
+          </div>
           Customer Lookup
         </CardTitle>
-        <CardDescription className="lookup-form-description">
+        <CardDescription className="text-base text-gray-600 mt-3 leading-relaxed">
           Enter Aadhaar number and date of birth to access customer financial profile
         </CardDescription>
       </CardHeader>
-      <CardContent>
+      <CardContent className="px-8 pb-8">
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="lookup-form">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
             <FormField
               control={form.control}
               name="aadhaarNumber"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="form-label">Aadhaar Number</FormLabel>
+                  <FormLabel className="text-base font-semibold text-gray-800">Aadhaar Number</FormLabel>
                   <FormControl>
                     <Input 
                       placeholder="123456789012" 
@@ -61,10 +63,10 @@ export const LookupForm = ({ onSubmit, isLoading }: LookupFormProps) => {
                         field.onChange(value);
                       }}
                       maxLength={12}
-                      className="form-input"
+                      className="h-12 text-base border-2 border-gray-200 rounded-xl focus:border-orange-400 focus:ring-0 transition-colors duration-200 bg-gray-50/50"
                     />
                   </FormControl>
-                  <FormMessage />
+                  <FormMessage className="text-red-500 text-sm mt-2" />
                 </FormItem>
               )}
             />
@@ -73,16 +75,16 @@ export const LookupForm = ({ onSubmit, isLoading }: LookupFormProps) => {
               control={form.control}
               name="dob"
               render={({ field }) => (
-                <FormItem className="date-field">
-                  <FormLabel className="form-label">Date of Birth</FormLabel>
+                <FormItem>
+                  <FormLabel className="text-base font-semibold text-gray-800">Date of Birth</FormLabel>
                   <Popover>
                     <PopoverTrigger asChild>
                       <FormControl>
                         <Button
-                          variant={"outline"}
+                          variant="outline"
                           className={cn(
-                            "date-picker-button",
-                            !field.value && "date-picker-placeholder"
+                            "w-full h-12 text-left font-normal border-2 border-gray-200 rounded-xl bg-gray-50/50 hover:bg-gray-100/50 transition-colors duration-200 text-base",
+                            !field.value && "text-gray-500"
                           )}
                         >
                           {field.value ? (
@@ -90,11 +92,11 @@ export const LookupForm = ({ onSubmit, isLoading }: LookupFormProps) => {
                           ) : (
                             <span>Select date of birth</span>
                           )}
-                          <CalendarIcon className="date-picker-icon" />
+                          <CalendarIcon className="ml-auto h-5 w-5 opacity-60" />
                         </Button>
                       </FormControl>
                     </PopoverTrigger>
-                    <PopoverContent className="calendar-popover" align="start">
+                    <PopoverContent className="w-auto p-0 border-0 shadow-2xl" align="start">
                       <Calendar
                         mode="single"
                         selected={field.value || undefined}
@@ -106,17 +108,24 @@ export const LookupForm = ({ onSubmit, isLoading }: LookupFormProps) => {
                       />
                     </PopoverContent>
                   </Popover>
-                  <FormMessage />
+                  <FormMessage className="text-red-500 text-sm mt-2" />
                 </FormItem>
               )}
             />
             
             <Button 
               type="submit" 
-              className="submit-button"
+              className="w-full h-12 text-base font-semibold bg-orange-500 hover:bg-orange-600 text-white shadow-lg hover:shadow-xl transition-all duration-200 rounded-xl mt-8"
               disabled={isLoading}
             >
-              {isLoading ? "Looking up..." : "Lookup Customer"}
+              {isLoading ? (
+                <div className="flex items-center gap-2">
+                  <div className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
+                  Looking up...
+                </div>
+              ) : (
+                "Lookup Customer"
+              )}
             </Button>
           </form>
         </Form>

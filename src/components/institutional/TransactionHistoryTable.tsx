@@ -16,30 +16,44 @@ interface TransactionHistoryTableProps {
 
 export const TransactionHistoryTable = ({ transactions }: TransactionHistoryTableProps) => {
   return (
-    <Card className="institutional-card">
-      <CardHeader>
-        <CardTitle className="institutional-card-title">Recent Transaction History</CardTitle>
+    <Card className="bg-white/80 backdrop-blur-sm border-0 shadow-xl rounded-3xl overflow-hidden">
+      <CardHeader className="pb-6">
+        <CardTitle className="text-2xl font-bold text-gray-900">Recent Transaction History</CardTitle>
       </CardHeader>
-      <CardContent className="institutional-card-content">
-        <div className="transaction-table-container">
-          <Table className="transaction-table">
+      <CardContent className="p-0">
+        <div className="overflow-x-auto">
+          <Table>
             <TableHeader>
-              <TableRow className="transaction-header-row">
-                <TableHead className="transaction-header">Date</TableHead>
-                <TableHead className="transaction-header">Type</TableHead>
-                <TableHead className="transaction-header">Description</TableHead>
-                <TableHead className="transaction-header">Category</TableHead>
-                <TableHead className="transaction-header amount-header">Amount</TableHead>
+              <TableRow className="border-b border-gray-200/50 bg-gray-50/50">
+                <TableHead className="h-14 px-6 text-sm font-semibold text-gray-600 uppercase tracking-wide">Date</TableHead>
+                <TableHead className="h-14 px-6 text-sm font-semibold text-gray-600 uppercase tracking-wide">Type</TableHead>
+                <TableHead className="h-14 px-6 text-sm font-semibold text-gray-600 uppercase tracking-wide">Description</TableHead>
+                <TableHead className="h-14 px-6 text-sm font-semibold text-gray-600 uppercase tracking-wide">Category</TableHead>
+                <TableHead className="h-14 px-6 text-sm font-semibold text-gray-600 uppercase tracking-wide text-right">Amount</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {transactions.map((txn, index) => (
-                <TableRow key={index} className="transaction-row">
-                  <TableCell className="transaction-cell">{txn.date}</TableCell>
-                  <TableCell className="transaction-cell">{txn.type}</TableCell>
-                  <TableCell className="transaction-cell">{txn.description}</TableCell>
-                  <TableCell className="transaction-cell">{txn.category}</TableCell>
-                  <TableCell className={`transaction-cell amount-cell ${txn.type.includes('Credit') ? 'credit' : 'debit'}`}>
+                <TableRow key={index} className="border-b border-gray-100/50 hover:bg-gray-50/50 transition-colors duration-200">
+                  <TableCell className="h-16 px-6 text-base font-medium text-gray-900">{txn.date}</TableCell>
+                  <TableCell className="h-16 px-6">
+                    <span className={`px-3 py-1 rounded-full text-sm font-semibold ${
+                      txn.type.includes('Credit') 
+                        ? 'bg-green-100 text-green-700' 
+                        : 'bg-red-100 text-red-700'
+                    }`}>
+                      {txn.type}
+                    </span>
+                  </TableCell>
+                  <TableCell className="h-16 px-6 text-base text-gray-700">{txn.description}</TableCell>
+                  <TableCell className="h-16 px-6">
+                    <span className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm font-medium">
+                      {txn.category}
+                    </span>
+                  </TableCell>
+                  <TableCell className={`h-16 px-6 text-right text-base font-bold ${
+                    txn.type.includes('Credit') ? 'text-green-600' : 'text-red-600'
+                  }`}>
                     {txn.type.includes('Credit') ? '+' : '-'}₹{txn.amount.toLocaleString('en-IN')}
                   </TableCell>
                 </TableRow>

@@ -6,7 +6,6 @@ import { LookupForm } from "@/components/institutional/LookupForm";
 import { CustomerProfileCard } from "@/components/institutional/CustomerProfileCard";
 import { RiskAssessmentCard } from "@/components/institutional/RiskAssessmentCard";
 import { TransactionHistoryTable } from "@/components/institutional/TransactionHistoryTable";
-import "@/styles/institutional.css";
 
 const lookupSchema = z.object({
   aadhaarNumber: z.string().regex(/^\d{12}$/, { message: "Aadhaar number must be 12 digits" }),
@@ -102,48 +101,50 @@ const InstitutionalLookup = () => {
   };
 
   return (
-    <div className="institutional-container">
-      <div className="institutional-header">
-        <h1 className="institutional-title">
-          <span style={{ color: '#f47615' }}>Bharat</span>
-          <span style={{ color: '#86dcf4' }}>Ankh</span> Institutional Portal
-        </h1>
-        <p className="institutional-subtitle">
-          Secure customer financial profile lookup for institutional use
-        </p>
-      </div>
+    <div className="min-h-screen bg-gray-50/30 px-6 py-12">
+      <div className="mx-auto max-w-7xl">
+        <div className="mb-12 text-center">
+          <h1 className="mb-4 text-4xl font-bold tracking-tight text-gray-900">
+            <span className="text-orange-500">Bharat</span>
+            <span className="text-sky-400">Ankh</span> Institutional Portal
+          </h1>
+          <p className="text-lg text-gray-600 font-medium">
+            Secure customer financial profile lookup for institutional use
+          </p>
+        </div>
 
-      <div className="institutional-content">
-        {!lookupResult ? (
-          <LookupForm onSubmit={onSubmit} isLoading={isLoading} />
-        ) : (
-          <div className="space-y-6">
-            <CustomerProfileCard 
-              userData={lookupResult.userData}
-              financialData={lookupResult.financialData}
-            />
+        <div className="mx-auto max-w-6xl">
+          {!lookupResult ? (
+            <LookupForm onSubmit={onSubmit} isLoading={isLoading} />
+          ) : (
+            <div className="space-y-8">
+              <CustomerProfileCard 
+                userData={lookupResult.userData}
+                financialData={lookupResult.financialData}
+              />
 
-            <RiskAssessmentCard riskFactors={lookupResult.riskFactors} />
+              <RiskAssessmentCard riskFactors={lookupResult.riskFactors} />
 
-            <TransactionHistoryTable transactions={lookupResult.transactionHistory} />
+              <TransactionHistoryTable transactions={lookupResult.transactionHistory} />
 
-            <div className="action-buttons">
-              <Button 
-                onClick={generateInstitutionalReport} 
-                className="action-button primary"
-              >
-                Generate Detailed Report
-              </Button>
-              <Button 
-                onClick={() => setLookupResult(null)} 
-                variant="outline" 
-                className="action-button secondary"
-              >
-                New Lookup
-              </Button>
+              <div className="flex flex-col sm:flex-row gap-4 pt-6">
+                <Button 
+                  onClick={generateInstitutionalReport} 
+                  className="flex-1 h-12 text-base font-semibold bg-orange-500 hover:bg-orange-600 text-white shadow-lg hover:shadow-xl transition-all duration-200 rounded-xl"
+                >
+                  Generate Detailed Report
+                </Button>
+                <Button 
+                  onClick={() => setLookupResult(null)} 
+                  variant="outline" 
+                  className="flex-1 h-12 text-base font-semibold border-2 border-gray-200 hover:border-gray-300 hover:bg-gray-50 transition-all duration-200 rounded-xl"
+                >
+                  New Lookup
+                </Button>
+              </div>
             </div>
-          </div>
-        )}
+          )}
+        </div>
       </div>
     </div>
   );
