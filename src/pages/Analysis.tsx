@@ -8,7 +8,6 @@ import { useApp } from "@/context/AppContext";
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
 import { LineChart, Line, BarChart, Bar, PieChart, Pie, XAxis, YAxis, CartesianGrid, Cell, ResponsiveContainer } from "recharts";
 import { Separator } from "@/components/ui/separator";
-
 const Analysis = () => {
   const navigate = useNavigate();
   const {
@@ -174,7 +173,7 @@ const Analysis = () => {
               }}></div>
                   <span className="font-body font-medium text-gray-700">{item.name}</span>
                 </div>
-                <span className="font-heading font-semibold text-lg text-gray-800">{item.value}%</span>
+                <span className="font-heading font-semibold text-gray-800 text-xs">{item.value}%</span>
               </div>)}
           </div>
         </div>
@@ -334,5 +333,4 @@ const Analysis = () => {
       </Button>
     </PageContainer>;
 };
-
 export default Analysis;
