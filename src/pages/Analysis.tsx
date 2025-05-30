@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import PageContainer from "@/components/PageContainer";
@@ -72,7 +73,17 @@ const Analysis = () => {
               <YAxis axisLine={false} tickLine={false} tickFormatter={value => `₹${(value / 1000).toFixed(0)}k`} width={60} className="text-sm text-gray-600" />
               <ChartTooltip 
                 content={<ChartTooltipContent 
-                  formatter={(value, name) => [`₹${value}`, name === "income" ? "Income" : "Expenses"]} 
+                  formatter={(value, name) => [
+                    <div key={name} className="flex items-center gap-2">
+                      <Badge 
+                        variant={name === "income" ? "default" : "secondary"}
+                        className={name === "income" ? "bg-orange-500 hover:bg-orange-600" : "bg-purple-500 hover:bg-purple-600"}
+                      >
+                        {name === "income" ? "Income" : "Expenses"}
+                      </Badge>
+                      <span className="font-medium">₹{value}</span>
+                    </div>
+                  ]} 
                   className="bg-white border border-gray-200 shadow-lg rounded-lg opacity-100"
                 />} 
               />
