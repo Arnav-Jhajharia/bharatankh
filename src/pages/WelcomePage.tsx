@@ -16,16 +16,16 @@ const WelcomePage = () => {
           <div className="flex justify-between items-center py-4">
             <div className="flex items-center">
               <IndianRupee className="h-8 w-8 text-orange-500 mr-2" />
-              <h1 className="text-2xl font-bold">
+              <h1 className="text-2xl font-bold font-heading">
                 <span style={{ color: '#f47615' }}>Bharat</span>
-                <span style={{ color: '#86dcf4' }}>Ankh</span>
+                <span style={{ color: '#399EE6' }}>Ankh</span>
               </h1>
             </div>
             
             <Button 
               onClick={() => navigate("/kyc")} 
               style={{ backgroundColor: '#f47615' }} 
-              className="text-white"
+              className="text-white font-body"
             >
               Get Started
             </Button>
@@ -40,10 +40,10 @@ const WelcomePage = () => {
           animate={{ y: 0, opacity: 1 }} 
           transition={{ duration: 0.6 }}
         >
-          <h1 className="text-6xl md:text-7xl font-bold text-gray-900 mb-4">
+          <h1 className="text-6xl md:text-7xl font-bold text-gray-900 mb-4 font-heading">
             Your Work
           </h1>
-          <h2 className="text-5xl md:text-6xl font-bold text-orange-500">
+          <h2 className="text-5xl md:text-6xl font-bold text-orange-500 font-heading">
             Deserves Credit
           </h2>
         </motion.div>
@@ -69,16 +69,16 @@ const WelcomePage = () => {
                 transition={{ duration: 0.8, delay: 0.3 }}
                 className="max-w-4xl"
               >
-                <h3 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
+                <h3 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight font-heading">
                   Build Your Financial Future with Every Transaction
                 </h3>
-                <p className="text-xl md:text-2xl text-white/90 mb-8 leading-relaxed">
+                <p className="text-xl md:text-2xl text-white/90 mb-8 leading-relaxed font-body">
                   From delivery partners to street vendors, every honest worker deserves financial recognition. 
                   Transform your UPI transactions into a powerful credit score.
                 </p>
                 <Button 
                   size="lg" 
-                  className="text-lg px-12 py-6 rounded-full text-white shadow-xl hover:shadow-2xl transition-all transform hover:scale-105" 
+                  className="text-lg px-12 py-6 rounded-full text-white shadow-xl hover:shadow-2xl transition-all transform hover:scale-105 font-body" 
                   style={{ backgroundColor: '#f47615' }}
                   onClick={() => navigate("/kyc")}
                 >
@@ -106,7 +106,7 @@ const WelcomePage = () => {
             initial={{ y: 30, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8 }}
-            className="text-4xl md:text-6xl font-bold text-gray-900 leading-tight"
+            className="text-4xl md:text-6xl font-bold text-gray-900 leading-tight font-heading"
           >
             "Every rupee earned honestly should count towards your financial future"
           </motion.blockquote>
@@ -114,7 +114,7 @@ const WelcomePage = () => {
             initial={{ y: 20, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="text-xl text-gray-600 mt-8"
+            className="text-xl text-gray-600 mt-8 font-body"
           >
             — The BharatAnkh Promise
           </motion.p>
@@ -130,9 +130,9 @@ const WelcomePage = () => {
             transition={{ duration: 0.8 }}
             className="flex flex-col md:flex-row justify-center items-center gap-8 md:gap-16 mb-12"
           >
-            <h3 className="text-5xl md:text-7xl font-bold text-gray-900">Trust</h3>
-            <h3 className="text-5xl md:text-7xl font-bold text-orange-500">Growth</h3>
-            <h3 className="text-5xl md:text-7xl font-bold text-gray-900">Future</h3>
+            <h3 className="text-5xl md:text-7xl font-bold text-gray-900 font-heading">Trust</h3>
+            <h3 className="text-5xl md:text-7xl font-bold text-orange-500 font-heading">Growth</h3>
+            <h3 className="text-5xl md:text-7xl font-bold text-gray-900 font-heading">Future</h3>
           </motion.div>
           
           <motion.div
@@ -142,7 +142,8 @@ const WelcomePage = () => {
           >
             <Button 
               variant="link" 
-              className="text-2xl text-blue-600 hover:text-blue-800 underline font-semibold"
+              className="text-2xl hover:text-brand-blue underline font-semibold font-body"
+              style={{ color: '#399EE6' }}
               onClick={() => {
                 // Scroll to next section or navigate to about page
                 document.getElementById('ui-section')?.scrollIntoView({ behavior: 'smooth' });
@@ -163,10 +164,10 @@ const WelcomePage = () => {
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
+            <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 font-heading">
               Your Financial Dashboard
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto font-body">
               See how BharatAnkh transforms your transaction history into actionable financial insights
             </p>
           </motion.div>
@@ -179,36 +180,36 @@ const WelcomePage = () => {
             className="relative"
           >
             <Card className="mx-auto max-w-4xl overflow-hidden rounded-3xl shadow-2xl border-0">
-              <div className="bg-gradient-to-br from-orange-500 to-blue-400 p-8 text-white">
+              <div className="bg-gradient-to-br from-orange-500 to-brand-blue p-8 text-white">
                 <div className="flex items-center justify-between mb-6">
                   <div className="flex items-center">
                     <IndianRupee className="h-8 w-8 mr-2" />
-                    <span className="text-2xl font-bold">BharatAnkh Score</span>
+                    <span className="text-2xl font-bold font-heading">BharatAnkh Score</span>
                   </div>
                   <div className="text-right">
-                    <div className="text-4xl font-bold">750</div>
-                    <div className="text-sm opacity-90">Good</div>
+                    <div className="text-4xl font-bold font-heading">750</div>
+                    <div className="text-sm opacity-90 font-body">Good</div>
                   </div>
                 </div>
                 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                   <div className="bg-white/20 rounded-2xl p-4">
-                    <div className="text-sm opacity-90">Monthly Income</div>
-                    <div className="text-2xl font-bold">₹45,000</div>
+                    <div className="text-sm opacity-90 font-body">Monthly Income</div>
+                    <div className="text-2xl font-bold font-heading">₹45,000</div>
                   </div>
                   <div className="bg-white/20 rounded-2xl p-4">
-                    <div className="text-sm opacity-90">Transactions</div>
-                    <div className="text-2xl font-bold">234</div>
+                    <div className="text-sm opacity-90 font-body">Transactions</div>
+                    <div className="text-2xl font-bold font-heading">234</div>
                   </div>
                   <div className="bg-white/20 rounded-2xl p-4">
-                    <div className="text-sm opacity-90">Reliability</div>
-                    <div className="text-2xl font-bold">98%</div>
+                    <div className="text-sm opacity-90 font-body">Reliability</div>
+                    <div className="text-2xl font-bold font-heading">98%</div>
                   </div>
                 </div>
               </div>
               
               <div className="bg-white p-8">
-                <h4 className="text-xl font-semibold mb-4 text-gray-900">Recent Activity</h4>
+                <h4 className="text-xl font-semibold mb-4 text-gray-900 font-heading">Recent Activity</h4>
                 <div className="space-y-3">
                   {[
                     { desc: "Food delivery payment", amount: "+₹1,250", time: "2 hours ago" },
@@ -217,10 +218,10 @@ const WelcomePage = () => {
                   ].map((transaction, index) => (
                     <div key={index} className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
                       <div>
-                        <div className="font-medium text-gray-900">{transaction.desc}</div>
-                        <div className="text-sm text-gray-500">{transaction.time}</div>
+                        <div className="font-medium text-gray-900 font-body">{transaction.desc}</div>
+                        <div className="text-sm text-gray-500 font-body">{transaction.time}</div>
                       </div>
-                      <div className="font-bold text-green-600">{transaction.amount}</div>
+                      <div className="font-bold text-green-600 font-body">{transaction.amount}</div>
                     </div>
                   ))}
                 </div>
@@ -238,16 +239,16 @@ const WelcomePage = () => {
             whileInView={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 font-heading">
               Ready to Build Your Credit?
             </h2>
-            <p className="text-xl mb-8 opacity-90">
+            <p className="text-xl mb-8 opacity-90 font-body">
               Join thousands of workers already building their financial future
             </p>
             
             <Button 
               size="lg" 
-              className="text-lg px-12 py-6 rounded-full text-gray-900 bg-white hover:bg-gray-100 font-semibold transform hover:scale-105 transition-all" 
+              className="text-lg px-12 py-6 rounded-full text-gray-900 bg-white hover:bg-gray-100 font-semibold transform hover:scale-105 transition-all font-body" 
               onClick={() => navigate("/kyc")}
             >
               Get Started Today
@@ -263,19 +264,19 @@ const WelcomePage = () => {
             <div>
               <div className="flex items-center mb-4">
                 <IndianRupee className="h-6 w-6 text-orange-500 mr-2" />
-                <h3 className="text-lg font-bold">
+                <h3 className="text-lg font-bold font-heading">
                   <span style={{ color: '#f47615' }}>Bharat</span>
-                  <span style={{ color: '#86dcf4' }}>Ankh</span>
+                  <span style={{ color: '#399EE6' }}>Ankh</span>
                 </h3>
               </div>
-              <p className="text-gray-600 text-sm">
+              <p className="text-gray-600 text-sm font-body">
                 Empowering India's workforce with financial recognition through UPI transactions.
               </p>
             </div>
             
             <div>
-              <h4 className="font-semibold text-gray-900 mb-4">Platform</h4>
-              <ul className="space-y-2 text-sm text-gray-600">
+              <h4 className="font-semibold text-gray-900 mb-4 font-heading">Platform</h4>
+              <ul className="space-y-2 text-sm text-gray-600 font-body">
                 <li><a href="#" className="hover:text-orange-500">How it Works</a></li>
                 <li><a href="#" className="hover:text-orange-500">Features</a></li>
                 <li><a href="#" className="hover:text-orange-500">Security</a></li>
@@ -284,8 +285,8 @@ const WelcomePage = () => {
             </div>
             
             <div>
-              <h4 className="font-semibold text-gray-900 mb-4">Company</h4>
-              <ul className="space-y-2 text-sm text-gray-600">
+              <h4 className="font-semibold text-gray-900 mb-4 font-heading">Company</h4>
+              <ul className="space-y-2 text-sm text-gray-600 font-body">
                 <li><a href="#" className="hover:text-orange-500">About Us</a></li>
                 <li><a href="#" className="hover:text-orange-500">Careers</a></li>
                 <li><a href="#" className="hover:text-orange-500">Contact</a></li>
@@ -294,8 +295,8 @@ const WelcomePage = () => {
             </div>
             
             <div>
-              <h4 className="font-semibold text-gray-900 mb-4">Support</h4>
-              <ul className="space-y-2 text-sm text-gray-600">
+              <h4 className="font-semibold text-gray-900 mb-4 font-heading">Support</h4>
+              <ul className="space-y-2 text-sm text-gray-600 font-body">
                 <li><a href="#" className="hover:text-orange-500">Help Center</a></li>
                 <li><a href="#" className="hover:text-orange-500">Privacy Policy</a></li>
                 <li><a href="#" className="hover:text-orange-500">Terms of Service</a></li>
@@ -305,7 +306,7 @@ const WelcomePage = () => {
           </div>
           
           <div className="border-t border-gray-200 mt-8 pt-8 text-center">
-            <p className="text-sm text-gray-600">
+            <p className="text-sm text-gray-600 font-body">
               © 2024 BharatAnkh. All rights reserved. Built for India's hardworking people.
             </p>
           </div>

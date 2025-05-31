@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -45,7 +46,7 @@ export default {
 					foreground: 'hsl(var(--muted-foreground))'
 				},
 				accent: {
-					DEFAULT: '#86dcf4', // Updated to light blue
+					DEFAULT: '#399EE6', // Updated to new blue
 					foreground: 'hsl(var(--accent-foreground))'
 				},
 				popover: {
@@ -70,6 +71,7 @@ export default {
 				"soft-gray": "#F7FAFC",
 				"soft-blue": "#D3E4FD",
 				"soft-green": "#F2FCE2",
+				"brand-blue": "#399EE6",
 			},
 			borderRadius: {
 				lg: 'var(--radius)',

@@ -17,7 +17,8 @@ interface RiskChartProps {
   };
 }
 
-const COLORS = ['#8884d8', '#82ca9d', '#ffc658', '#ff7300', '#00ff00'];
+// Consistent colors across charts
+const COLORS = ['#f47615', '#48BB78', '#805AD5', '#399EE6', '#FFC658'];
 
 export const IncomeVolatilityChart = ({ riskFactor }: RiskChartProps) => {
   const chartConfig = {
@@ -30,7 +31,7 @@ export const IncomeVolatilityChart = ({ riskFactor }: RiskChartProps) => {
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="text-red-600">Income Volatility Analysis</CardTitle>
+        <CardTitle className="text-red-600 font-heading">Income Volatility Analysis</CardTitle>
       </CardHeader>
       <CardContent>
         <ChartContainer config={chartConfig} className="h-[300px]">
@@ -50,11 +51,11 @@ export const IncomeVolatilityChart = ({ riskFactor }: RiskChartProps) => {
           </ResponsiveContainer>
         </ChartContainer>
         <div className="mt-4 p-4 bg-red-50 rounded-lg">
-          <p className="text-sm text-red-800">
+          <p className="text-sm text-red-800 font-body">
             <strong>Risk Level:</strong> {riskFactor.severity}
           </p>
-          <p className="text-sm text-red-700 mt-2">{riskFactor.description}</p>
-          <p className="text-xs text-red-600 mt-1">
+          <p className="text-sm text-red-700 mt-2 font-body">{riskFactor.description}</p>
+          <p className="text-xs text-red-600 mt-1 font-body">
             Confidence: {(riskFactor.confidence * 100).toFixed(1)}%
           </p>
         </div>
@@ -79,7 +80,7 @@ export const SavingsRateChart = ({ riskFactor }: RiskChartProps) => {
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="text-red-600">Savings Rate Analysis</CardTitle>
+        <CardTitle className="text-red-600 font-heading">Savings Rate Analysis</CardTitle>
       </CardHeader>
       <CardContent>
         <ChartContainer config={chartConfig} className="h-[300px]">
@@ -93,10 +94,10 @@ export const SavingsRateChart = ({ riskFactor }: RiskChartProps) => {
           </ResponsiveContainer>
         </ChartContainer>
         <div className="mt-4 p-4 bg-red-50 rounded-lg">
-          <p className="text-sm text-red-800">
+          <p className="text-sm text-red-800 font-body">
             <strong>Risk Level:</strong> {riskFactor.severity}
           </p>
-          <p className="text-sm text-red-700 mt-2">{riskFactor.description}</p>
+          <p className="text-sm text-red-700 mt-2 font-body">{riskFactor.description}</p>
         </div>
       </CardContent>
     </Card>
@@ -113,35 +114,40 @@ export const IncomeDiversificationChart = ({ riskFactor }: RiskChartProps) => {
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="text-red-600">Income Source Diversification</CardTitle>
+        <CardTitle className="text-red-600 font-heading">Income Source Diversification</CardTitle>
       </CardHeader>
       <CardContent>
-        <div className="h-[300px]">
-          <ResponsiveContainer width="100%" height="100%">
-            <PieChart>
-              <Pie
-                data={diversificationData}
-                cx="50%"
-                cy="50%"
-                labelLine={false}
-                label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
-                outerRadius={80}
-                fill="#8884d8"
-                dataKey="value"
-              >
-                {diversificationData.map((entry, index) => (
-                  <Cell key={`cell-${index}`} fill={entry.color} />
-                ))}
-              </Pie>
-              <ChartTooltip />
-            </PieChart>
-          </ResponsiveContainer>
+        <div className="flex items-center justify-center">
+          <div className="w-80 h-80">
+            <ResponsiveContainer width="100%" height="100%">
+              <PieChart>
+                <Pie
+                  data={diversificationData}
+                  cx="50%"
+                  cy="50%"
+                  labelLine={false}
+                  label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
+                  outerRadius={100}
+                  innerRadius={35}
+                  fill="#8884d8"
+                  dataKey="value"
+                  strokeWidth={2}
+                  stroke="#fff"
+                >
+                  {diversificationData.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={entry.color} />
+                  ))}
+                </Pie>
+                <ChartTooltip />
+              </PieChart>
+            </ResponsiveContainer>
+          </div>
         </div>
         <div className="mt-4 p-4 bg-red-50 rounded-lg">
-          <p className="text-sm text-red-800">
+          <p className="text-sm text-red-800 font-body">
             <strong>Risk Level:</strong> {riskFactor.severity}
           </p>
-          <p className="text-sm text-red-700 mt-2">{riskFactor.description}</p>
+          <p className="text-sm text-red-700 mt-2 font-body">{riskFactor.description}</p>
         </div>
       </CardContent>
     </Card>

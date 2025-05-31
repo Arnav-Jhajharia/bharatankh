@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -33,12 +34,12 @@ const Analysis = () => {
     { month: "Aug", stability: 92 }
   ];
 
-  // Spending Breakdown Data
+  // Spending Breakdown Data - Consistent colors
   const spendingData = [
     { name: "Housing", value: 30, color: "#f47615" },
     { name: "Savings", value: 25, color: "#48BB78" },
     { name: "Expenses", value: 25, color: "#805AD5" },
-    { name: "Other", value: 20, color: "#86dcf4" }
+    { name: "Other", value: 20, color: "#399EE6" }
   ];
 
   // Cash Flow Data
@@ -58,10 +59,10 @@ const Analysis = () => {
   ];
 
   const renderOverviewContent = () => (
-    <div className="space-y-6">
+    <div className="space-y-8">
       {/* Income & Expenses Chart */}
-      <div className="bg-white/95 backdrop-blur-xl rounded-3xl p-8 shadow-sm border border-gray-100/50">
-        <h3 className="text-xl font-semibold mb-6 text-gray-900 tracking-tight">Income & Expenses</h3>
+      <div className="bg-white/95 backdrop-blur-xl rounded-3xl p-6 shadow-sm border border-gray-100/50">
+        <h3 className="text-xl font-semibold mb-6 text-gray-900 font-body">Income & Expenses</h3>
         <div className="h-72 rounded-2xl overflow-hidden">
           <ChartContainer config={{
             income: { color: "#f47615" },
@@ -96,69 +97,74 @@ const Analysis = () => {
       
       <Separator className="my-8 bg-gray-200" />
       
-      {/* Enhanced Spending Breakdown - Fixed Layout */}
+      {/* Fixed Spending Breakdown with proper layout */}
       <div className="bg-white/95 backdrop-blur-xl rounded-3xl shadow-sm border border-gray-100/50 overflow-hidden">
-        <div className="px-8 pt-8 pb-6">
-          <h3 className="text-xl font-semibold text-gray-900 tracking-tight mb-2">Spending Breakdown</h3>
-          <p className="text-sm text-gray-500 font-medium">Monthly allocation overview</p>
+        <div className="px-6 pt-6 pb-4">
+          <h3 className="text-xl font-semibold text-gray-900 font-body mb-2">Spending Breakdown</h3>
+          <p className="text-sm text-gray-500 font-body">Monthly allocation overview</p>
         </div>
         
-        <div className="px-8 pb-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            {/* Pie Chart - Larger container */}
-            <div className="h-80 flex items-center justify-center">
-              <ResponsiveContainer width="100%" height="100%">
-                <PieChart>
-                  <Pie 
-                    data={spendingData} 
-                    cx="50%" 
-                    cy="50%" 
-                    labelLine={false} 
-                    outerRadius={120}
-                    innerRadius={40}
-                    fill="#8884d8" 
-                    dataKey="value"
-                    strokeWidth={0}
-                  >
-                    {spendingData.map((entry, index) => (
-                      <Cell key={`cell-${index}`} fill={entry.color} />
-                    ))}
-                  </Pie>
-                </PieChart>
-              </ResponsiveContainer>
+        <div className="px-6 pb-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+            {/* Pie Chart with fixed container */}
+            <div className="flex justify-center items-center">
+              <div className="w-80 h-80">
+                <ResponsiveContainer width="100%" height="100%">
+                  <PieChart>
+                    <Pie 
+                      data={spendingData} 
+                      cx="50%" 
+                      cy="50%" 
+                      labelLine={false} 
+                      outerRadius={100}
+                      innerRadius={35}
+                      fill="#8884d8" 
+                      dataKey="value"
+                      strokeWidth={2}
+                      stroke="#fff"
+                    >
+                      {spendingData.map((entry, index) => (
+                        <Cell key={`cell-${index}`} fill={entry.color} />
+                      ))}
+                    </Pie>
+                    <ChartTooltip 
+                      formatter={(value, name) => [`${value}%`, name]}
+                      className="bg-white border border-gray-200 shadow-lg rounded-lg"
+                    />
+                  </PieChart>
+                </ResponsiveContainer>
+              </div>
             </div>
             
-            {/* Enhanced Legend - Better spacing */}
-            <div className="space-y-4 flex flex-col justify-center">
+            {/* Legend with consistent styling */}
+            <div className="space-y-3">
               {spendingData.map((item, index) => (
                 <div key={index} className="group">
-                  <div className="flex justify-between items-center px-6 py-5 rounded-2xl bg-gray-50/60 hover:bg-gray-100/80 border border-gray-100/60 hover:border-gray-200/60 transition-all duration-300 hover:shadow-sm">
-                    <div className="flex items-center space-x-5">
+                  <div className="flex justify-between items-center px-4 py-3 rounded-xl bg-gray-50/60 hover:bg-gray-100/80 border border-gray-100/60 hover:border-gray-200/60 transition-all duration-300">
+                    <div className="flex items-center space-x-3">
                       <div 
-                        className="w-4 h-4 rounded-full shadow-sm ring-2 ring-white/50 flex-shrink-0" 
+                        className="w-3 h-3 rounded-full flex-shrink-0" 
                         style={{ backgroundColor: item.color }}
                       ></div>
-                      <div className="flex flex-col min-w-0">
-                        <span className="font-semibold text-gray-800 text-base tracking-tight truncate">{item.name}</span>
-                        <span className="text-xs text-gray-500 font-medium">Category</span>
+                      <div>
+                        <span className="font-semibold text-gray-800 text-sm font-body">{item.name}</span>
                       </div>
                     </div>
-                    <div className="flex flex-col items-end flex-shrink-0">
-                      <span className="font-bold text-gray-900 text-xl tracking-tight">{item.value}%</span>
-                      <span className="text-xs text-gray-500 font-medium whitespace-nowrap">of total</span>
+                    <div className="flex flex-col items-end">
+                      <span className="font-bold text-gray-900 text-lg font-body">{item.value}%</span>
                     </div>
                   </div>
                 </div>
               ))}
               
               {/* Summary Card */}
-              <div className="mt-8 p-6 rounded-2xl bg-gradient-to-r from-orange-50/80 to-blue-50/80 border border-orange-100/50">
+              <div className="mt-6 p-4 rounded-xl bg-gradient-to-r from-orange-50/80 to-blue-50/80 border border-orange-100/50">
                 <div className="flex justify-between items-center">
                   <div>
-                    <p className="text-sm font-semibold text-gray-700 mb-1">Financial Health</p>
-                    <p className="text-xs text-gray-500">Based on allocation</p>
+                    <p className="text-sm font-semibold text-gray-700 font-body mb-1">Financial Health</p>
+                    <p className="text-xs text-gray-500 font-body">Based on allocation</p>
                   </div>
-                  <div className="px-4 py-2 bg-green-100 text-green-700 rounded-full text-xs font-semibold tracking-wide">
+                  <div className="px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-semibold font-body">
                     BALANCED
                   </div>
                 </div>
@@ -171,9 +177,9 @@ const Analysis = () => {
   );
 
   const renderCashFlowContent = () => (
-    <div className="space-y-6">
-      <div className="bg-white/95 backdrop-blur-xl rounded-3xl p-8 shadow-sm border border-gray-100/50">
-        <h3 className="text-xl font-semibold mb-6 text-gray-900 tracking-tight">Weekly Cash Flow</h3>
+    <div className="space-y-8">
+      <div className="bg-white/95 backdrop-blur-xl rounded-3xl p-6 shadow-sm border border-gray-100/50">
+        <h3 className="text-xl font-semibold mb-6 text-gray-900 font-body">Weekly Cash Flow</h3>
         <div className="h-72 rounded-2xl overflow-hidden">
           <ResponsiveContainer width="100%" height="100%">
             <BarChart data={cashFlowData} margin={{ top: 20, right: 20, left: 0, bottom: 20 }}>
@@ -181,7 +187,7 @@ const Analysis = () => {
               <XAxis dataKey="name" axisLine={false} tickLine={false} className="text-sm text-gray-600" />
               <YAxis axisLine={false} tickLine={false} tickFormatter={value => `₹${(value / 1000).toFixed(0)}k`} className="text-sm text-gray-600" />
               <Bar dataKey="inflow" fill="#f47615" radius={[8, 8, 0, 0]} />
-              <Bar dataKey="outflow" fill="#86dcf4" radius={[8, 8, 0, 0]} />
+              <Bar dataKey="outflow" fill="#399EE6" radius={[8, 8, 0, 0]} />
             </BarChart>
           </ResponsiveContainer>
         </div>
@@ -190,8 +196,8 @@ const Analysis = () => {
       <Separator className="my-8 bg-gray-200" />
       
       {/* Income Stability */}
-      <div className="bg-white/95 backdrop-blur-xl rounded-3xl p-8 shadow-sm border border-gray-100/50">
-        <h3 className="text-xl font-semibold mb-6 text-gray-900 tracking-tight">Income Stability Trend</h3>
+      <div className="bg-white/95 backdrop-blur-xl rounded-3xl p-6 shadow-sm border border-gray-100/50">
+        <h3 className="text-xl font-semibold mb-6 text-gray-900 font-body">Income Stability Trend</h3>
         <div className="h-48 rounded-2xl overflow-hidden">
           <ResponsiveContainer width="100%" height="100%">
             <BarChart data={stabilityData} margin={{ top: 10, right: 10, left: 0, bottom: 10 }}>
@@ -210,19 +216,19 @@ const Analysis = () => {
   );
 
   const renderBehaviorContent = () => (
-    <div className="space-y-6">
-      <div className="bg-white/95 backdrop-blur-xl rounded-3xl p-8 shadow-sm border border-gray-100/50">
-        <h3 className="text-xl font-semibold mb-6 text-gray-900 tracking-tight">Financial Behavior Analysis</h3>
-        <div className="space-y-6">
+    <div className="space-y-8">
+      <div className="bg-white/95 backdrop-blur-xl rounded-3xl p-6 shadow-sm border border-gray-100/50">
+        <h3 className="text-xl font-semibold mb-6 text-gray-900 font-body">Financial Behavior Analysis</h3>
+        <div className="space-y-4">
           {behaviorData.map((item, index) => (
-            <div key={index} className="p-6 rounded-2xl bg-gray-50/80 border border-gray-100">
-              <div className="flex justify-between mb-4">
-                <span className="font-medium text-gray-800">{item.category}</span>
-                <span className="text-sm font-semibold text-gray-600">{item.frequency}%</span>
+            <div key={index} className="p-4 rounded-2xl bg-gray-50/80 border border-gray-100">
+              <div className="flex justify-between mb-3">
+                <span className="font-medium text-gray-800 font-body">{item.category}</span>
+                <span className="text-sm font-semibold text-gray-600 font-body">{item.frequency}%</span>
               </div>
               <div className="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
                 <div 
-                  className="bg-gradient-to-r from-orange-500 to-blue-400 h-3 rounded-full transition-all duration-700 ease-out" 
+                  className="bg-gradient-to-r from-orange-500 to-brand-blue h-3 rounded-full transition-all duration-700 ease-out" 
                   style={{ width: `${item.frequency}%` }}
                 ></div>
               </div>
@@ -233,9 +239,9 @@ const Analysis = () => {
       
       <Separator className="my-8 bg-gray-200" />
       
-      <div className="bg-orange-50/80 rounded-3xl p-8 shadow-sm border border-orange-100">
-        <h4 className="font-semibold text-orange-900 mb-4 text-lg tracking-tight">Behavioral Insights</h4>
-        <ul className="text-sm text-orange-800 space-y-3">
+      <div className="bg-orange-50/80 rounded-3xl p-6 shadow-sm border border-orange-100">
+        <h4 className="font-semibold text-orange-900 mb-4 text-lg font-body">Behavioral Insights</h4>
+        <ul className="text-sm text-orange-800 space-y-3 font-body">
           <li className="flex items-start">
             <span className="w-2 h-2 bg-orange-500 rounded-full mt-2 mr-4 flex-shrink-0"></span>
             High UPI transaction frequency indicates digital adoption
@@ -254,57 +260,57 @@ const Analysis = () => {
   );
 
   return (
-    <PageContainer>
+    <div className="min-h-screen bg-gray-50/50 px-4 py-8 max-w-7xl mx-auto">
       {/* Header */}
       <div className="flex justify-center mb-10">
-        <h1 className="text-2xl font-bold tracking-tight">
+        <h1 className="text-2xl font-bold font-heading">
           <span style={{ color: '#f47615' }}>Bharat</span>
-          <span style={{ color: '#86dcf4' }}>Ankh</span>
+          <span style={{ color: '#399EE6' }}>Ankh</span>
         </h1>
       </div>
       
-      <h2 className="text-4xl font-bold mb-8 text-gray-900 tracking-tight">Analysis</h2>
+      <h2 className="text-4xl font-bold mb-8 text-gray-900 font-heading">Analysis</h2>
       
       {/* Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab} className="mb-10">
         <TabsList className="w-full bg-gray-100/90 backdrop-blur-xl rounded-3xl p-2 shadow-sm">
           <TabsTrigger 
             value="overview" 
-            className="flex-1 font-medium rounded-2xl data-[state=active]:bg-white data-[state=active]:text-orange-600 data-[state=active]:shadow-sm transition-all duration-300"
+            className="flex-1 font-medium rounded-2xl data-[state=active]:bg-white data-[state=active]:text-orange-600 data-[state=active]:shadow-sm transition-all duration-300 font-body"
           >
             Overview
           </TabsTrigger>
           <TabsTrigger 
             value="cashflow" 
-            className="flex-1 font-medium rounded-2xl data-[state=active]:bg-white data-[state=active]:text-orange-600 data-[state=active]:shadow-sm transition-all duration-300"
+            className="flex-1 font-medium rounded-2xl data-[state=active]:bg-white data-[state=active]:text-orange-600 data-[state=active]:shadow-sm transition-all duration-300 font-body"
           >
             Cash Flow
           </TabsTrigger>
           <TabsTrigger 
             value="behavior" 
-            className="flex-1 font-medium rounded-2xl data-[state=active]:bg-white data-[state=active]:text-orange-600 data-[state=active]:shadow-sm transition-all duration-300"
+            className="flex-1 font-medium rounded-2xl data-[state=active]:bg-white data-[state=active]:text-orange-600 data-[state=active]:shadow-sm transition-all duration-300 font-body"
           >
             Behavior
           </TabsTrigger>
         </TabsList>
         
         {/* Tab Content */}
-        <div className="bg-white/90 backdrop-blur-xl shadow-sm rounded-3xl p-10 mt-8 border border-gray-100/50">
+        <div className="bg-white/90 backdrop-blur-xl shadow-sm rounded-3xl p-8 mt-8 border border-gray-100/50">
           {/* Score Section */}
-          <div className="flex items-center mb-10 p-8 bg-gradient-to-r from-orange-50/80 to-blue-50/80 rounded-3xl border border-gray-100/50">
-            <div className="h-24 w-24 rounded-3xl bg-gradient-to-br from-orange-400 to-blue-400 overflow-hidden mr-8 flex items-center justify-center shadow-lg">
-              <span className="text-white font-bold text-3xl tracking-tight">
+          <div className="flex items-center mb-10 p-6 bg-gradient-to-r from-orange-50/80 to-blue-50/80 rounded-3xl border border-gray-100/50">
+            <div className="h-20 w-20 rounded-3xl bg-gradient-to-br from-orange-400 to-brand-blue overflow-hidden mr-6 flex items-center justify-center shadow-lg">
+              <span className="text-white font-bold text-2xl font-heading">
                 {userData.name ? userData.name.charAt(0) : "U"}
               </span>
             </div>
             
             <div className="flex-1">
-              <p className="text-gray-600 text-sm font-medium mb-3 tracking-wide">BHARATANKH SCORE</p>
+              <p className="text-gray-600 text-sm font-medium mb-3 font-body">BHARATANKH SCORE</p>
               <div className="flex items-center">
-                <h3 className="text-6xl font-bold mr-8 bg-gradient-to-r from-orange-600 to-blue-600 bg-clip-text text-transparent tracking-tight">
+                <h3 className="text-5xl font-bold mr-6 bg-gradient-to-r from-orange-600 to-brand-blue bg-clip-text text-transparent font-heading">
                   {financialData.finScore}
                 </h3>
-                <span className="px-6 py-3 bg-gradient-to-r from-orange-100 to-orange-200 text-orange-700 rounded-full text-sm font-semibold shadow-sm tracking-wide">
+                <span className="px-4 py-2 bg-gradient-to-r from-orange-100 to-orange-200 text-orange-700 rounded-full text-sm font-semibold shadow-sm font-body">
                   {financialData.finScore > 75 ? "EXCELLENT" : "GOOD"}
                 </span>
               </div>
@@ -331,11 +337,11 @@ const Analysis = () => {
       <Button 
         variant="link" 
         onClick={() => navigate("/dashboard")} 
-        className="mt-10 w-full font-medium text-gray-600 hover:text-orange-600 transition-colors duration-200"
+        className="mt-10 w-full font-medium text-gray-600 hover:text-orange-600 transition-colors duration-200 font-body"
       >
         Back to Dashboard
       </Button>
-    </PageContainer>
+    </div>
   );
 };
 
