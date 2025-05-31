@@ -9,7 +9,8 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install dependencies
-RUN npm ci --only=production
+# Hack: removing prod from build --only=production, swap ci with 
+RUN npm i 
 
 # Copy source code
 COPY . .
