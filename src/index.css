@@ -6,6 +6,52 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  /* Brand Colors */
+  --color-primary: #f47615;
+  --color-brand-blue: #399EE6;
+  --color-accent: #86dcf4;
+  
+  /* Semantic Colors */
+  --color-success: #48BB78;
+  --color-warning: #F6AD55;
+  --color-danger: #F56565;
+  
+  /* Typography */
+  --font-heading: "Unbounded", sans-serif;
+  --font-body: "Poppins", sans-serif;
+}
+
 body {
-  font-family: "Poppins", sans-serif;
+  font-family: var(--font-body);
+}
+
+/* Brand styling utilities */
+.brand-logo .brand-text {
+  color: var(--color-brand-blue);
+}
+
+.brand-logo .brand-text-bold {
+  color: var(--color-primary);
+  font-weight: bold;
+}
+
+/* Consistent button styles */
+.btn-primary {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: color-mix(in srgb, var(--color-primary) 90%, black);
+}
+
+.btn-secondary {
+  color: var(--color-brand-blue);
+  border-color: var(--color-brand-blue);
+  background-color: color-mix(in srgb, var(--color-brand-blue) 10%, white);
+}
+
+.btn-secondary:hover {
+  background-color: color-mix(in srgb, var(--color-brand-blue) 20%, white);
 }

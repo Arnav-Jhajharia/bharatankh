@@ -125,14 +125,6 @@ const DashboardSection = () => {
                         <div className="bg-purple-500 h-2 rounded-full" style={{ width: '94.5%' }}></div>
                       </div>
                     </div>
-                    <div className="p-4 bg-gradient-to-r from-gray-50 to-slate-50 rounded-xl border border-gray-200">
-                      <div className="text-center">
-                        <div className="text-sm text-gray-600 mb-1 font-body">Credit Recommendation</div>
-                        <div className="inline-block px-4 py-2 bg-green-100 text-green-800 rounded-full text-sm font-semibold font-body">
-                          APPROVED for ₹5L+ Credit
-                        </div>
-                      </div>
-                    </div>
                   </div>
                 </div>
               </div>

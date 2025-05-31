@@ -1,7 +1,9 @@
 
-import { IndianRupee } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const Footer = () => {
+  const navigate = useNavigate();
+
   return (
     <footer className="bg-gray-100 py-12">
       <div className="max-w-6xl mx-auto px-4">
@@ -9,8 +11,8 @@ const Footer = () => {
           <div>
             <div className="flex items-center mb-4">
               <h3 className="text-lg font-heading">
-                <span style={{ color: '#399EE6' }}>Bharat</span>
-                <span style={{ color: '#f47615' }} className="font-bold">Ankh</span>
+                <span className="text-brand-blue">Bharat</span>
+                <span className="text-primary font-bold">Ankh</span>
               </h3>
             </div>
             <p className="text-gray-600 text-sm font-body">
@@ -21,30 +23,37 @@ const Footer = () => {
           <div>
             <h4 className="font-semibold text-gray-900 mb-4 font-heading">Platform</h4>
             <ul className="space-y-2 text-sm text-gray-600 font-body">
-              <li><a href="#" className="hover:text-orange-500">How it Works</a></li>
-              <li><a href="#" className="hover:text-orange-500">Features</a></li>
-              <li><a href="#" className="hover:text-orange-500">Security</a></li>
-              <li><a href="#" className="hover:text-orange-500">Pricing</a></li>
+              <li><a href="#" className="hover:text-primary">How it Works</a></li>
+              <li><a href="#" className="hover:text-primary">Features</a></li>
+              <li><a href="#" className="hover:text-primary">Security</a></li>
+              <li><a href="#" className="hover:text-primary">Pricing</a></li>
             </ul>
           </div>
           
           <div>
             <h4 className="font-semibold text-gray-900 mb-4 font-heading">Company</h4>
             <ul className="space-y-2 text-sm text-gray-600 font-body">
-              <li><a href="#" className="hover:text-orange-500">About Us</a></li>
-              <li><a href="#" className="hover:text-orange-500">Careers</a></li>
-              <li><a href="#" className="hover:text-orange-500">Contact</a></li>
-              <li><a href="#" className="hover:text-orange-500">Blog</a></li>
+              <li>
+                <button 
+                  onClick={() => navigate("/team")} 
+                  className="hover:text-primary text-left"
+                >
+                  About Us
+                </button>
+              </li>
+              <li><a href="#" className="hover:text-primary">Careers</a></li>
+              <li><a href="#" className="hover:text-primary">Contact</a></li>
+              <li><a href="#" className="hover:text-primary">Blog</a></li>
             </ul>
           </div>
           
           <div>
             <h4 className="font-semibold text-gray-900 mb-4 font-heading">Support</h4>
             <ul className="space-y-2 text-sm text-gray-600 font-body">
-              <li><a href="#" className="hover:text-orange-500">Help Center</a></li>
-              <li><a href="#" className="hover:text-orange-500">Privacy Policy</a></li>
-              <li><a href="#" className="hover:text-orange-500">Terms of Service</a></li>
-              <li><a href="#" className="hover:text-orange-500">Status</a></li>
+              <li><a href="#" className="hover:text-primary">Help Center</a></li>
+              <li><a href="#" className="hover:text-primary">Privacy Policy</a></li>
+              <li><a href="#" className="hover:text-primary">Terms of Service</a></li>
+              <li><a href="#" className="hover:text-primary">Status</a></li>
             </ul>
           </div>
         </div>

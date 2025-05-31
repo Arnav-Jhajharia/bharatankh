@@ -11,16 +11,15 @@ const Header = () => {
         <div className="flex justify-between items-center py-4">
           <div className="flex items-center">
             <h1 className="text-2xl font-heading">
-              <span style={{ color: '#399EE6' }}>Bharat</span>
-              <span style={{ color: '#f47615' }} className="font-bold">Ankh</span>
+              <span className="text-brand-blue">Bharat</span>
+              <span className="text-primary font-bold">Ankh</span>
             </h1>
           </div>
           
           <div className="flex gap-4">
             <Button 
               onClick={() => navigate("/kyc")} 
-              style={{ backgroundColor: '#f47615' }} 
-              className="text-white font-body"
+              className="bg-primary text-white font-body hover:bg-primary/90"
             >
               Get Started
             </Button>

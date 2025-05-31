@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { motion } from "framer-motion";
-import { IndianRupee, Users, Linkedin } from "lucide-react";
+import { Users, Linkedin } from "lucide-react";
 
 const Team = () => {
   const navigate = useNavigate();
@@ -54,8 +54,8 @@ const Team = () => {
           <div className="flex justify-between items-center py-4">
             <div className="flex items-center cursor-pointer" onClick={() => navigate("/")}>
               <h1 className="text-2xl font-heading">
-                <span style={{ color: '#399EE6' }}>Bharat</span>
-                <span style={{ color: '#f47615' }} className="font-bold">Ankh</span>
+                <span className="text-brand-blue">Bharat</span>
+                <span className="text-primary font-bold">Ankh</span>
               </h1>
             </div>
             
@@ -69,8 +69,7 @@ const Team = () => {
               </Button>
               <Button 
                 onClick={() => navigate("/kyc")} 
-                style={{ backgroundColor: '#f47615' }} 
-                className="text-white font-body"
+                className="bg-primary text-white font-body hover:bg-primary/90"
               >
                 Get Started
               </Button>
@@ -88,7 +87,7 @@ const Team = () => {
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <Users className="h-16 w-16 text-blue-500 mx-auto mb-6" />
+            <Users className="h-16 w-16 text-brand-blue mx-auto mb-6" />
             <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 font-heading">
               Meet Our Team
             </h1>
@@ -110,7 +109,7 @@ const Team = () => {
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-2 font-heading">{person.name}</h3>
                 <p className={`text-sm font-semibold mb-4 font-body ${
-                  person.type === 'founder' ? 'text-orange-600' : 'text-blue-600'
+                  person.type === 'founder' ? 'text-primary' : 'text-brand-blue'
                 }`}>
                   {person.role}
                 </p>
@@ -118,7 +117,7 @@ const Team = () => {
                   href={person.linkedin} 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-gray-600 hover:text-blue-600 transition-colors"
+                  className="inline-flex items-center gap-2 text-gray-600 hover:text-brand-blue transition-colors"
                 >
                   <Linkedin className="h-5 w-5" />
                   <span className="text-sm font-body">Connect</span>
@@ -135,7 +134,7 @@ const Team = () => {
           <Button 
             variant="outline" 
             onClick={() => navigate("/")} 
-            className="font-medium text-gray-600 hover:text-orange-600 transition-colors duration-200 font-body"
+            className="font-medium text-gray-600 hover:text-primary transition-colors duration-200 font-body"
           >
             Back to Home
           </Button>
