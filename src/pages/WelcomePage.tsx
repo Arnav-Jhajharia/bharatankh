@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { motion } from "framer-motion";
-import { IndianRupee, ArrowDown, Building2, BarChart3, Users } from "lucide-react";
+import { IndianRupee, ArrowDown, Building2, BarChart3 } from "lucide-react";
 
 const WelcomePage = () => {
   const navigate = useNavigate();
@@ -18,7 +18,7 @@ const WelcomePage = () => {
               <IndianRupee className="h-8 w-8 text-orange-500 mr-2" />
               <h1 className="text-2xl font-heading">
                 <span style={{ color: '#399EE6' }}>Bharat</span>
-                <span style={{ color: '#f47615' }}>Ankh</span>
+                <span style={{ color: '#f47615' }} className="font-bold">Ankh</span>
               </h1>
             </div>
             
@@ -312,27 +312,27 @@ const WelcomePage = () => {
           >
             <Card className="mx-auto max-w-4xl overflow-hidden rounded-3xl shadow-2xl border-0">
               <div className="bg-gradient-to-r from-orange-100 to-blue-100 p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6 font-heading">Spending Breakdown</h3>
+                <h3 className="text-2xl font-bold text-gray-900 mb-6 font-heading">Financial Portfolio Analysis</h3>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                   <div className="text-center p-4 bg-white/70 rounded-xl">
                     <div className="w-4 h-4 bg-orange-500 rounded-full mx-auto mb-2"></div>
-                    <div className="text-sm font-medium text-gray-700 font-body">Housing</div>
-                    <div className="text-xl font-bold text-gray-900 font-heading">30%</div>
+                    <div className="text-sm font-medium text-gray-700 font-body">Working Capital</div>
+                    <div className="text-xl font-bold text-gray-900 font-heading">32%</div>
                   </div>
                   <div className="text-center p-4 bg-white/70 rounded-xl">
                     <div className="w-4 h-4 bg-green-500 rounded-full mx-auto mb-2"></div>
-                    <div className="text-sm font-medium text-gray-700 font-body">Savings</div>
-                    <div className="text-xl font-bold text-gray-900 font-heading">25%</div>
+                    <div className="text-sm font-medium text-gray-700 font-body">Asset Investment</div>
+                    <div className="text-xl font-bold text-gray-900 font-heading">28%</div>
                   </div>
                   <div className="text-center p-4 bg-white/70 rounded-xl">
                     <div className="w-4 h-4 bg-purple-500 rounded-full mx-auto mb-2"></div>
-                    <div className="text-sm font-medium text-gray-700 font-body">Expenses</div>
-                    <div className="text-xl font-bold text-gray-900 font-heading">25%</div>
+                    <div className="text-sm font-medium text-gray-700 font-body">Operational</div>
+                    <div className="text-xl font-bold text-gray-900 font-heading">22%</div>
                   </div>
                   <div className="text-center p-4 bg-white/70 rounded-xl">
                     <div className="w-4 h-4 bg-blue-500 rounded-full mx-auto mb-2"></div>
-                    <div className="text-sm font-medium text-gray-700 font-body">Other</div>
-                    <div className="text-xl font-bold text-gray-900 font-heading">20%</div>
+                    <div className="text-sm font-medium text-gray-700 font-body">Risk Buffer</div>
+                    <div className="text-xl font-bold text-gray-900 font-heading">18%</div>
                   </div>
                 </div>
               </div>
@@ -341,58 +341,28 @@ const WelcomePage = () => {
         </div>
       </section>
 
-      {/* About Us Section */}
+      {/* Team CTA Section */}
       <section className="py-24 bg-gray-50">
-        <div className="max-w-6xl mx-auto px-4">
+        <div className="max-w-4xl mx-auto text-center px-4">
           <motion.div
             initial={{ y: 30, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8 }}
-            className="text-center mb-16"
           >
-            <Users className="h-16 w-16 text-blue-500 mx-auto mb-6" />
-            <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 font-heading">
-              Meet Our Team
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 font-heading">
+              Meet the Team Behind BharatAnkh
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto font-body">
-              Passionate about financial inclusion and empowering India's workforce
+            <p className="text-xl text-gray-600 mb-8 font-body">
+              Learn about the passionate individuals working to democratize financial access across India
             </p>
-          </motion.div>
-
-          <motion.div
-            initial={{ y: 50, opacity: 0 }}
-            whileInView={{ y: 0, opacity: 1 }}
-            transition={{ duration: 1, delay: 0.3 }}
-            className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8"
-          >
-            {/* Founders */}
-            {[
-              { name: "Arjun Sharma", role: "Co-Founder & CEO", image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=face" },
-              { name: "Priya Patel", role: "Co-Founder & CTO", image: "https://images.unsplash.com/photo-1494790108755-2616b612b789?w=300&h=300&fit=crop&crop=face" },
-              { name: "Vikash Kumar", role: "Co-Founder & CPO", image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&h=300&fit=crop&crop=face" }
-            ].map((person, index) => (
-              <Card key={index} className="text-center p-6 hover:shadow-lg transition-shadow border-0 bg-white">
-                <div className="w-24 h-24 mx-auto mb-4 rounded-full overflow-hidden">
-                  <img src={person.image} alt={person.name} className="w-full h-full object-cover" />
-                </div>
-                <h3 className="text-lg font-bold text-gray-900 mb-2 font-heading">{person.name}</h3>
-                <p className="text-sm text-orange-600 font-semibold font-body">{person.role}</p>
-              </Card>
-            ))}
             
-            {/* Founding Members */}
-            {[
-              { name: "Rahul Singh", role: "Founding Member", image: "https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?w=300&h=300&fit=crop&crop=face" },
-              { name: "Sneha Gupta", role: "Founding Member", image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=300&h=300&fit=crop&crop=face" }
-            ].map((person, index) => (
-              <Card key={index + 3} className="text-center p-6 hover:shadow-lg transition-shadow border-0 bg-white">
-                <div className="w-24 h-24 mx-auto mb-4 rounded-full overflow-hidden">
-                  <img src={person.image} alt={person.name} className="w-full h-full object-cover" />
-                </div>
-                <h3 className="text-lg font-bold text-gray-900 mb-2 font-heading">{person.name}</h3>
-                <p className="text-sm text-blue-600 font-semibold font-body">{person.role}</p>
-              </Card>
-            ))}
+            <Button 
+              size="lg" 
+              onClick={() => navigate("/team")}
+              className="text-lg px-8 py-4 rounded-full bg-gradient-to-r from-orange-500 to-brand-blue text-white hover:shadow-lg transition-all transform hover:scale-105 font-body"
+            >
+              Meet Our Team
+            </Button>
           </motion.div>
         </div>
       </section>
@@ -432,7 +402,7 @@ const WelcomePage = () => {
                 <IndianRupee className="h-6 w-6 text-orange-500 mr-2" />
                 <h3 className="text-lg font-heading">
                   <span style={{ color: '#399EE6' }}>Bharat</span>
-                  <span style={{ color: '#f47615' }}>Ankh</span>
+                  <span style={{ color: '#f47615' }} className="font-bold">Ankh</span>
                 </h3>
               </div>
               <p className="text-gray-600 text-sm font-body">
@@ -453,7 +423,7 @@ const WelcomePage = () => {
             <div>
               <h4 className="font-semibold text-gray-900 mb-4 font-heading">Company</h4>
               <ul className="space-y-2 text-sm text-gray-600 font-body">
-                <li><a href="#" className="hover:text-orange-500">About Us</a></li>
+                <li><a href="/team" className="hover:text-orange-500">About Us</a></li>
                 <li><a href="#" className="hover:text-orange-500">Careers</a></li>
                 <li><a href="#" className="hover:text-orange-500">Contact</a></li>
                 <li><a href="#" className="hover:text-orange-500">Blog</a></li>
