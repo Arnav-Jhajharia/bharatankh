@@ -26,7 +26,7 @@ const HeroSection = () => {
         </motion.div>
       </section>
 
-      {/* Main Card with Ghibli-style Background */}
+      {/* Main Card with Ghibli-style Workers Background */}
       <section className="px-4 pb-16">
         <div className="max-w-6xl mx-auto">
           <Card className="relative h-[70vh] overflow-hidden rounded-3xl border-0 shadow-2xl">
@@ -34,7 +34,7 @@ const HeroSection = () => {
             <div 
               className="absolute inset-0 bg-cover bg-center bg-no-repeat"
               style={{
-                backgroundImage: `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1523712999610-f77fbcfc3843?q=80&w=2070')`
+                backgroundImage: `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=2070')`
               }}
             />
             
