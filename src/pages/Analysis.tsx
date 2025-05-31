@@ -33,12 +33,12 @@ const Analysis = () => {
     { month: "Aug", stability: 92 }
   ];
 
-  // Enhanced Technical Spending Analysis Data
+  // Spending Breakdown Data - Consistent colors
   const spendingData = [
-    { name: "Working Capital", value: 32, color: "#f47615", amount: "₹18,560" },
-    { name: "Asset Investment", value: 28, color: "#48BB78", amount: "₹16,240" },
-    { name: "Operational Expenses", value: 22, color: "#805AD5", amount: "₹12,760" },
-    { name: "Risk Buffer", value: 18, color: "#399EE6", amount: "₹10,440" }
+    { name: "Housing", value: 30, color: "#f47615" },
+    { name: "Savings", value: 25, color: "#48BB78" },
+    { name: "Expenses", value: 25, color: "#805AD5" },
+    { name: "Other", value: 20, color: "#399EE6" }
   ];
 
   // Cash Flow Data
@@ -95,11 +95,11 @@ const Analysis = () => {
       
       <Separator className="my-8 bg-gray-200" />
       
-      {/* Enhanced Financial Portfolio Analysis */}
+      {/* Fixed Spending Breakdown with proper layout */}
       <div className="bg-white/95 backdrop-blur-xl rounded-3xl shadow-sm border border-gray-100/50 overflow-hidden">
         <div className="px-6 pt-6 pb-4">
-          <h3 className="text-xl font-semibold text-gray-900 font-body mb-2">Financial Portfolio Analysis</h3>
-          <p className="text-sm text-gray-500 font-body">Capital allocation & risk distribution model</p>
+          <h3 className="text-xl font-semibold text-gray-900 font-body mb-2">Spending Breakdown</h3>
+          <p className="text-sm text-gray-500 font-body">Monthly allocation overview</p>
         </div>
         
         <div className="px-6 pb-6">
@@ -133,7 +133,7 @@ const Analysis = () => {
               </div>
             </div>
             
-            {/* Enhanced Legend with technical metrics */}
+            {/* Legend with consistent styling */}
             <div className="space-y-3">
               {spendingData.map((item, index) => (
                 <div key={index} className="group">
@@ -145,32 +145,24 @@ const Analysis = () => {
                       ></div>
                       <div>
                         <span className="font-semibold text-gray-800 text-sm font-body">{item.name}</span>
-                        <div className="text-xs text-gray-500 font-body">{item.amount}</div>
                       </div>
                     </div>
                     <div className="flex flex-col items-end">
                       <span className="font-bold text-gray-900 text-lg font-body">{item.value}%</span>
-                      <span className="text-xs text-gray-500 font-body">of portfolio</span>
                     </div>
                   </div>
                 </div>
               ))}
               
-              {/* Enhanced Summary Card */}
-              <div className="mt-6 p-4 rounded-xl bg-gradient-to-r from-orange-50/80 to-brand-blue/10 border border-orange-100/50">
-                <div className="space-y-3">
-                  <div className="flex justify-between items-center">
-                    <div>
-                      <p className="text-sm font-semibold text-gray-700 font-body mb-1">Portfolio Health Score</p>
-                      <p className="text-xs text-gray-500 font-body">Risk-adjusted performance metric</p>
-                    </div>
-                    <div className="px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-semibold font-body">
-                      OPTIMAL
-                    </div>
+              {/* Summary Card */}
+              <div className="mt-6 p-4 rounded-xl bg-gradient-to-r from-orange-50/80 to-blue-50/80 border border-orange-100/50">
+                <div className="flex justify-between items-center">
+                  <div>
+                    <p className="text-sm font-semibold text-gray-700 font-body mb-1">Financial Health</p>
+                    <p className="text-xs text-gray-500 font-body">Based on allocation</p>
                   </div>
-                  <div className="flex justify-between text-xs">
-                    <span className="text-gray-600 font-body">Risk Score: <span className="font-semibold text-green-600">Low (2.3)</span></span>
-                    <span className="text-gray-600 font-body">Liquidity: <span className="font-semibold text-brand-blue">High (87%)</span></span>
+                  <div className="px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-semibold font-body">
+                    BALANCED
                   </div>
                 </div>
               </div>
@@ -268,9 +260,9 @@ const Analysis = () => {
     <div className="min-h-screen bg-gray-50/50 px-4 py-8 max-w-7xl mx-auto">
       {/* Header */}
       <div className="flex justify-center mb-10">
-        <h1 className="text-2xl font-heading">
+        <h1 className="text-2xl font-bold font-heading">
           <span style={{ color: '#399EE6' }}>Bharat</span>
-          <span style={{ color: '#f47615' }} className="font-bold">Ankh</span>
+          <span style={{ color: '#f47615' }}>Ankh</span>
         </h1>
       </div>
       
@@ -302,7 +294,7 @@ const Analysis = () => {
         {/* Tab Content */}
         <div className="bg-white/90 backdrop-blur-xl shadow-sm rounded-3xl p-8 mt-8 border border-gray-100/50">
           {/* Score Section */}
-          <div className="flex items-center mb-10 p-6 bg-gradient-to-r from-orange-50/80 to-brand-blue/10 rounded-3xl border border-gray-100/50">
+          <div className="flex items-center mb-10 p-6 bg-gradient-to-r from-orange-50/80 to-blue-50/80 rounded-3xl border border-gray-100/50">
             <div className="h-20 w-20 rounded-3xl bg-gradient-to-br from-orange-400 to-brand-blue overflow-hidden mr-6 flex items-center justify-center shadow-lg">
               <span className="text-white font-bold text-2xl font-heading">
                 {userData.name ? userData.name.charAt(0) : "U"}
