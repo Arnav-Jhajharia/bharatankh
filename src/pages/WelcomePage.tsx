@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { motion } from "framer-motion";
-import { IndianRupee, ArrowDown } from "lucide-react";
+import { IndianRupee, ArrowDown, Building2, BarChart3, Users } from "lucide-react";
 
 const WelcomePage = () => {
   const navigate = useNavigate();
@@ -16,19 +16,28 @@ const WelcomePage = () => {
           <div className="flex justify-between items-center py-4">
             <div className="flex items-center">
               <IndianRupee className="h-8 w-8 text-orange-500 mr-2" />
-              <h1 className="text-2xl font-bold font-heading">
-                <span style={{ color: '#f47615' }}>Bharat</span>
-                <span style={{ color: '#399EE6' }}>Ankh</span>
+              <h1 className="text-2xl font-heading">
+                <span style={{ color: '#399EE6' }}>Bharat</span>
+                <span style={{ color: '#f47615' }}>Ankh</span>
               </h1>
             </div>
             
-            <Button 
-              onClick={() => navigate("/kyc")} 
-              style={{ backgroundColor: '#f47615' }} 
-              className="text-white font-body"
-            >
-              Get Started
-            </Button>
+            <div className="flex gap-4">
+              <Button 
+                onClick={() => navigate("/institutional")} 
+                variant="outline"
+                className="text-gray-700 border-gray-300 hover:bg-gray-50 font-body"
+              >
+                For Institutions
+              </Button>
+              <Button 
+                onClick={() => navigate("/kyc")} 
+                style={{ backgroundColor: '#f47615' }} 
+                className="text-white font-body"
+              >
+                Get Started
+              </Button>
+            </div>
           </div>
         </div>
       </header>
@@ -134,29 +143,11 @@ const WelcomePage = () => {
             <h3 className="text-5xl md:text-7xl font-bold text-orange-500 font-heading">Growth</h3>
             <h3 className="text-5xl md:text-7xl font-bold text-gray-900 font-heading">Future</h3>
           </motion.div>
-          
-          <motion.div
-            initial={{ y: 20, opacity: 0 }}
-            whileInView={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-          >
-            <Button 
-              variant="link" 
-              className="text-2xl hover:text-brand-blue underline font-semibold font-body"
-              style={{ color: '#399EE6' }}
-              onClick={() => {
-                // Scroll to next section or navigate to about page
-                document.getElementById('ui-section')?.scrollIntoView({ behavior: 'smooth' });
-              }}
-            >
-              Learn About Us →
-            </Button>
-          </motion.div>
         </div>
       </section>
 
-      {/* UI Screen Section */}
-      <section id="ui-section" className="py-24 bg-gradient-to-br from-blue-50 to-orange-50">
+      {/* UI Screen Section - User Dashboard */}
+      <section className="py-24 bg-gradient-to-br from-blue-50 to-orange-50">
         <div className="max-w-6xl mx-auto px-4">
           <motion.div
             initial={{ y: 30, opacity: 0 }}
@@ -231,6 +222,181 @@ const WelcomePage = () => {
         </div>
       </section>
 
+      {/* Institutional View Section */}
+      <section className="py-24 bg-gray-50">
+        <div className="max-w-6xl mx-auto px-4">
+          <motion.div
+            initial={{ y: 30, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-16"
+          >
+            <Building2 className="h-16 w-16 text-blue-500 mx-auto mb-6" />
+            <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 font-heading">
+              What Lenders See
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto font-body">
+              Institutional partners get comprehensive risk assessment and customer insights
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ y: 50, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            transition={{ duration: 1, delay: 0.3 }}
+            className="relative"
+          >
+            <Card className="mx-auto max-w-4xl overflow-hidden rounded-3xl shadow-2xl border-0 bg-white">
+              <div className="p-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div>
+                    <h3 className="text-2xl font-bold text-gray-900 mb-6 font-heading">Customer Profile</h3>
+                    <div className="space-y-4">
+                      <div className="flex justify-between items-center p-3 bg-green-50 rounded-lg border border-green-200">
+                        <span className="font-medium text-gray-700 font-body">Credit Score</span>
+                        <span className="font-bold text-green-600 font-body">750</span>
+                      </div>
+                      <div className="flex justify-between items-center p-3 bg-blue-50 rounded-lg border border-blue-200">
+                        <span className="font-medium text-gray-700 font-body">Income Stability</span>
+                        <span className="font-bold text-blue-600 font-body">High</span>
+                      </div>
+                      <div className="flex justify-between items-center p-3 bg-orange-50 rounded-lg border border-orange-200">
+                        <span className="font-medium text-gray-700 font-body">Risk Level</span>
+                        <span className="font-bold text-orange-600 font-body">Low</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-bold text-gray-900 mb-6 font-heading">Transaction Insights</h3>
+                    <div className="space-y-4">
+                      <div className="p-4 bg-gray-50 rounded-lg">
+                        <div className="text-sm text-gray-600 font-body">Monthly Volume</div>
+                        <div className="text-xl font-bold text-gray-900 font-heading">₹2.4L</div>
+                      </div>
+                      <div className="p-4 bg-gray-50 rounded-lg">
+                        <div className="text-sm text-gray-600 font-body">Payment Reliability</div>
+                        <div className="text-xl font-bold text-gray-900 font-heading">98.5%</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </Card>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Analysis Section */}
+      <section className="py-24 bg-white">
+        <div className="max-w-6xl mx-auto px-4">
+          <motion.div
+            initial={{ y: 30, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-16"
+          >
+            <BarChart3 className="h-16 w-16 text-orange-500 mx-auto mb-6" />
+            <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 font-heading">
+              Deep Financial Analysis
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto font-body">
+              Comprehensive breakdown of spending patterns, income stability, and financial behavior
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ y: 50, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            transition={{ duration: 1, delay: 0.3 }}
+            className="relative"
+          >
+            <Card className="mx-auto max-w-4xl overflow-hidden rounded-3xl shadow-2xl border-0">
+              <div className="bg-gradient-to-r from-orange-100 to-blue-100 p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6 font-heading">Spending Breakdown</h3>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                  <div className="text-center p-4 bg-white/70 rounded-xl">
+                    <div className="w-4 h-4 bg-orange-500 rounded-full mx-auto mb-2"></div>
+                    <div className="text-sm font-medium text-gray-700 font-body">Housing</div>
+                    <div className="text-xl font-bold text-gray-900 font-heading">30%</div>
+                  </div>
+                  <div className="text-center p-4 bg-white/70 rounded-xl">
+                    <div className="w-4 h-4 bg-green-500 rounded-full mx-auto mb-2"></div>
+                    <div className="text-sm font-medium text-gray-700 font-body">Savings</div>
+                    <div className="text-xl font-bold text-gray-900 font-heading">25%</div>
+                  </div>
+                  <div className="text-center p-4 bg-white/70 rounded-xl">
+                    <div className="w-4 h-4 bg-purple-500 rounded-full mx-auto mb-2"></div>
+                    <div className="text-sm font-medium text-gray-700 font-body">Expenses</div>
+                    <div className="text-xl font-bold text-gray-900 font-heading">25%</div>
+                  </div>
+                  <div className="text-center p-4 bg-white/70 rounded-xl">
+                    <div className="w-4 h-4 bg-blue-500 rounded-full mx-auto mb-2"></div>
+                    <div className="text-sm font-medium text-gray-700 font-body">Other</div>
+                    <div className="text-xl font-bold text-gray-900 font-heading">20%</div>
+                  </div>
+                </div>
+              </div>
+            </Card>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* About Us Section */}
+      <section className="py-24 bg-gray-50">
+        <div className="max-w-6xl mx-auto px-4">
+          <motion.div
+            initial={{ y: 30, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-16"
+          >
+            <Users className="h-16 w-16 text-blue-500 mx-auto mb-6" />
+            <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 font-heading">
+              Meet Our Team
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto font-body">
+              Passionate about financial inclusion and empowering India's workforce
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ y: 50, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            transition={{ duration: 1, delay: 0.3 }}
+            className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8"
+          >
+            {/* Founders */}
+            {[
+              { name: "Arjun Sharma", role: "Co-Founder & CEO", image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=face" },
+              { name: "Priya Patel", role: "Co-Founder & CTO", image: "https://images.unsplash.com/photo-1494790108755-2616b612b789?w=300&h=300&fit=crop&crop=face" },
+              { name: "Vikash Kumar", role: "Co-Founder & CPO", image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&h=300&fit=crop&crop=face" }
+            ].map((person, index) => (
+              <Card key={index} className="text-center p-6 hover:shadow-lg transition-shadow border-0 bg-white">
+                <div className="w-24 h-24 mx-auto mb-4 rounded-full overflow-hidden">
+                  <img src={person.image} alt={person.name} className="w-full h-full object-cover" />
+                </div>
+                <h3 className="text-lg font-bold text-gray-900 mb-2 font-heading">{person.name}</h3>
+                <p className="text-sm text-orange-600 font-semibold font-body">{person.role}</p>
+              </Card>
+            ))}
+            
+            {/* Founding Members */}
+            {[
+              { name: "Rahul Singh", role: "Founding Member", image: "https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?w=300&h=300&fit=crop&crop=face" },
+              { name: "Sneha Gupta", role: "Founding Member", image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=300&h=300&fit=crop&crop=face" }
+            ].map((person, index) => (
+              <Card key={index + 3} className="text-center p-6 hover:shadow-lg transition-shadow border-0 bg-white">
+                <div className="w-24 h-24 mx-auto mb-4 rounded-full overflow-hidden">
+                  <img src={person.image} alt={person.name} className="w-full h-full object-cover" />
+                </div>
+                <h3 className="text-lg font-bold text-gray-900 mb-2 font-heading">{person.name}</h3>
+                <p className="text-sm text-blue-600 font-semibold font-body">{person.role}</p>
+              </Card>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
       {/* Final CTA */}
       <section className="py-24 bg-gray-900 text-white">
         <div className="max-w-4xl mx-auto text-center px-4">
@@ -264,9 +430,9 @@ const WelcomePage = () => {
             <div>
               <div className="flex items-center mb-4">
                 <IndianRupee className="h-6 w-6 text-orange-500 mr-2" />
-                <h3 className="text-lg font-bold font-heading">
-                  <span style={{ color: '#f47615' }}>Bharat</span>
-                  <span style={{ color: '#399EE6' }}>Ankh</span>
+                <h3 className="text-lg font-heading">
+                  <span style={{ color: '#399EE6' }}>Bharat</span>
+                  <span style={{ color: '#f47615' }}>Ankh</span>
                 </h3>
               </div>
               <p className="text-gray-600 text-sm font-body">

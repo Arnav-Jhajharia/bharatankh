@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -85,7 +84,6 @@ const Analysis = () => {
                       <span className="font-medium">₹{value}</span>
                     </div>
                   ]} 
-                  className="bg-white border border-gray-200 shadow-lg rounded-lg opacity-100"
                 />} 
               />
               <Line type="monotone" dataKey="income" stroke="#f47615" strokeWidth={3} dot={{ r: 6 }} activeDot={{ r: 8 }} />
@@ -129,7 +127,6 @@ const Analysis = () => {
                     </Pie>
                     <ChartTooltip 
                       formatter={(value, name) => [`${value}%`, name]}
-                      className="bg-white border border-gray-200 shadow-lg rounded-lg"
                     />
                   </PieChart>
                 </ResponsiveContainer>
@@ -264,8 +261,8 @@ const Analysis = () => {
       {/* Header */}
       <div className="flex justify-center mb-10">
         <h1 className="text-2xl font-bold font-heading">
-          <span style={{ color: '#f47615' }}>Bharat</span>
-          <span style={{ color: '#399EE6' }}>Ankh</span>
+          <span style={{ color: '#399EE6' }}>Bharat</span>
+          <span style={{ color: '#f47615' }}>Ankh</span>
         </h1>
       </div>
       
