@@ -20,7 +20,7 @@ const WelcomePage = () => {
       <DashboardSection />
       <InstitutionalSection />
       <AnalysisSection />
-      <TeamCTASection />
+
       <FinalCTASection />
       <Footer />
     </div>
