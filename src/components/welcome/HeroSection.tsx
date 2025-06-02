@@ -34,7 +34,7 @@ const HeroSection = () => {
             <div 
               className="absolute inset-0 bg-cover bg-center bg-no-repeat"
               style={{
-                backgroundImage: `linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://ibb.co/sdL3v9FS')`
+                backgroundImage: `linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://ik.imagekit.io/otqmchywr/ChatGPT%20Image%20Jun%202,%202025,%2002_09_02%20PM.png')`
               }}
             />
             
